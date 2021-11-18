@@ -3,7 +3,8 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { db } from '../../utils/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore'
 
@@ -13,7 +14,7 @@ const ContactUsModal = ({open, close}) => {
     name: '',
     email: '',
     phone: '',
-    subject: '',
+    subject: 'Real Estate',
     message: ''
   })
 
@@ -46,17 +47,19 @@ const ContactUsModal = ({open, close}) => {
         subject: localState.subject,
         message: localState.message
       });
-      alert('Message sent successfully. We will contact you shortly.');
+      // alert('Message sent successfully. We will contact you shortly.');
+      <Alert dismissible variant='success'>Message sent successfully. We will contact you shortly.</Alert>
       clearForm()
       close()
     } catch (error) {
-      alert('Error sending message. Try again.')
+      // alert('Error sending message. Try again.')
+      <Alert dismissible variant='error'>Error sending message. Try again.</Alert>
     }
   }
 
   return (
     <Modal size='lg' show={open} onHide={close}>
-      <Modal.Header>
+      <Modal.Header closeButton>
         <Modal.Title>Consult Us</Modal.Title>
       </Modal.Header>
       <Modal.Body className='bg-wephco-blue'>
@@ -93,33 +96,36 @@ const ContactUsModal = ({open, close}) => {
             </Row>
           </Col>
           <Col md={6} className=''>
-            <form name='contact' method='POST' netlify>
+            <form name='contact' onSubmit={submitContactForm}>
+              <input type='hidden' name='form-name' value='contact'/>
               <fieldset>
               <Row>
                 <Form.Group as={Col}>
                   <Form.Label className='text-white'>Name</Form.Label>
-                  <Form.Control name='Name' required type='text' value={localState.name} onChange={handleChange('name')} />
+                  <Form.Control id='Name' name='Name' required type='text' value={localState.name} onChange={handleChange('name')} />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                 <Form.Label className='text-white'>Email</Form.Label>
-                  <Form.Control name='Email' required type='email' value={localState.email} onChange={handleChange('email')} />
+                  <Form.Control id='Email' name='Email' required type='email' value={localState.email} onChange={handleChange('email')} />
                 </Form.Group>
               </Row>
 
               <Row>
               <Form.Group as={Col}>
                   <Form.Label className='text-white'>Phone</Form.Label>
-                  <Form.Control name='Phone' required type='text' value={localState.phone} onChange={handleChange('phone')} />
+                  <Form.Control id='Phone' name='Phone' required type='text' value={localState.phone} onChange={handleChange('phone')} />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                 <Form.Label className='text-white'>Pick a Service</Form.Label>
-                  <select className='form-control' name='services' required value={localState.subject} onChange={handleChange('subject')}>
-                    <option value=""></option>
-                    <option value="Interior & Exterior">Interior & Exterior Design</option>
+                  <select id='Service' className='form-control' name='services' placeholder='Pick a service' required value={localState.subject} onChange={handleChange('subject')}>
                     <option value="Real Estate">Real Estate</option>
-                    <option value="Logistics">Logistics</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Short-Let">Short-Let</option>
+                    <option value="Tours">Tours</option>
+                    <option value="Events">Events</option>
+                    <option value="Car Rental">Car Rental</option>
                     <option value="FX">WephCoFx</option>
                   </select>
                 </Form.Group>
@@ -127,12 +133,12 @@ const ContactUsModal = ({open, close}) => {
 
               <Form.Group as={Col}>
                   <Form.Label className='text-white'>Message</Form.Label>
-                  <Form.Control name='Message' required as='textarea' type='text' value={localState.message} onChange={handleChange('message')} />
+                  <Form.Control id='Message' name='Message' required as='textarea' type='text' value={localState.message} onChange={handleChange('message')} />
                 </Form.Group>
 
-              <Button variant='light' className='mt-3' onClick={submitContactForm}>
+              <button type='submit' className='btn btn-light mt-3'>
                 Send Message
-              </Button>
+              </button>
               </fieldset>
             </form>
           </Col>

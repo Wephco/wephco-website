@@ -38,3 +38,21 @@ nav a:active {
 	background-color: #ffd700;
 	color: #fff;
 }
+
+.logistics-header {
+	background-image: url('./assets/images/night-logistics.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.features ul li p {
+	text-decoration: none;
+	color: black;
+	pointer-events: auto;
+}
+
+.features ul li p.active {
+	background-color: #002147;
+	border-radius: 20px;
+	color: white;
+}

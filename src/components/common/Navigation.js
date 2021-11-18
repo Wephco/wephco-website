@@ -47,7 +47,7 @@ const Navigation = () => {
             </NavLink>
             </Nav.Link>
             <Nav.Link className='p-4'>
-            <NavLink to='/'>
+            <NavLink to='/logistics'>
               <p>Logistics</p>
             </NavLink>
             </Nav.Link>
