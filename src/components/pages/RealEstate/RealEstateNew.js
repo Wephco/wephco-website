@@ -1,18 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BsBuilding, BsHouseDoor, BsGlobe, BsGear, BsPeople, BsArrowBarRight } from 'react-icons/bs'
+//import { BsBuilding, BsHouseDoor, BsGlobe, BsGear, BsPeople, BsArrowBarRight } from 'react-icons/bs'
 import { FaPlane, FaAward } from 'react-icons/fa'
 import { AiFillCar } from 'react-icons/ai'
 import { GiPartyFlags } from 'react-icons/gi'
 import { BiMoney, BiWorld, BiLocationPlus, BiTime, BiGasPump } from 'react-icons/bi'
 import { Container } from 'react-bootstrap'
 import StarRating from '../../common/StarRating';
-import hotel1 from '../../../assets/images/hotel-1.jpeg';
-import hotel2 from '../../../assets/images/hotel-2.jpeg';
-import hotel3 from '../../../assets/images/hotel-3.jpeg';
-import hotel4 from '../../../assets/images/hotel-4.jpeg';
-import short1 from '../../../assets/images/short-1.jpeg';
-import short2 from '../../../assets/images/short-2.jpeg';
+import home1 from '../../../assets/images/home1.jpeg';
+import home2 from '../../../assets/images/home2.jpeg';
+import home3 from '../../../assets/images/home3.jpeg';
+import home4 from '../../../assets/images/home4.jpeg';
+//import short1 from '../../../assets/images/short-1.jpeg';
+//import short2 from '../../../assets/images/short-2.jpeg';
 import short3 from '../../../assets/images/short-3.jpeg';
 import short4 from '../../../assets/images/short-4.jpeg';
 import tour1 from '../../../assets/images/tour-1.jpeg';
