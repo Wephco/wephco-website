@@ -256,46 +256,46 @@ const RealEstate = () => {
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={homerent2} className='card-img' alt='' />
+                  <img src={home2} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white" style={{ fontWeight: 'bold' }}>2-Bedroom Apartment with Swimming pool</h5>
+                    <h5 className="card-title text-white" style={{ fontWeight: 'bold' }}>2-Bedroom Apartment </h5>
                   </div>
                   <div className="card-body">
                     <StarRating />
                     <h6>Abuja</h6>
-                    <p className="card-text">From <strong className='text-danger'>$180</strong> /day</p>
+                    <p className="card-text">Rent <strong className='text-danger'>$180</strong> /annum</p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={short3} className='card-img' alt='' />
+                  <img src={home1} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white" style={{ fontWeight: 'bold' }}>2-Bedroom Penthouse Apartment with Indoor Swimming pool</h5>
+                    <h5 className="card-title text-white" style={{ fontWeight: 'bold' }}>2-Bedroom Penthouse Apartment </h5>
                   </div>
                   <div className="card-body">
                     <StarRating />
                     <h6>Abuja</h6>
-                    <p className="card-text">From <strong className='text-danger'>$200</strong> /day</p>
+                    <p className="card-text">Rent <strong className='text-danger'>$200</strong> /annum</p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={short4} className='card-img' alt='' />
+                  <img src={home2} className='card-img' alt='' />
                   <div className="card-img-overlay">
                     <h5 className="card-title text-white" style={{ fontWeight: 'bold' }}>3-Bedroom Apartment</h5>
                   </div>
                   <div className="card-body">
                     <StarRating />
                     <h6>Lagos</h6>
-                    <p className="card-text">From <strong className='text-danger'>$200</strong> /day</p>
+                    <p className="card-text">Rent <strong className='text-danger'>$200</strong> /annum</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Rent <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
@@ -303,95 +303,88 @@ const RealEstate = () => {
           <div className="tours" ref={tourRef}>
             <div className="header-text p-3">
               <div className="text">
-                <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Trending Tours</h2>
-                <h6 className="text-danger">Book amazing tours</h6>
+                <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Joint Ventures</h2>
+                <h6 className="text-danger">Join to develop and build amazing properties for sale & rent.</h6>
               </div>
             </div>
             <div className="row">
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={tour1} className='card-img' alt='' />
+                  <img src={home1} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white">Take a tour of the beautiful and romantic city of Paris. Perfect for a weekend away with your significant other.</h5>
+                    <h5 className="card-title text-white">Owning a home is a keystone of wealth... both financial affluence and emotional
+                      security</h5>
                   </div>
                   <div className="card-body">
-                    <h6> <BiLocationPlus className='mr-4' /> Paris</h6>
+                    <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
 
-                    <p className="card-text">From <strong className='text-danger'>$700</strong> /day</p>
-                    <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
+                    <p className="card-text">Invest <strong className='text-danger'>$700</strong> /project</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 3 Months </p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={tour2} className='card-img' alt='' />
+                  <img src={home2} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white">Witness the breathtaking architecture and beautiful skyline of the city of Rome</h5>
+                    <h5 className="card-title text-white">Real estate cannot be loast or stolen, nor can it be carried away.</h5>
                   </div>
                   <div className="card-body">
-                    <h6> <BiLocationPlus className='mr-4' /> Rome</h6>
+                    <h6> <BiLocationPlus className='mr-4' /> Lagos</h6>
 
-                    <p className="card-text">From <strong className='text-danger'>$640</strong> /day</p>
-                    <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
+                    <p className="card-text">Invest <strong className='text-danger'>$640</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 4 Months </p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={tour3} className='card-img' alt='' />
+                  <img src={home3} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white">Adventure awaits you in the mountainous region of the Swiss Alps.</h5>
+                    <h5 className="card-title text-white">Invest in properties in Rivers State Nigeria, Port Harcourt city center.</h5>
                   </div>
                   <div className="card-body">
-                    <h6> <BiLocationPlus className='mr-4' /> Swiss Alps</h6>
+                    <h6> <BiLocationPlus className='mr-4' /> Port Harcourt</h6>
 
-                    <p className="card-text">From <strong className='text-danger'>$1700</strong> /day</p>
-                    <p className="card-text"> <BiTime className='mr-4' /> 6 days </p>
+                    <p className="card-text">Invest <strong className='text-danger'>$1700</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 6 Months </p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={tour4} className='card-img' alt='' />
+                  <img src={home4} className='card-img' alt='' />
                   <div className="card-img-overlay">
-                    <h5 className="card-title text-white">Perfect location for a honeymoon or to relax and take your mind off work</h5>
+                    <h5 className="card-title text-white">Benin City, Edo State is another location full of properties to be developed. Join Us!</h5>
                   </div>
                   <div className="card-body">
-                    <h6> <BiLocationPlus className='mr-4' /> Seychelles</h6>
+                    <h6> <BiLocationPlus className='mr-4' /> Benin City</h6>
 
-                    <p className="card-text">From <strong className='text-danger'>$1000</strong> /day</p>
-                    <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
+                    <p className="card-text">Invest <strong className='text-danger'>$1000</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 3 Months </p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Invest <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
-          {/* Events */}
+          {/* Estate Programs */}
           <div className="events" ref={eventRef}>
             <div className="header-text p-3">
               <div className="text">
-                <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Popular Events</h2>
-                <h6 className="text-danger">Book tickets to all events in Nigeria</h6>
+                <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Estate Programs / Events</h2>
+                <h6 className="text-danger">Connect with realtors at events nationwide.</h6>
               </div>
             </div>
             <div className="row">
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={event1} className='card-img' alt='' />
+                  <img src={event4} className='card-img' alt='' />
                   <div className="card-body">
-                    <h5 className="card-title">Concerts</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-3 col-sm-12">
-                <div className="card">
-                  <img src={event2} className='card-img' alt='' />
-                  <div className="card-body">
-                    <h5 className="card-title">Sporting Events</h5>
+                    <h5 className="card-title">Estate Blogs</h5>
                   </div>
                 </div>
               </div>
@@ -399,21 +392,29 @@ const RealEstate = () => {
                 <div className="card">
                   <img src={event3} className='card-img' alt='' />
                   <div className="card-body">
-                    <h5 className="card-title">Art & Culture Events</h5>
+                    <h5 className="card-title">Valuers Events</h5>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
                 <div className="card">
-                  <img src={event4} className='card-img' alt='' />
+                  <img src={event2} className='card-img' alt='' />
                   <div className="card-body">
-                    <h5 className="card-title">Fashion Shows</h5>
+                    <h5 className="card-title">Sponsored Events</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-12">
+                <div className="card">
+                  <img src={event1} className='card-img' alt='' />
+                  <div className="card-body">
+                    <h5 className="card-title">Estate Shows</h5>
                   </div>
                 </div>
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Subscribe to events <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
@@ -518,14 +519,14 @@ const RealEstate = () => {
                   <FaAward color='#0275d8' size={100} />
                 </h1>
                 <h4>Award-Winning Service</h4>
-                <p>Travel worry-free knowing that we're here for you 24 hours a day</p>
+                <p>Buy & rent with ease because we're here for you 24 hours a day</p>
               </div>
               <div className="col-md-4 col-sm-12 text-center">
                 <h1>
                   <BiWorld color='#0275d8' size={100} />
                 </h1>
                 <h4>Worldwide Coverage</h4>
-                <p>Thousands of hotels in more than 200 countries and flights to over 1,000 cities worldwide</p>
+                <p>We connect you to that property, distance notwithstanding. With us you are limitless.</p>
               </div>
             </div>
           </div>
