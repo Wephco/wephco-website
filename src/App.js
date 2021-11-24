@@ -5,7 +5,7 @@ import { AppProvider } from './context/AppState'
 // component imports
 import Navigation from './components/common/Navigation';
 import Home from './components/pages/LandingPage/Home';
-import RealEstateNew from './components/pages/RealEstate/RealEstateNew';
+import RealEstate from './components/pages/RealEstate/RealEstate';
 import Footer from './components/common/Footer';
 import PricingPlan from './components/pages/PricingPlan/PricingPlan'
 import Logistics from './components/pages/Logistics/Logistics'
@@ -21,7 +21,7 @@ function App() {
         <Navigation />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/real-estate' component={RealEstateNew} />
+          <Route exact path='/real-estate' component={RealEstate} />
           <Route exact path='/pricing' component={PricingPlan} />
           <Route exact path='/logistics' component={Logistics} />
         </Switch>
