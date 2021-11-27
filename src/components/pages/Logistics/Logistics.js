@@ -1,10 +1,16 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { BsBuilding, BsHouseDoor, BsGlobe, BsGear, BsPeople, BsArrowBarRight } from 'react-icons/bs'
-// import { FaPlane, FaAward } from 'react-icons/fa'
-// // import { AiFillCar } from 'react-icons/ai'
-// import { GiPartyFlags } from 'react-icons/gi'
-// import { BiMoney, BiWorld, BiLocationPlus, BiTime, BiGasPump } from 'react-icons/bi'
+import { BsBuilding, 
+  BsHouseDoor, 
+  BsGlobe, 
+  BsGear, 
+  BsPeople, 
+  // BsArrowBarRight
+} from 'react-icons/bs'
+import { FaPlane, FaAward } from 'react-icons/fa'
+import { AiFillCar } from 'react-icons/ai'
+import { GiPartyFlags } from 'react-icons/gi'
+import { BiMoney, BiWorld, BiLocationPlus, BiTime, BiGasPump } from 'react-icons/bi'
 import { Container } from 'react-bootstrap'
 import StarRating from '../../common/StarRating';
 import hotel1 from '../../../assets/images/hotel-1.jpeg';
@@ -96,7 +102,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
                 <h5 className='text-white'>
-                {/* <FaPlane className='mr-3' /> */}
+                <FaPlane className='mr-3' />
                 Flights
                 </h5>
               </Link>
@@ -105,7 +111,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
                <h5 className="text-white">
-               {/* <BsHouseDoor className='mr-5'/> */}
+               <BsHouseDoor className='mr-5'/>
                Short-Let
                </h5>
               </Link>
@@ -114,7 +120,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
               <h5 className='text-white'>
-                {/* <BsGlobe /> */}
+                <BsGlobe />
                 Tours
               </h5>
               </Link>
@@ -123,7 +129,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
                 <h4 className="text-white">
-                  {/* <AiFillCar className='mr-5'/> */}
+                  <AiFillCar className='mr-5'/>
                   Car Rental
                 </h4>
               </Link>
@@ -132,7 +138,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
                 <h4 className="text-white">
-                  {/* <GiPartyFlags /> */}
+                  <GiPartyFlags />
                   Events
                 </h4>
               </Link>
@@ -141,7 +147,7 @@ const Logistics = () => {
             <div className="col">
               <Link>
               <h4 className="text-white">
-                {/* <BsBuilding className='mr-5'/> */}
+                <BsBuilding className='mr-5'/>
                 Hotel
               </h4>
               </Link>
@@ -328,10 +334,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">Take a tour of the beautiful and romantic city of Paris. Perfect for a weekend away with your significant other.</h5>
                 </div>
                 <div className="card-body">
-                  {/* <h6> <BiLocationPlus className='mr-4' /> Paris</h6> */}
+                  <h6> <BiLocationPlus className='mr-4' /> Paris</h6>
                   
                   <p className="card-text">From <strong className='text-danger'>$700</strong> /day</p>
-                  {/* <p className="card-text"> <BiTime className='mr-4' /> 3 days </p> */}
+                  <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
             </div>
@@ -342,10 +348,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">Witness the breathtaking architecture and beautiful skyline of the city of Rome</h5>
                 </div>
                 <div className="card-body">
-                  {/* <h6> <BiLocationPlus className='mr-4' /> Rome</h6> */}
+                  <h6> <BiLocationPlus className='mr-4' /> Rome</h6>
                   
                   <p className="card-text">From <strong className='text-danger'>$640</strong> /day</p>
-                  {/* <p className="card-text"> <BiTime className='mr-4' /> 3 days </p> */}
+                  <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
             </div>
@@ -356,10 +362,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">Adventure awaits you in the mountainous region of the Swiss Alps.</h5>
                 </div>
                 <div className="card-body">
-                  {/* <h6> <BiLocationPlus className='mr-4' /> Swiss Alps</h6> */}
+                  <h6> <BiLocationPlus className='mr-4' /> Swiss Alps</h6>
                   
                   <p className="card-text">From <strong className='text-danger'>$1700</strong> /day</p>
-                  {/* <p className="card-text"> <BiTime className='mr-4' /> 6 days </p> */}
+                  <p className="card-text"> <BiTime className='mr-4' /> 6 days </p>
                 </div>
               </div>
             </div>
@@ -370,16 +376,18 @@ const Logistics = () => {
                 <h5 className="card-title text-white">Perfect location for a honeymoon or to relax and take your mind off work</h5>
                 </div>
                 <div className="card-body">
-                  {/* <h6> <BiLocationPlus className='mr-4' /> Seychelles</h6> */}
+                  <h6> <BiLocationPlus className='mr-4' /> Seychelles</h6>
                   
                   <p className="card-text">From <strong className='text-danger'>$1000</strong> /day</p>
-                  {/* <p className="card-text"> <BiTime className='mr-4' /> 3 days </p> */}
+                  <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-end">
-            {/* <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6> */}
+            <h6 className='text-danger mt-3' onClick={openModal} >Book 
+            {/* <BsArrowBarRight className='ml-4' />  */}
+            </h6>
           </div>
         </div>
 
@@ -426,7 +434,9 @@ const Logistics = () => {
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-end">
-            {/* <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6> */}
+            <h6 className='text-danger mt-3' onClick={openModal} >Book
+             {/* <BsArrowBarRight className='ml-4' />  */}
+             </h6>
           </div>
         </div>
 
@@ -446,10 +456,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">Mercedes-Benz</h5>
                 </div>
                 <div className="card-body">
-                  {/* <h6> <BiLocationPlus className='mr-4' /> Abuja</h6> */}
-                  {/* <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
+                  <h6> <BiLocationPlus className='mr-4' /> Abuja</h6> 
+                  <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 2 Seater</p>
-                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> */}
+                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p>
                   <p className="card-text">From <strong className='text-danger'>$1000</strong> /day</p>
                 </div>
               </div>
@@ -461,10 +471,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">BMW</h5>
                 </div>
                 <div className="card-body">
-                {/* <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
+                <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 4 Seater</p>
-                  <p className="card-text"> <BiGasPump className='mr-4' /> Diesel </p> */}
+                  <p className="card-text"> <BiGasPump className='mr-4' /> Diesel </p> 
                   <p className="card-text">From <strong className='text-danger'>$1200</strong> /day</p>
                 </div>
               </div>
@@ -476,10 +486,10 @@ const Logistics = () => {
                 <h5 className="card-title text-white">TOYOTA</h5>
                 </div>
                 <div className="card-body">
-                {/* <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
+                 <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 5 Seater</p>
-                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> */}
+                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> 
                   <p className="card-text">From <strong className='text-danger'>$700</strong> /day</p>
                 </div>
               </div>
@@ -491,17 +501,19 @@ const Logistics = () => {
                 <h5 className="card-title text-white">HONDA</h5>
                 </div>
                 <div className="card-body">
-                {/* <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
+                 <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 5 Seater</p>
-                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> */}
+                  <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> 
                   <p className="card-text">From <strong className='text-danger'>$800</strong> /day</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-end">
-            {/* <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6> */}
+            <h6 className='text-danger mt-3' onClick={openModal} >Book 
+            {/* <BsArrowBarRight className='ml-4' />  */}
+            </h6>
           </div>
         </div>
 
@@ -521,21 +533,21 @@ const Logistics = () => {
           <div className="row">
             <div className="col-md-4 col-sm-12 text-center">
               <h1>
-                {/* <BiMoney color='#0275d8' size={100}/> */}
+                <BiMoney color='#0275d8' size={100}/>
               </h1>
               <h4>Competitive Pricing</h4>
               <p>With 100+ suppliers and the purchasing power of thousands of members, Wephco can save you more.</p>
             </div>
             <div className="col-md-4 col-sm-12 text-center">
               <h1>
-                {/* <FaAward color='#0275d8' size={100}/> */}
+                <FaAward color='#0275d8' size={100}/>
               </h1>
               <h4>Award-Winning Service</h4>
               <p>Travel worry-free knowing that we're here for you 24 hours a day</p>
             </div>
             <div className="col-md-4 col-sm-12 text-center">
               <h1>
-                {/* <BiWorld color='#0275d8' size={100}/> */}
+                <BiWorld color='#0275d8' size={100}/>
               </h1>
               <h4>Worldwide Coverage</h4>
               <p>Thousands of hotels in more than 200 countries and flights to over 1,000 cities worldwide</p>

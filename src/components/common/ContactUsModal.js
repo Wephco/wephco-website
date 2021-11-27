@@ -101,7 +101,7 @@ const ContactUsModal = ({open, close}) => {
               
               <fieldset>
 
-              <div className='row'>
+              <div className='row my-3'>
                 <div className='col-md-6'>
                   <label className='text-white'>Name</label>
                   <input id='Name' name='Name' required type='text' />
@@ -113,7 +113,7 @@ const ContactUsModal = ({open, close}) => {
                 </div>
               </div>
 
-              <div className='row'>
+              <div className='row my-3'>
               <div className='col-md-6'>
                   <label className='text-white'>Phone</label>
                   <input id='Phone' name='Phone' required type='text' />
@@ -125,7 +125,7 @@ const ContactUsModal = ({open, close}) => {
                 </div>
               </div>
 
-              <div className='col-md-12'>
+              <div className='col-md-6 my-3'>
                   <label className='text-white'>Message</label>
                   <textarea id='Message' name='Message' required type='text'></textarea>
                 </div>
