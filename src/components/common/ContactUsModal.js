@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
-import { db } from '../../utils/firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore'
+// import Alert from 'react-bootstrap/Alert';
+// import { db } from '../../utils/firebaseConfig';
+// import { collection, addDoc } from 'firebase/firestore'
 
 const ContactUsModal = ({open, close}) => {
 
@@ -18,12 +18,12 @@ const ContactUsModal = ({open, close}) => {
     message: ''
   })
 
-  const handleChange = (input) => (event) => {
-    setLocalState({
-      ...localState,
-      [input]: event.target.value
-    })
-  }
+  // const handleChange = (input) => (event) => {
+  //   setLocalState({
+  //     ...localState,
+  //     [input]: event.target.value
+  //   })
+  // }
 
   const clearForm = () => {
     setLocalState({
@@ -36,26 +36,26 @@ const ContactUsModal = ({open, close}) => {
     });
   }
 
-  const submitContactForm = async (event) => {
-    event.preventDefault();
+  // const submitContactForm = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      await addDoc(collection(db, 'websiteContact'), {
-        name: localState.name,
-        email: localState.email,
-        phone: localState.phone,
-        subject: localState.subject,
-        message: localState.message
-      });
-      // alert('Message sent successfully. We will contact you shortly.');
-      <Alert dismissible variant='success'>Message sent successfully. We will contact you shortly.</Alert>
-      clearForm()
-      close()
-    } catch (error) {
-      // alert('Error sending message. Try again.')
-      <Alert dismissible variant='error'>Error sending message. Try again.</Alert>
-    }
-  }
+  //   try {
+  //     await addDoc(collection(db, 'websiteContact'), {
+  //       name: localState.name,
+  //       email: localState.email,
+  //       phone: localState.phone,
+  //       subject: localState.subject,
+  //       message: localState.message
+  //     });
+  //     // alert('Message sent successfully. We will contact you shortly.');
+  //     <Alert dismissible variant='success'>Message sent successfully. We will contact you shortly.</Alert>
+  //     clearForm()
+  //     close()
+  //   } catch (error) {
+  //     // alert('Error sending message. Try again.')
+  //     <Alert dismissible variant='error'>Error sending message. Try again.</Alert>
+  //   }
+  // }
 
   return (
     <Modal size='lg' show={open} onHide={close}>
@@ -96,45 +96,39 @@ const ContactUsModal = ({open, close}) => {
             </Row>
           </Col>
           <Col md={6} className=''>
-            <form name='contact' onSubmit={submitContactForm}>
+            <form name='contact' method='post' data-netlify='true'>
               <input type='hidden' name='form-name' value='contact'/>
+              
               <fieldset>
-              <Row>
-                <Form.Group as={Col}>
-                  <Form.Label className='text-white'>Name</Form.Label>
-                  <Form.Control id='Name' name='Name' required type='text' value={localState.name} onChange={handleChange('name')} />
-                </Form.Group>
 
-                <Form.Group as={Col}>
-                <Form.Label className='text-white'>Email</Form.Label>
-                  <Form.Control id='Email' name='Email' required type='email' value={localState.email} onChange={handleChange('email')} />
-                </Form.Group>
-              </Row>
+              <div className='row'>
+                <div className='col-md-6'>
+                  <label className='text-white'>Name</label>
+                  <input id='Name' name='Name' required type='text' />
+                </div>
 
-              <Row>
-              <Form.Group as={Col}>
-                  <Form.Label className='text-white'>Phone</Form.Label>
-                  <Form.Control id='Phone' name='Phone' required type='text' value={localState.phone} onChange={handleChange('phone')} />
-                </Form.Group>
+                <div className='col-md-6'>
+                <label className='text-white'>Email</label>
+                  <input id='Email' name='Email' required type='email' />
+                </div>
+              </div>
 
-                <Form.Group as={Col}>
-                <Form.Label className='text-white'>Pick a Service</Form.Label>
-                  <select id='Service' className='form-control' name='services' placeholder='Pick a service' required value={localState.subject} onChange={handleChange('subject')}>
-                    <option value="Real Estate">Real Estate</option>
-                    <option value="Hotel">Hotel</option>
-                    <option value="Short-Let">Short-Let</option>
-                    <option value="Tours">Tours</option>
-                    <option value="Events">Events</option>
-                    <option value="Car Rental">Car Rental</option>
-                    <option value="FX">WephCoFx</option>
-                  </select>
-                </Form.Group>
-              </Row>
+              <div className='row'>
+              <div className='col-md-6'>
+                  <label className='text-white'>Phone</label>
+                  <input id='Phone' name='Phone' required type='text' />
+                </div>
 
-              <Form.Group as={Col}>
-                  <Form.Label className='text-white'>Message</Form.Label>
-                  <Form.Control id='Message' name='Message' required as='textarea' type='text' value={localState.message} onChange={handleChange('message')} />
-                </Form.Group>
+                <div className='col-md-6'>
+                <label className='text-white'>Service</label>
+                  <input id='Services' name='Services' type='text' required />
+                </div>
+              </div>
+
+              <div className='col-md-12'>
+                  <label className='text-white'>Message</label>
+                  <textarea id='Message' name='Message' required type='text'></textarea>
+                </div>
 
               <button type='submit' className='btn btn-light mt-3'>
                 Send Message

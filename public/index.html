@@ -30,12 +30,12 @@
     <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
 
     <!-- Netlify Form -->
-    <form name='contact' netlify netlify-honeypot='bot-field' hidden>
+    <form name='contact' netlify netlify-honeypot='bot-field' action='/' hidden>
       <input type='text' name='Name' />
       <input type='email' name='Email' />
       <input type='text' name='Phone' />
-      <select name='services'></select>
-      <textarea name='Message'></textarea>
+      <input type='text' name='Services' />
+      <textarea type='text' name='Message'></textarea>
     </form>
 
     <div id="root"></div>
