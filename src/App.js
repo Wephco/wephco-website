@@ -28,8 +28,8 @@ function App() {
         <Footer />
       </BrowserRouter>
       <a
-        href="https://wa.me/2349096729377"
-        class="whatsapp_float"
+        href="https://wa.me/2348144076079"
+        className="whatsapp_float"
         target="_blank"
         rel="noopener noreferrer"
       >
