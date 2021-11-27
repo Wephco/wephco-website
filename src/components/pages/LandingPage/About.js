@@ -3,8 +3,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import mission from '../../../assets/images/mission.svg';
-import kitchen from '../../../assets/images/kitchen.jpeg';
 import outdoor from '../../../assets/images/outdoor.jpeg';
+import works11 from '../../../assets/images/works11.jpeg'
 
 const About = () => {
   return (
@@ -15,7 +15,7 @@ const About = () => {
         <div className="card mb-3 h-100" style={{maxWidth:'540px'}}>
   <div className="row g-0">
     <div className="col-md-4">
-      <img src={kitchen} className="d-block w-100 rounded-start" alt="House 2"/>
+      <img src={works11} className="d-block w-100 rounded-start" alt="House 2"/>
     </div>
     <div className="col-md-8">
       <div className="card-body">

@@ -27,6 +27,14 @@ function App() {
         </Switch>
         <Footer />
       </BrowserRouter>
+      <a
+        href="https://wa.me/2349096729377"
+        class="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fa fa-whatsapp whatsapp-icon"></i>
+      </a>
     </AppProvider>
   );
 }
