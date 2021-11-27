@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
@@ -10,13 +10,13 @@ import Col from 'react-bootstrap/Col';
 
 const ContactUsModal = ({open, close}) => {
 
-  const [localState, setLocalState] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: 'Real Estate',
-    message: ''
-  })
+  // const [localState, setLocalState] = useState({
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  //   subject: 'Real Estate',
+  //   message: ''
+  // })
 
   // const handleChange = (input) => (event) => {
   //   setLocalState({
@@ -25,16 +25,16 @@ const ContactUsModal = ({open, close}) => {
   //   })
   // }
 
-  const clearForm = () => {
-    setLocalState({
-    ...localState,
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-    });
-  }
+  // const clearForm = () => {
+  //   setLocalState({
+  //   ...localState,
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  //   subject: '',
+  //   message: ''
+  //   });
+  // }
 
   // const submitContactForm = async (event) => {
   //   event.preventDefault();
