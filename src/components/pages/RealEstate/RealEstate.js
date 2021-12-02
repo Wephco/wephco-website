@@ -356,7 +356,7 @@ const RealEstate = () => {
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Invest <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Get Quote <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
