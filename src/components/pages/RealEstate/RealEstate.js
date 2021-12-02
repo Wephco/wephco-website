@@ -19,10 +19,6 @@ import home4 from '../../../assets/images/home4.jpeg';
 // import tour2 from '../../../assets/images/tour-2.jpeg';
 // import tour3 from '../../../assets/images/tour-3.jpeg';
 // import tour4 from '../../../assets/images/tour-4.jpeg';
-import car1 from '../../../assets/images/car-1.jpeg';
-import car2 from '../../../assets/images/car-2.jpeg';
-import car3 from '../../../assets/images/car-3.jpeg';
-import car4 from '../../../assets/images/car-4.jpeg';
 import event1 from '../../../assets/images/event-1.jpeg';
 import event2 from '../../../assets/images/event-2.jpeg';
 import event3 from '../../../assets/images/event-3.jpeg';
@@ -34,10 +30,10 @@ const RealEstate = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const hotelRef = useRef(null);
-  const shortLetRef = useRef(null)
+  const shortLetRef = useRef(null);
   const tourRef = useRef(null);
-  const eventRef = useRef(null)
-  const carRef = useRef(null);
+  const eventRef = useRef(null);
+ 
 
   const openModal = () => {
     setModalOpen(true);
