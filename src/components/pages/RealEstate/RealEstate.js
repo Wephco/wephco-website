@@ -162,7 +162,7 @@ const RealEstate = () => {
             </li>
           </ul>
 
-          {/* Hotels */}
+          {/* forSale */}
           <div className="hotels" ref={saleRef}>
             <div className="header-text p-3">
               <div className="text">
@@ -217,11 +217,11 @@ const RealEstate = () => {
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Book <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >More For Sale <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
-          {/* For-rent */}
+          {/* forRent */}
           <div className="for-rent" ref={rentRef}>
             <div className="header-text p-3">
               <div className="text">
@@ -284,11 +284,11 @@ const RealEstate = () => {
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Rent <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >More For Rent <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
-          {/* Tour */}
+          {/* build */}
           <div className="tours" ref={buildRef}>
             <div className="header-text p-3">
               <div className="text">
@@ -360,7 +360,7 @@ const RealEstate = () => {
             </div>
           </div>
 
-          {/* Tour */}
+          {/* jointVenture */}
           <div className="tours" ref={jointVentureRef}>
             <div className="header-text p-3">
               <div className="text">
@@ -428,7 +428,7 @@ const RealEstate = () => {
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Invest <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Join Us <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
@@ -475,7 +475,7 @@ const RealEstate = () => {
               </div>
             </div>
             <div className="d-flex justify-content-end align-items-end">
-              <h6 className='text-danger mt-3' onClick={openModal} >Subscribe to events <BsArrowBarRight className='ml-4' /> </h6>
+              <h6 className='text-danger mt-3' onClick={openModal} >Be The First To Know <BsArrowBarRight className='ml-4' /> </h6>
             </div>
           </div>
 
