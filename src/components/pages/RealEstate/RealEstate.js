@@ -11,14 +11,6 @@ import home1 from '../../../assets/images/home1.jpeg';
 import home2 from '../../../assets/images/home2.jpeg';
 import home3 from '../../../assets/images/home3.jpeg';
 import home4 from '../../../assets/images/home4.jpeg';
-//import short1 from '../../../assets/images/short-1.jpeg';
-//import short2 from '../../../assets/images/short-2.jpeg';
-// import short3 from '../../../assets/images/short-3.jpeg';
-// import short4 from '../../../assets/images/short-4.jpeg';
-// import tour1 from '../../../assets/images/tour-1.jpeg';
-// import tour2 from '../../../assets/images/tour-2.jpeg';
-// import tour3 from '../../../assets/images/tour-3.jpeg';
-// import tour4 from '../../../assets/images/tour-4.jpeg';
 import event1 from '../../../assets/images/event-1.jpeg';
 import event2 from '../../../assets/images/event-2.jpeg';
 import event3 from '../../../assets/images/event-3.jpeg';
@@ -74,6 +66,7 @@ const RealEstate = () => {
   )
 
   return (
+    <container>
     <div className=''>
       {modal}
       <div className="logistics-header p-5">
@@ -411,7 +404,6 @@ const RealEstate = () => {
             </div>
           </div>
 
-        </Container>
       </div>
 
       {/* Why Choose Us */}
