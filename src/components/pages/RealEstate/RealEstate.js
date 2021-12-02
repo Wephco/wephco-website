@@ -480,7 +480,6 @@ const RealEstate = () => {
             </div>
           </div>
 
-      </div>
 
       {/* Why Choose Us */}
       <div className="choose-us">
