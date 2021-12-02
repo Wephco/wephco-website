@@ -63,9 +63,6 @@ const RealEstate = () => {
       case 'event':
         eventRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 'car':
-        carRef.current.scrollIntoView({ behavior: 'smooth' });
-        break;
       default:
         hotelRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
