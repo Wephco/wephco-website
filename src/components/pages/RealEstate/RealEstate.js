@@ -21,10 +21,11 @@ const RealEstate = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  const hotelRef = useRef(null);
-  const shortLetRef = useRef(null);
-  const tourRef = useRef(null);
-  const eventRef = useRef(null);
+  const saleRef = useRef(null);
+  const rentRef = useRef(null);
+  const buildRef = useRef(null);
+  const jointVentureRef = useRef(null);
+  const eventProgramRef = useRef(null);
  
 
   const openModal = () => {
@@ -43,16 +44,19 @@ const RealEstate = () => {
     event.target.classList.add('active');
 
     switch (ref) {
-      case 'hotel':
+      case 'sale':
         hotelRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 'shortLet':
+      case 'rent':
         shortLetRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 'tour':
+      case 'build':
         tourRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
-      case 'event':
+      case 'jointVenture':
+        eventRef.current.scrollIntoView({ behavior: 'smooth' });
+        break;
+      case 'eventProgram':
         eventRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       default:
@@ -83,7 +87,7 @@ const RealEstate = () => {
               <Link>
                 <h5 className='text-white'>
                   <FaPlane className='mr-3' />
-                  Rent
+                  Sale
                 </h5>
               </Link>
             </div>
@@ -92,7 +96,7 @@ const RealEstate = () => {
               <Link>
                 <h5 className="text-white">
                   <BsHouseDoor className='mr-5' />
-                  Sale
+                  Rent
                 </h5>
               </Link>
             </div>
@@ -142,25 +146,25 @@ const RealEstate = () => {
 
           {/* Tab navigation */}
           <ul class="nav justify-content-center sticky-top">
-            <li class="nav-item" onClick={setActiveNav('hotel')}>
-              <p class="nav-link active" aria-current="page">Rent</p>
+            <li class="nav-item" onClick={setActiveNav('sale')}>
+              <p class="nav-link active" aria-current="page">Sale</p>
             </li>
-            <li class="nav-item" onClick={setActiveNav('shortLet')}>
-              <p class="nav-link">Sale</p>
+            <li class="nav-item" onClick={setActiveNav('rent')}>
+              <p class="nav-link">Rent</p>
             </li>
-            <li class="nav-item" onClick={setActiveNav('tour')}>
+            <li class="nav-item" onClick={setActiveNav('build')}>
               <p class="nav-link">Build</p>
             </li>
-            <li class="nav-item" onClick={setActiveNav('event')}>
+            <li class="nav-item" onClick={setActiveNav('jointVenture')}>
               <p class="nav-link">Joint Venture</p>
             </li>
-            <li class="nav-item" onClick={setActiveNav('car')}>
+            <li class="nav-item" onClick={setActiveNav('eventProgram')}>
               <p class="nav-link">Estate Programs</p>
             </li>
           </ul>
 
           {/* Hotels */}
-          <div className="hotels" ref={hotelRef}>
+          <div className="hotels" ref={saleRef}>
             <div className="header-text p-3">
               <div className="text">
                 <h2 className="text-danger" style={{ fontWeight: 'bold' }}>FOR SALE</h2>
@@ -219,7 +223,7 @@ const RealEstate = () => {
           </div>
 
           {/* For-rent */}
-          <div className="for-rent" ref={shortLetRef}>
+          <div className="for-rent" ref={rentRef}>
             <div className="header-text p-3">
               <div className="text">
                 <h2 className="text-danger" style={{ fontWeight: 'bold' }}>FOR RENT</h2>
@@ -286,7 +290,79 @@ const RealEstate = () => {
           </div>
 
           {/* Tour */}
-          <div className="tours" ref={tourRef}>
+          <div className="tours" ref={buildRef}>
+            <div className="header-text p-3">
+              <div className="text">
+                <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Build With Us</h2>
+                <h6 className="text-danger">Let us help you build that dream home for commercial, industrial, living purposes.</h6>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-3 col-sm-12">
+                <div className="card">
+                  <img src={home3} className='card-img' alt='' />
+                  <div className="card-img-overlay">
+                    <h5 className="card-title text-white">Owning a home is a keystone of wealth... both financial affluence and emotional
+                      security</h5>
+                  </div>
+                  <div className="card-body">
+                    <h6> <BiLocationPlus className='mr-4' /> Abuja</h6>
+
+                    <p className="card-text">Invest <strong className='text-danger'>$700</strong> /project</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 3 Months </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-12">
+                <div className="card">
+                  <img src={home1} className='card-img' alt='' />
+                  <div className="card-img-overlay">
+                    <h5 className="card-title text-white">Real estate cannot be loast or stolen, nor can it be carried away.</h5>
+                  </div>
+                  <div className="card-body">
+                    <h6> <BiLocationPlus className='mr-4' /> Lagos</h6>
+
+                    <p className="card-text">Invest <strong className='text-danger'>$640</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 4 Months </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-12">
+                <div className="card">
+                  <img src={home4} className='card-img' alt='' />
+                  <div className="card-img-overlay">
+                    <h5 className="card-title text-white">Invest in properties in Rivers State Nigeria, Port Harcourt city center.</h5>
+                  </div>
+                  <div className="card-body">
+                    <h6> <BiLocationPlus className='mr-4' /> Port Harcourt</h6>
+
+                    <p className="card-text">Invest <strong className='text-danger'>$1700</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 6 Months </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 col-sm-12">
+                <div className="card">
+                  <img src={home2} className='card-img' alt='' />
+                  <div className="card-img-overlay">
+                    <h5 className="card-title text-white">Benin City, Edo State is another location full of properties to be developed. Join Us!</h5>
+                  </div>
+                  <div className="card-body">
+                    <h6> <BiLocationPlus className='mr-4' /> Benin City</h6>
+
+                    <p className="card-text">Invest <strong className='text-danger'>$1000</strong> /property</p>
+                    <p className="card-text"> <BiTime className='mr-4' /> 3 Months </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex justify-content-end align-items-end">
+              <h6 className='text-danger mt-3' onClick={openModal} >Invest <BsArrowBarRight className='ml-4' /> </h6>
+            </div>
+          </div>
+
+          {/* Tour */}
+          <div className="tours" ref={jointVentureRef}>
             <div className="header-text p-3">
               <div className="text">
                 <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Joint Ventures</h2>
@@ -358,7 +434,7 @@ const RealEstate = () => {
           </div>
 
           {/* Estate Programs */}
-          <div className="events" ref={eventRef}>
+          <div className="events" ref={eventProgramRef}>
             <div className="header-text p-3">
               <div className="text">
                 <h2 className="text-danger" style={{ fontWeight: 'bold' }}>Estate Programs / Events</h2>
