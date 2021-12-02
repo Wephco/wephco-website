@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BsHouseDoor, BsGlobe, BsGear, BsPeople, BsArrowBarRight } from 'react-icons/bs'
+import { BsHouseDoor, BsGlobe, BsArrowBarRight } from 'react-icons/bs'
 import { FaPlane, FaAward } from 'react-icons/fa'
 import { AiFillCar } from 'react-icons/ai'
 import { GiPartyFlags } from 'react-icons/gi'
-import { BiMoney, BiWorld, BiLocationPlus, BiTime, BiGasPump } from 'react-icons/bi'
+import { BiMoney, BiWorld, BiLocationPlus, BiTime } from 'react-icons/bi'
 import { Container } from 'react-bootstrap'
 import StarRating from '../../common/StarRating';
 import home1 from '../../../assets/images/home1.jpeg';
