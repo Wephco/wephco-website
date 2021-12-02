@@ -70,7 +70,6 @@ const RealEstate = () => {
   )
 
   return (
-    <container>
     <div className=''>
       {modal}
       <div className="logistics-header p-5">
@@ -480,6 +479,8 @@ const RealEstate = () => {
             </div>
           </div>
 
+      </Container>
+    </div>
 
       {/* Why Choose Us */}
       <div className="choose-us">
