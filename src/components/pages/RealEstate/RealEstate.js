@@ -45,22 +45,22 @@ const RealEstate = () => {
 
     switch (ref) {
       case 'sale':
-        hotelRef.current.scrollIntoView({ behavior: 'smooth' });
+        saleRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       case 'rent':
-        shortLetRef.current.scrollIntoView({ behavior: 'smooth' });
+        rentRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       case 'build':
-        tourRef.current.scrollIntoView({ behavior: 'smooth' });
+        buildRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       case 'jointVenture':
-        eventRef.current.scrollIntoView({ behavior: 'smooth' });
+        jointVentureRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       case 'eventProgram':
-        eventRef.current.scrollIntoView({ behavior: 'smooth' });
+        eventProgramRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
       default:
-        hotelRef.current.scrollIntoView({ behavior: 'smooth' });
+        saleRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
     }
   }
