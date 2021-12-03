@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBKsjinrqM-9ZxbJDGa1FyTP2ME7L5xljk",
-  authDomain: "wephco-website.firebaseapp.com",
-  projectId: "wephco-website",
-  storageBucket: "wephco-website.appspot.com",
-  messagingSenderId: "910822656448",
-  appId: "1:910822656448:web:de547c047ba21db44ae025"
+  apiKey: "AIzaSyDLPHDVO8rt5whwATeco7CaTX54nmGcAHU",
+  authDomain: "staging-website-e8ec1.firebaseapp.com",
+  projectId: "staging-website-e8ec1",
+  storageBucket: "staging-website-e8ec1.appspot.com",
+  messagingSenderId: "921059598026",
+  appId: "1:921059598026:web:7992e86c02c02c2fee5e33"
 };
 
 // Initialize Firebase

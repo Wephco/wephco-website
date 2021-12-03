@@ -2,6 +2,7 @@ import SlideShow from './Carousel';
 import About from './About';
 import Services from './Services';
 import Works from './Works';
+import Newsletter from './Newsletter';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       </div>
       <Services />
       <Works />
+      <Newsletter />
     </>
   )
 }

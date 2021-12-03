@@ -1,10 +1,11 @@
-import React from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
-import logo from '../../assets/images/logo.svg'
+import React from 'react';
+import { Row, Container, Col } from 'react-bootstrap';
+import logo from '../../assets/images/logo.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className='bg-wephco-blue'>
+    <div className='bg-light'>
       <Container>
         <Row>
           <Col xs={12} md={4}>
@@ -12,19 +13,23 @@ const Footer = () => {
               <img src={logo} alt='Logo' />
             </div>
             <div className="mt-2">
-              <p className="lead">
+              {/* <p className="">
                 We are responsible, accountable, respectful, effective, efficient. We encourage innovation to meet challenges. We foster an environment of collaboration.
-              </p>
+              </p> */}
             </div>
           </Col>
           <Col xs={12} md={4}>
             <h4 className="mt-5">
               Services
             </h4>
-            <h5 className='mt-3'>Real Estate</h5>
-            <h5 className='mt-3'>Logistics</h5>
+            <h6 className='mt-3'>
+              <Link className='text-dark' to='/real-estate'>Real Estate</Link>
+            </h6>
+            <h6 className='mt-3'>
+              <Link className='text-dark' to='/logistics'>Logistics</Link>
+            </h6>
             <a target='_blank' rel='noreferrer' style={{textDecoration:'none', color:'white'}} href="https://fx.wephco.com">
-            <h5 className='mt-3'>WehpCoFx</h5>
+            <h6 className='mt-3 text-dark'>WehpCoFx</h6>
             </a>
             
           </Col>
@@ -35,12 +40,12 @@ const Footer = () => {
             <Row>
               <Col>
               <a href="https://www.facebook.com/weph.co/">
-              <i className='bi bi-facebook text-white' />
+              <i className='bi bi-facebook text-dark' />
               </a>
               </Col>
               <Col>
               <a href="https://www.instagram.com/wephco/">
-              <i className='bi bi-instagram text-white' />
+              <i className='bi bi-instagram text-dark' />
               </a>
               </Col>
               <Col>

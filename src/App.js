@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-
+import { ToastProvider } from 'react-toast-notifications'
 import { AppProvider } from './context/AppState'
 
 // component imports
@@ -17,6 +17,7 @@ import './App.css';
 function App() {
   return (
     <AppProvider>
+      <ToastProvider>
       <BrowserRouter>
         <Navigation />
         <Switch>
@@ -35,6 +36,7 @@ function App() {
       >
         <i class="fa fa-whatsapp whatsapp-icon"></i>
       </a>
+      </ToastProvider>
     </AppProvider>
   );
 }
