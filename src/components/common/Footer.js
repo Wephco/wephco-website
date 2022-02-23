@@ -23,14 +23,14 @@ const Footer = () => {
               Services
             </h4>
             <h6 className='mt-3'>
-              <Link className='text-dark' to='/real-estate'>Real Estate</Link>
+              <Link className='text-dark' to='/'>Real Estate</Link>
             </h6>
             <h6 className='mt-3'>
-              <Link className='text-dark' to='/logistics'>Logistics</Link>
+              <Link className='text-dark' to='/'>Logistics</Link>
             </h6>
-            <a target='_blank' rel='noreferrer' style={{textDecoration:'none', color:'white'}} href="https://fx.wephco.com">
-            <h6 className='mt-3 text-dark'>WehpCoFx</h6>
-            </a>
+            <h6 className='mt-3'>
+              <Link className='text-dark' to='/'>Hospitality</Link>
+            </h6>
             
           </Col>
           <Col xs={12} md={4}>
@@ -38,19 +38,36 @@ const Footer = () => {
               Follow Us
             </h4>
             <Row>
-              <Col>
+              <Col sm={4} md={2}>
               <a href="https://www.facebook.com/weph.co/">
-              <i className='bi bi-facebook text-dark' />
+              <i className='bi bi-facebook text-primary' />
               </a>
               </Col>
-              <Col>
+              <Col sm={4} md={2}>
               <a href="https://www.instagram.com/wephco/">
               <i className='bi bi-instagram text-dark' />
               </a>
               </Col>
-              <Col>
-              {/* <i className='bi bi-youtube' /> */}
+              <Col sm={4} md={2}>
+                <a href='https://www.twitter.com/wephco'>
+                  <i className='bi bi-twitter' />
+                </a>
               </Col>
+              <Col sm={4} md={2}>
+                <a href='https://www.linkedin.com/company/weph-co/'>
+                  <i className="bi bi-linkedin"/>
+                </a>
+              </Col>
+              <Col sm={4} md={2}>
+                <a href='https://youtube.com/channel/UC-d7FsZdffJmhYlXCaUixKA'>
+                  <i className='bi bi-youtube text-danger' />
+                </a>
+              </Col>
+              {/* <Col sm={4} md={2}>
+                <a href='https://vm.tiktok.com/ZMLhg8mPH/'>
+                  <i className="bi bi-tiktok"/>
+                </a>
+              </Col> */}
             </Row>
           </Col>
         </Row>

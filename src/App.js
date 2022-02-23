@@ -9,6 +9,7 @@ import RealEstate from './components/pages/RealEstate/RealEstate';
 import Footer from './components/common/Footer';
 import PricingPlan from './components/pages/PricingPlan/PricingPlan'
 import Logistics from './components/pages/Logistics/Logistics'
+import Contact from './components/pages/Contact/Contact'
 
 // stylesheet imports
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/real-estate' component={RealEstate} />
           <Route exact path='/pricing' component={PricingPlan} />
           <Route exact path='/logistics' component={Logistics} />
+          <Route exact path='/contact-us' component={Contact} />
         </Switch>
         <Footer />
       </BrowserRouter>

@@ -1,32 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
-import Button from 'react-bootstrap/Button'
-import ContactUs from './ContactUsModal';
 
 const Navigation = () => {
 
-  const [contactModalOpen, setContactModalOpen ] = useState(false);
+  // const [contactModalOpen, setContactModalOpen ] = useState(false);
 
-  const openContactModal = () => {
-    setContactModalOpen(true);
-  }
+  // const openContactModal = () => {
+  //   setContactModalOpen(true);
+  // }
 
-  const closeContactModal = () => {
-    setContactModalOpen(false);
-  }
+  // const closeContactModal = () => {
+  //   setContactModalOpen(false);
+  // }
 
-  let contact = (
-    <ContactUs open={contactModalOpen} close={closeContactModal} />
-  )
+  // let contact = (
+  //   <ContactUs open={contactModalOpen} close={closeContactModal} />
+  // )
 
 
   return (
     <Navbar expand='lg'>
-      {contact}
       <Container>
         <Navbar.Brand>
           <Link to='/'>
@@ -56,13 +53,13 @@ const Navigation = () => {
               <p>Our Foundation</p>
             </NavLink>
             </Nav.Link>
-            <p className='p-4'>
+            {/* <p className='p-4'>
             <a target="_blank" rel='noreferrer' href="https://fx.wephco.com">
               <p>Wephco Fx</p>
             </a>
-            </p>
+            </p> */}
           </Nav>
-          <Button onClick={openContactModal} className='bg-wephco-blue'>Contact Us</Button>
+          <NavLink to='contact-us'>Contact Us</NavLink>
         </Navbar.Collapse>
       </Container>
     </Navbar>
