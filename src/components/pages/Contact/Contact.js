@@ -69,9 +69,9 @@ const Contact = () => {
                   <select id='Services' name='Services' className='form-control' type='text' required >
                       <option value='-'>-</option>
                       <option value='Real Estate'>Real Estate</option>
-                      <option value='FX'>FX</option>
                       <option value='Hospitality'>Hospitality</option>
                       <option value='Logistics'>Logictics</option>
+                      <option value='Others'>Others</option>
                     </select>
                 </div>
               </div>
