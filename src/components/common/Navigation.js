@@ -39,9 +39,9 @@ const Navigation = () => {
               </NavLink>
             </Nav.Link>
             <Nav.Link className='p-4'>
-            <NavLink to='/real-estate'>
+            <a target="_blank" rel='noreferrer' href="https://real-estate.wephco.com">
               <p>Real Estate</p>
-            </NavLink>
+            </a>
             </Nav.Link>
             <Nav.Link className='p-4'>
             <NavLink to='/logistics'>
