@@ -204,7 +204,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating starRating={5} />
                   <h5 className="card-title">Lagos Continental Hotel</h5>
-                  <p className="card-text">From <strong className='text-danger'>$120</strong> /night</p>
+                  
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating starRating={5}/>
                   <h5 className="card-title">Eko Hotel & Suites</h5>
-                  <p className="card-text">From <strong className='text-danger'>$180</strong> /night</p>
+                  
                 </div>
               </div>
             </div>
@@ -226,7 +226,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating starRating={5}/>
                   <h5 className="card-title">Transcorp Hilton Abuja</h5>
-                  <p className="card-text">From <strong className='text-danger'>$200</strong> /night</p>
+                  
                 </div>
               </div>
             </div>
@@ -237,7 +237,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating starRating={5}/>
                   <h5 className="card-title">Sheraton Abuja</h5>
-                  <p className="card-text">From <strong className='text-danger'>$220</strong> /night</p>
+                  
                 </div>
               </div>
             </div>
@@ -267,7 +267,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating starRating={4}/>
                     <h6>Lagos</h6>
-                  <p className="card-text">From <strong className='text-danger'>$100</strong> /day</p>
+                 
                 </div>
               </div>
             </div>
@@ -280,7 +280,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating />
                   <h6>Abuja</h6>
-                  <p className="card-text">From <strong className='text-danger'>$180</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
@@ -293,7 +293,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating />
                   <h6>Abuja</h6>
-                  <p className="card-text">From <strong className='text-danger'>$200</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
@@ -306,7 +306,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <StarRating />
                   <h6>Lagos</h6>
-                  <p className="card-text">From <strong className='text-danger'>$200</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
@@ -336,7 +336,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <h6> <BiLocationPlus className='mr-4' /> Paris</h6>
                   
-                  <p className="card-text">From <strong className='text-danger'>$700</strong> /day</p>
+                  
                   <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
@@ -350,7 +350,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <h6> <BiLocationPlus className='mr-4' /> Rome</h6>
                   
-                  <p className="card-text">From <strong className='text-danger'>$640</strong> /day</p>
+                  
                   <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
@@ -364,7 +364,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <h6> <BiLocationPlus className='mr-4' /> Swiss Alps</h6>
                   
-                  <p className="card-text">From <strong className='text-danger'>$1700</strong> /day</p>
+                  
                   <p className="card-text"> <BiTime className='mr-4' /> 6 days </p>
                 </div>
               </div>
@@ -378,7 +378,7 @@ const Logistics = () => {
                 <div className="card-body">
                   <h6> <BiLocationPlus className='mr-4' /> Seychelles</h6>
                   
-                  <p className="card-text">From <strong className='text-danger'>$1000</strong> /day</p>
+                  
                   <p className="card-text"> <BiTime className='mr-4' /> 3 days </p>
                 </div>
               </div>
@@ -460,7 +460,7 @@ const Logistics = () => {
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 2 Seater</p>
                   <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p>
-                  <p className="card-text">From <strong className='text-danger'>$1000</strong> /day</p>
+                 
                 </div>
               </div>
             </div>
@@ -475,7 +475,7 @@ const Logistics = () => {
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 4 Seater</p>
                   <p className="card-text"> <BiGasPump className='mr-4' /> Diesel </p> 
-                  <p className="card-text">From <strong className='text-danger'>$1200</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
@@ -490,7 +490,7 @@ const Logistics = () => {
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 5 Seater</p>
                   <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> 
-                  <p className="card-text">From <strong className='text-danger'>$700</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
@@ -505,7 +505,7 @@ const Logistics = () => {
                   <p className="card-text"> <BsGear className='mr-4' /> Auto Transmission</p>
                   <p className="card-text"> <BsPeople className='mr-4' /> 5 Seater</p>
                   <p className="card-text"> <BiGasPump className='mr-4' /> Fuel </p> 
-                  <p className="card-text">From <strong className='text-danger'>$800</strong> /day</p>
+                  
                 </div>
               </div>
             </div>
