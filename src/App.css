@@ -1,92 +1,42 @@
-a {
-	text-decoration: none;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-nav a {
-	color: red;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-nav a:hover {
-	transition: all ease-in-out 0.5;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-nav a:active {
-	background-color: #002147;
-	color: white;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-.wephco-blue {
-	color: #002147;
+.card {
+  padding: 2em;
 }
 
-.bg-wephco-blue {
-	background-color: #002147;
-	color: white;
-}
-
-.btn-bronze {
-	background-color: #cd7f32;
-	color: #fff;
-}
-
-.btn-silver {
-	background-color: #c0c0c0;
-	color: #fff;
-}
-
-.btn-gold {
-	background-color: #ffd700;
-	color: #fff;
-}
-
-.logistics-header {
-	background-image: url('./assets/images/night-logistics.jpeg');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.features ul li p {
-	text-decoration: none;
-	color: black;
-	pointer-events: auto;
-}
-
-.features ul li p.active {
-	background-color: #002147;
-	border-radius: 20px;
-	color: white;
-}
-
-.whatsapp_float {
-	position: fixed;
-	width: 60px;
-	height: 60px;
-	bottom: 40px;
-	right: 40px;
-	background-color: #25d366;
-	color: #fff;
-	border-radius: 50px;
-	text-align: center;
-	font-size: 30px;
-	box-shadow: 2px 2px 3px #999;
-	z-index: 100;
-}
-
-.whatsapp-icon {
-	margin-top: 16px;
-}
-
-/* for mobile */
-@media screen and (max-width: 767px) {
-	.whatsapp-icon {
-		margin-top: 10px;
-	}
-
-	.whatsapp_float {
-		width: 40px;
-		height: 40px;
-		bottom: 20px;
-		right: 10px;
-		font-size: 22px;
-	}
+.read-the-docs {
+  color: #888;
 }
