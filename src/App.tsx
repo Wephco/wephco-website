@@ -13,6 +13,7 @@ function App() {
 					<Routes>
 						<Route path='/' element={<Login />} />
 						<Route path='/home' element={<PrivateRoute component={Dashboard} />} />
+						<Route path='/property-listings' element={<PrivateRoute component={Dashboard} />} />
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>

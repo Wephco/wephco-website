@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom';
 import SideMenuItem from './SideMenuItem';
 import { sideMenuItems } from '../../utils/sideMenuItems';
 import Home from '../pages/Home/Home';
+import PropertyListing from '../pages/PropertyListing/PropertyListing';
 
 const Dashboard = () => {
 	return (
@@ -28,6 +29,7 @@ const Dashboard = () => {
 			<div className='flex-grow p-8'>
 				{/* Add content based on path */}
 				<Route path='/home' element={<Home />} />
+				<Route path='/property-listings' element={<PropertyListing />} />
 			</div>
 		</div>
 	);
