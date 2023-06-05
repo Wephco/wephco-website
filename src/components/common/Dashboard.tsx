@@ -8,7 +8,7 @@ const Dashboard = () => {
 			{/* Sidebar */}
 			<div>
 				{/* Logo */}
-				<div className='flex items-center justify-center h-14 bg-gray-800'>
+				<div className='flex items-center justify-center h-14 bg-white'>
 					<div className='flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-green-400 to-blue-500'>
 						<img src='/wephcoLogo.ico' alt='Wephco Logo' className='w-8 h-8' />
 					</div>

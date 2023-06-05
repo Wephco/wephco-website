@@ -1,17 +1,43 @@
 import { useState, FormEvent } from 'react';
+import Loader from '../../common/Loader';
+import WarningAlert from '../../common/alerts/WarningAlert';
+import ErrorAlert from '../../common/alerts/ErrorAlert';
+import { endpoints } from '../../../utils/URL';
+import axios from 'axios';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
-	const handleSubmit = (e: FormEvent) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
-		// Perform login logic here, e.g., make API call
+		// Validate form
+        if (!email || !password) {
+            <WarningAlert content='Please fill in all fields' />
+            return;
+        }
 
-		// Reset form
+        // Start loading
+        setLoading(true);
+
+        // Login user
+        try {
+            const payload = {
+                email,
+                password
+            }
+			const response = await axios.post(endpoints.Auth.login, payload);
+            // Reset form
 		setEmail('');
 		setPassword('');
+        } catch (error) {
+            <ErrorAlert content='Error loging in. Try again later' />
+        } finally {
+            // Stop loading
+            setLoading(false);
+        }
 	};
 
 	return (
@@ -19,6 +45,7 @@ const Login = () => {
 			<form className='bg-white shadow-md rounded px-10 py-10 mb-4' onSubmit={handleSubmit}>
             <img src='/logo150.png' alt='Wephco Logo' className='text-center rounded' />
 				{/* <h2 className='text-2xl font-bold mb-8 text-center'>Login</h2> */}
+                <fieldset disabled={loading}>
 				<div className='mb-4'>
 					<label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
 						Email
@@ -52,9 +79,10 @@ const Login = () => {
 						className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
 						type='submit'
 					>
-						Login
+						{loading ? <Loader /> : 'Login'}
 					</button>
 				</div>
+                </fieldset>
 			</form>
 		</div>
 	);
