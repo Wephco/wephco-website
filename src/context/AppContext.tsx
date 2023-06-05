@@ -1,6 +1,6 @@
 import { createContext, useState, ReactElement } from 'react';
 
-type AppContextType = {
+export type AppContextType = {
 	name: string;
 	setName: any;
 	email: string;

@@ -3,6 +3,7 @@ import Dashboard from './components/common/Dashboard';
 import Login from './components/pages/Auth/Login';
 
 import { AppProvider } from './context/AppContext';
+import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
 	return (
@@ -11,7 +12,7 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path='/' element={<Login />} />
-						<Route path='/home' element={<Dashboard />} />
+						<Route path='/home' element={<PrivateRoute component={Dashboard} />} />
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>
