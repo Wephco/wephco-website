@@ -1,4 +1,10 @@
-import { BsHouseExclamation, BsBuildingCheck, BsPersonBadge, BsBuildingAdd } from 'react-icons/bs';
+import {
+	BsHouseExclamation,
+	BsBuildingCheck,
+	BsPersonAdd,
+	BsBuildingAdd,
+	BsPeopleFill,
+} from 'react-icons/bs';
 
 interface SideMenuItem {
 	title: string;
@@ -20,11 +26,16 @@ export const sideMenuItems: SideMenuItem[] = [
 	{
 		title: 'Agents',
 		path: '/agents',
-		icon: <BsPersonBadge />,
+		icon: <BsPersonAdd />,
 	},
 	{
 		title: 'Hotel Requests',
 		path: '/hotel-requests',
 		icon: <BsBuildingCheck />,
+	},
+	{
+		title: 'Users',
+		path: '/users',
+		icon: <BsPeopleFill />,
 	},
 ];

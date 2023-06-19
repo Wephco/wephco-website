@@ -1,22 +1,25 @@
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 import SideMenuItem from './SideMenuItem';
 import { sideMenuItems } from '../../utils/sideMenuItems';
-import Home from '../pages/Home/Home';
-import PropertyListing from '../pages/PropertyListing/PropertyListing';
+import DashboardHeader from './DashboardHeader';
 
-const Dashboard = () => {
+interface PrivateRouteProps {
+	component: React.ComponentType<any>;
+}
+
+const Dashboard = ({ component: Component }: PrivateRouteProps) => {
+	const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+
+	if (isAuthenticated !== 'true') {
+		return <Navigate to='/' />;
+	}
+
 	return (
-		<div className='flex h-screen'>
-			{/* Sidebar */}
-			<div>
-				{/* Logo */}
-				<div className='flex items-center justify-center h-14 bg-white'>
-					<div className='flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-green-400 to-blue-500'>
-						<img src='/wephcoLogo.ico' alt='Wephco Logo' className='w-8 h-8' />
-					</div>
-				</div>
+		<div className='grid grid-cols-2 h-screen'>
+			<div className='fixed col-span-1'>
+				<DashboardHeader />
 				<div className='bg-gray-800 text-white w-64 flex-none p-4 h-screen'>
-					{/* Menu */}
 					<div className='mt-8'>
 						{sideMenuItems.map((item) => (
 							<SideMenuItem key={item.title} icon={item.icon} title={item.title} path={item.path} />
@@ -26,10 +29,11 @@ const Dashboard = () => {
 			</div>
 
 			{/* Main Content */}
-			<div className='flex-grow p-8'>
-				{/* Add content based on path */}
-				<Route path='/home' element={<Home />} />
-				<Route path='/property-listings' element={<PropertyListing />} />
+			<div className='col-span-2'>
+				<div className='flex justify-center my-4'>
+					<h1 className='text-3xl font-bold'>Wephco Admin Dashboard</h1>
+				</div>
+				<Component />
 			</div>
 		</div>
 	);

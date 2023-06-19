@@ -1,8 +1,10 @@
+import property from '../../../assets/property.png'
+
 const Home = () => {
 	return (
 		<div>
 			<div className='flex justify-center mt-5'>
-				<h1 className='text-3xl font-bold'>Wephco Admin Dashboard</h1>
+				<img src={property} alt='' className='w-1/2 h-1/2' />
 			</div>
 		</div>
 	);

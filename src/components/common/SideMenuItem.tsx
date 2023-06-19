@@ -9,9 +9,10 @@ interface SideMenuItemProps {
 
 const SideMenuItem = ({ icon, title, path }: SideMenuItemProps) => {
 	const navigate = useNavigate();
+
 	return (
 		<div
-			className='flex items-center text-gray-200 hover:text-white py-2 cursor-pointer'
+			className='flex items-center text-gray-200 hover:text-white py-2 cursor-pointer active:bg-white rounded-md active:text-gray-800'
 			onClick={() => navigate(path)}
 		>
 			<div className='w-6 mr-4'>{icon}</div>

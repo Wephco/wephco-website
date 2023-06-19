@@ -1,71 +1,72 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export class ApiHelper {
-  public static instance: ApiHelper;
-  public constructor() {}
-
-  public static getInstance(): ApiHelper {
-    if (!ApiHelper.instance) {
-      ApiHelper.instance = new ApiHelper();
+class ApiHelper {
+  
+  private axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_PROD_API_URL,
+    headers: {
+        'Content-Type': 'application/json'
     }
+  })
 
-    return ApiHelper.instance;
-  }
+  async getData(url: string, token: string): Promise<any> {
 
-  public async get(url: string, token: string): Promise<any> {
-    const response =  await axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-
-    if(response.status !== 200) {
-        throw new Error(response.statusText);
-    }
-
-    return response.data;
-  }
-
-    public async post(url: string, data: any, token?: string): Promise<any> {
-        const response =  await axios.post(url, data, {
+    try {
+        const response: AxiosResponse = await this.axiosInstance.get(url, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        });
-    
-        if(response.status !== 200) {
-            throw new Error(response.statusText);
+        })
+
+        return response.data
+    } catch (error: any) {
+        throw new Error(error.message)
+    }
+  }
+
+    async postData(url: string, data: any, token?: string): Promise<any> {
+        try {
+            const response: AxiosResponse = await this.axiosInstance.post(url, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            return response.data
+        } catch (error: any) {
+            throw new Error(error.message)
         }
-    
-        return response.data;
     }
 
-    public async put(url: string, data: any, token: string): Promise<any> {
-        const response =  await axios.put(url, data, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-    
-        if(response.status !== 200) {
-            throw new Error(response.statusText);
+
+    async putData(url: string, data: any, token: string): Promise<any> {
+        try {
+            const response: AxiosResponse = await this.axiosInstance.put(url, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            return response.data
+        } catch (error: any) {
+            throw new Error(error.message)
         }
-    
-        return response.data;
     };
 
-    public async delete(url: string, token: string): Promise<any> {
-        const response =  await axios.delete(url, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+    async deleteData(url: string, token: string): Promise<any> {
+        try {
+            const response: AxiosResponse = await this.axiosInstance.delete(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
     
-        if(response.status !== 200) {
-            throw new Error(response.statusText);
+            return response.data
+        } catch (error: any) {
+            throw new Error(error.message)
         }
-    
-        return response.data;
     };
 
 }
+
+export default ApiHelper;

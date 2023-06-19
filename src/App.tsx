@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './components/common/Dashboard';
+import Home from './components/pages/Home/Home';
+import PropertyListing from './components/pages/PropertyListing/PropertyListing';
+import AddPropertyForm from './components/pages/PropertyListing/AddPropertyForm';
 import Login from './components/pages/Auth/Login';
 
 import { AppProvider } from './context/AppContext';
-import PrivateRoute from './components/common/PrivateRoute';
+
+import Dashboard from './components/common/Dashboard';
 
 function App() {
 	return (
@@ -12,8 +15,12 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path='/' element={<Login />} />
-						<Route path='/home' element={<PrivateRoute component={Dashboard} />} />
-						<Route path='/property-listings' element={<PrivateRoute component={Dashboard} />} />
+						<Route path='/home' element={<Dashboard component={Home} />} />
+						<Route path='/property-listings' element={<Dashboard component={PropertyListing} />} />
+						<Route
+							path='/property-listings/add'
+							element={<Dashboard component={AddPropertyForm} />}
+						/>
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>

@@ -3,8 +3,7 @@ import Loader from '../../common/Loader';
 import WarningAlert from '../../common/alerts/WarningAlert';
 import ErrorAlert from '../../common/alerts/ErrorAlert';
 import { endpoints } from '../../../utils/URL';
-// import axios from 'axios';
-import { ApiHelper } from '../../../utils/apiHelper';
+import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,9 +14,7 @@ interface LoginResponse {
 }
 
 const Login = () => {
-	const { setName, setEmail, setToken, setIsAuthenticated } = useContext(
-		AppContext,
-	) as AppContextType;
+	const { setName, setEmail, setToken } = useContext(AppContext) as AppContextType;
 
 	const navigate = useNavigate();
 
@@ -38,34 +35,37 @@ const Login = () => {
 		setLoading(true);
 
 		// Login user
-		try {
-			const payload = {
-				email: emailAddress,
-				password: password,
-			};
+		const payload = {
+			email: emailAddress,
+			password: password,
+		};
 
-			const response = await new ApiHelper().post(endpoints.Auth.login, payload);
+		axios
+			.post(endpoints.Auth.login, payload)
+			.then((response) => {
+				const loginData: LoginResponse = response.data;
 
-			const loginData: LoginResponse = response.data;
+				// Set user data
+				setName(loginData.name);
+				setEmail(loginData.email);
+				setToken(loginData.token);
+				sessionStorage.setItem('isAuthenticated', 'true');
+			})
+			.then(() => {
+				// Redirect to home
+				navigate('/home');
 
-			// Set user data
-			setName(loginData.name);
-			setEmail(loginData.email);
-			setToken(loginData.token);
-			setIsAuthenticated(true);
-
-			// Redirect to home
-			navigate('/home');
-
-			// Reset form
-			setEmailAddress('');
-			setPassword('');
-		} catch (error) {
-			<ErrorAlert content='Error loging in. Try again later' />;
-		} finally {
-			// Stop loading
-			setLoading(false);
-		}
+				// Reset form
+				setEmailAddress('');
+				setPassword('');
+			})
+			.catch((error) => {
+				<ErrorAlert content={error} />;
+			})
+			.finally(() => {
+				// Stop loading
+				setLoading(false);
+			});
 	};
 
 	return (
