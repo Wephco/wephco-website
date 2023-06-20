@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { endpoints } from '../../../utils/URL';
-import axios from 'axios';
+// import React, { useState, useCallback, useEffect } from 'react';
+// import { endpoints } from '../../../utils/URL';
+// import axios from 'axios';
 
 const AddPropertyForm = () => {
 	return (

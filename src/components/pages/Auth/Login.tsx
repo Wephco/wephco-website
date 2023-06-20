@@ -1,7 +1,6 @@
 import { useState, FormEvent, useContext } from 'react';
 import Loader from '../../common/Loader';
-import WarningAlert from '../../common/alerts/WarningAlert';
-import ErrorAlert from '../../common/alerts/ErrorAlert';
+import useAlertModal from '../../../hooks/useAlertModal';
 import { endpoints } from '../../../utils/URL';
 import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
@@ -16,6 +15,8 @@ interface LoginResponse {
 const Login = () => {
 	const { setName, setEmail, setToken } = useContext(AppContext) as AppContextType;
 
+	const alert: any = useAlertModal();
+
 	const navigate = useNavigate();
 
 	const [emailAddress, setEmailAddress] = useState('');
@@ -27,7 +28,9 @@ const Login = () => {
 
 		// Validate form
 		if (!emailAddress || !password) {
-			<WarningAlert content='Please fill in all fields' />;
+			alert.setContent('Please fill in all fields!');
+			alert.setVariant('warning');
+			alert.open();
 			return;
 		}
 
@@ -60,7 +63,9 @@ const Login = () => {
 				setPassword('');
 			})
 			.catch((error) => {
-				<ErrorAlert content={error} />;
+				alert.setContent(error);
+				alert.setVariant('error');
+				alert.open();
 			})
 			.finally(() => {
 				// Stop loading
