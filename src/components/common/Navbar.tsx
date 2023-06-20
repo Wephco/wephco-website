@@ -1,7 +1,6 @@
 import { useState } from 'react';
-// import close from '../../assets/close.svg';
-// import menu from '../../assets/menu.svg';
-import { BsMenuButton, BsTrash } from 'react-icons/bs';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { BiMenu } from 'react-icons/bi';
 import { navLinks } from '../../utils/constants';
 // import { Link } from 'react-router-dom';
 
@@ -31,7 +30,7 @@ const Navbar = () => {
 					className='w-[28px] h-[28px] object-contain'
 					onClick={() => setToggle((prev) => !prev)}
 				>
-					{toggle ? <BsTrash /> : <BsMenuButton />}
+					{toggle ? <AiFillCloseCircle /> : <BiMenu />}
 				</div>
 				{/* <img
 					src={toggle ? close : menu}
