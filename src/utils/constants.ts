@@ -25,6 +25,10 @@ export const navLinks = [
       id: "exclusive-offers",
       title: "Exclusive Offers",
     },
+    {
+      id: "consult-us",
+      title: "Consultations"
+    }
   ];
 
   export const stats = [
