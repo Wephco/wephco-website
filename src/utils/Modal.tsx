@@ -1,21 +1,20 @@
-const Modal = ({
-	isOpen,
-	onClose,
-	content,
-	variant,
-}: {
-	isOpen: boolean;
-	onClose: () => void;
-	content: string;
-	variant: string;
-}) => {
-	let icon;
+import { useContext } from 'react';
+import { AppContext, AppContextType } from '../context/AppContext';
 
-	if (!isOpen) {
+const Modal = ({
+	onClose,
+}: {
+	onClose: () => void;
+}) => {
+	const { toastVariant, toastOpen, toastContent } = useContext(AppContext) as AppContextType;
+
+	let icon = <></>;
+
+	if (!toastOpen) {
 		return null;
 	}
 
-	switch (variant) {
+	switch (toastVariant) {
 		case 'info':
 			icon = (
 				<svg
@@ -104,12 +103,12 @@ const Modal = ({
 	}
 
 	return (
-		<>
-			<div className={`alert alert-${variant}`} onClick={onClose}>
+		<div className='toast toast-end toast-top cursor-pointer'>
+			<div className={`alert alert-${toastVariant}`} onClick={onClose}>
 				{icon}
-				<span>{content}</span>
+				<span>{toastContent}</span>
 			</div>
-		</>
+		</div>
 	);
 };
 

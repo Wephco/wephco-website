@@ -10,19 +10,22 @@ import { AppProvider } from './context/AppContext';
 import styles from './components/style';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import AlertModal from './components/common/AlertModal';
+
+let notifications = <AlertModal />;
 
 function App() {
 	return (
 		<div className='bg-white w-full overflow-hidden'>
-			{/* Navbar */}
-			<div className={`${styles.paddingX} ${styles.flexCenter}`}>
-				<div className={styles.boxWidth}>
-					<Navbar />
-				</div>
-			</div>
-
 			<AppProvider>
 				<BrowserRouter>
+					{/* Navbar */}
+					<div className={`${styles.paddingX} ${styles.flexCenter}`}>
+						{notifications}
+						<div className={styles.boxWidth}>
+							<Navbar />
+						</div>
+					</div>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/home' element={<Home />} />

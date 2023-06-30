@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { BiMenu } from 'react-icons/bi';
 import { navLinks } from '../../utils/constants';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
@@ -19,7 +19,7 @@ const Navbar = () => {
 							index === navLinks.length - 1 ? 'mr-0' : 'mr-10'
 						} text-gray-600 hover:text-red-400`}
 					>
-						<a href={`/${nav.id}`}>{nav.title}</a>
+						<Link to={`/${nav.id}`}>{nav.title}</Link>
 					</li>
 				))}
 			</ul>
@@ -32,12 +32,6 @@ const Navbar = () => {
 				>
 					{toggle ? <AiFillCloseCircle /> : <BiMenu />}
 				</div>
-				{/* <img
-					src={toggle ? close : menu}
-					alt='nav menu'
-					className='w-[28px] h-[28px] object-contain bg-black'
-					onClick={() => setToggle((prev) => !prev)}
-				/> */}
 
 				<div
 					className={`${
@@ -52,7 +46,7 @@ const Navbar = () => {
 									index === navLinks.length - 1 ? 'mr-0' : 'mb-5'
 								} text-white`}
 							>
-								<a href={`/${nav.id}`}>{nav.title}</a>
+								<Link to={`/${nav.id}`}>{nav.title}</Link>
 							</li>
 						))}
 					</ul>

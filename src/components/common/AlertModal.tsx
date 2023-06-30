@@ -1,17 +1,11 @@
-import useAlertModal from '../../hooks/useAlertModal';
+import { useContext } from 'react';
+import { AppContext, AppContextType } from '../../context/AppContext';
 import Modal from '../../utils/Modal';
 
 const AlertModal = () => {
-	const alert: any = useAlertModal();
+	const { setToastOpen } = useContext(AppContext) as AppContextType;
 
-	return (
-		<Modal
-			isOpen={alert.isOpen}
-			onClose={alert.close}
-			content={alert.content}
-			variant={alert.variant}
-		/>
-	);
+	return <Modal onClose={() => setToastOpen(false)} />;
 };
 
 export default AlertModal;
