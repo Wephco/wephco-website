@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Component imports
 import Home from './components/pages/Home/Home';
 import PropertyListing from './components/pages/PropertyListing/PropertyListing';
+import { DiasporaPropertyListing } from './components/pages/PropertyListing/DiasporaPropertyListing';
 
 import { AppProvider } from './context/AppContext';
 
@@ -30,11 +31,11 @@ function App() {
 						<Route path='/' element={<Home />} />
 						<Route path='/home' element={<Home />} />
 						<Route path='/property-listings' element={<PropertyListing />} />
+						<Route path='/diaspora' element={<DiasporaPropertyListing />} />
 					</Routes>
+					<Footer />
 				</BrowserRouter>
 			</AppProvider>
-
-			<Footer />
 		</div>
 	);
 }
