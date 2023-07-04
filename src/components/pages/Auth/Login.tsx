@@ -1,6 +1,5 @@
 import { useState, FormEvent, useContext } from 'react';
 import Loader from '../../common/Loader';
-import useAlertModal from '../../../hooks/useAlertModal';
 import { endpoints } from '../../../utils/URL';
 import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
@@ -13,9 +12,9 @@ interface LoginResponse {
 }
 
 const Login = () => {
-	const { setName, setEmail, setToken } = useContext(AppContext) as AppContextType;
-
-	const alert: any = useAlertModal();
+	const { setName, setEmail, setToken, setToastContent, setToastOpen } = useContext(
+		AppContext,
+	) as AppContextType;
 
 	const navigate = useNavigate();
 
@@ -28,9 +27,8 @@ const Login = () => {
 
 		// Validate form
 		if (!emailAddress || !password) {
-			alert.setContent('Please fill in all fields!');
-			alert.setVariant('warning');
-			alert.open();
+			setToastContent('Please fill in all fields!');
+			setToastOpen(true);
 			return;
 		}
 
@@ -63,9 +61,8 @@ const Login = () => {
 				setPassword('');
 			})
 			.catch((error) => {
-				alert.setContent(error);
-				alert.setVariant('error');
-				alert.open();
+				setToastContent(error);
+				setToastOpen(true);
 			})
 			.finally(() => {
 				// Stop loading
