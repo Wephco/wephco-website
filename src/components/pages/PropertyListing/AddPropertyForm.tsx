@@ -1,14 +1,44 @@
-// import React, { useState, useCallback, useEffect } from 'react';
-// import { endpoints } from '../../../utils/URL';
-// import axios from 'axios';
+import { useState, useContext } from 'react';
+import { endpoints } from '../../../utils/URL';
+import ApiHelper from '../../../utils/apiHelper';
+import { CreateProperty, newProperty } from '../../../interfaces/PropertyListingInterface';
+import { AppContext, AppContextType } from '../../../context/AppContext';
 
 const AddPropertyForm = () => {
+	const { token } = useContext(AppContext) as AppContextType
+
+	const [property, setProperty] = useState(newProperty)
+	const [loading, setLoading] = useState(false)
+
+	const api = new ApiHelper()
+
+	const handleChange = (input: string) => (e: any) => {
+		setProperty({
+			...property,
+			[input]: e.target.value
+		})
+	}
+
+	const submitProperty = async (e: any) => {
+		e.preventDefault()
+
+		setLoading(true)
+
+		try {
+			await api.postData(endpoints.PropertyListings.mainUrl, property, token)
+		} catch (error) {
+			
+		} finally {
+			setLoading(false)
+		}
+	}
+
 	return (
 		<div className='flex flex-col justify-end items-start mt-10'>
 			<h1>Add Property Form</h1>
 
 			<form>
-				<fieldset>
+				<fieldset disabled={loading}>
 					<div className='form-group'>
 						<label htmlFor='agentId'>Agent Id</label>
 						<input type='text' className='form-control' id='agentId' />

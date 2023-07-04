@@ -24,3 +24,15 @@ export interface CreateProperty {
 	agentId: number;
 }
 
+export const newProperty: CreateProperty = {
+    location: '',
+	propertyType: '',
+	propertyImages: [],
+	numberOfrooms: 0,
+	numberOfToilets: 0,
+	numberOfBathrooms: 0,
+	numberOfLivingRooms: 0,
+	numberOfKitchens: 0,
+	agentId: 0
+}
+
