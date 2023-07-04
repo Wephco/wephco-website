@@ -1,15 +1,16 @@
 import { useState, FormEvent, useContext } from 'react';
 import Loader from '../../common/Loader';
 import { endpoints } from '../../../utils/URL';
-import axios from 'axios';
+// import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import ApiHelper from '../../../utils/apiHelper';
 
-interface LoginResponse {
-	token: string;
-	name: string;
-	email: string;
-}
+// interface LoginResponse {
+// 	token: string;
+// 	name: string;
+// 	email: string;
+// }
 
 const Login = () => {
 	const { setName, setEmail, setToken, setToastContent, setToastOpen } = useContext(
@@ -17,6 +18,8 @@ const Login = () => {
 	) as AppContextType;
 
 	const navigate = useNavigate();
+
+	const api = new ApiHelper()
 
 	const [emailAddress, setEmailAddress] = useState('');
 	const [password, setPassword] = useState('');
@@ -41,33 +44,55 @@ const Login = () => {
 			password: password,
 		};
 
-		axios
-			.post(endpoints.Auth.login, payload)
-			.then((response) => {
-				const loginData: LoginResponse = response.data;
-
-				// Set user data
-				setName(loginData.name);
-				setEmail(loginData.email);
-				setToken(loginData.token);
+		await api.postData(endpoints.Auth.login, payload).then((data) => {
+			setName(data.name);
+				setEmail(data.email);
+				setToken(data.token);
 				sessionStorage.setItem('isAuthenticated', 'true');
-			})
-			.then(() => {
-				// Redirect to home
-				navigate('/home');
+		}).then(() => {
+			// Redirect to home
+			navigate('/home');
 
-				// Reset form
-				setEmailAddress('');
-				setPassword('');
-			})
-			.catch((error) => {
-				setToastContent(error);
-				setToastOpen(true);
-			})
-			.finally(() => {
-				// Stop loading
-				setLoading(false);
-			});
+			// Reset form
+			setEmailAddress('');
+			setPassword('');
+		})
+		.catch((error) => {
+			setToastContent(error);
+			setToastOpen(true);
+		})
+		.finally(() => {
+			// Stop loading
+			setLoading(false);
+		});
+
+		// axios
+		// 	.post(endpoints.Auth.login, payload)
+		// 	.then((response) => {
+		// 		const loginData: LoginResponse = response.data;
+
+		// 		// Set user data
+		// 		setName(loginData.name);
+		// 		setEmail(loginData.email);
+		// 		setToken(loginData.token);
+		// 		sessionStorage.setItem('isAuthenticated', 'true');
+		// 	})
+		// 	.then(() => {
+		// 		// Redirect to home
+		// 		navigate('/home');
+
+		// 		// Reset form
+		// 		setEmailAddress('');
+		// 		setPassword('');
+		// 	})
+		// 	.catch((error) => {
+		// 		setToastContent(error);
+		// 		setToastOpen(true);
+		// 	})
+		// 	.finally(() => {
+		// 		// Stop loading
+		// 		setLoading(false);
+		// 	});
 	};
 
 	return (
