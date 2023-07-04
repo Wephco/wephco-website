@@ -21,10 +21,10 @@ export const navLinks = [
       id: "diaspora",
       title: "Diaspora",
     },
-    {
-      id: "exclusive-offers",
-      title: "Exclusive Offers",
-    },
+    // {
+    //   id: "exclusive-offers",
+    //   title: "Exclusive Offers",
+    // },
     {
       id: "consult-us",
       title: "Consultations"

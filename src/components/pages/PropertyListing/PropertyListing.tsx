@@ -23,7 +23,10 @@ const PropertyListing = () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(endpoints.PropertyListings.mainUrl, token);
+			const response = await api.getData(
+				`${endpoints.PropertyListings.mainUrl}?isDiaspora=False`,
+				token,
+			);
 			setProperties(response.data);
 		} catch (error) {
 			setToastContent('Error getting property listings. Try again later');
@@ -50,7 +53,7 @@ const PropertyListing = () => {
 				</div>
 			)}
 
-			{!loading && properties.length === 0 && (
+			{!loading && properties?.length === 0 && (
 				<div className='flex justify-center items-center'>
 					<NoData content='No Properties listed' />
 				</div>
@@ -58,10 +61,10 @@ const PropertyListing = () => {
 
 			{/* property mapping */}
 			<div className='flex flex-row flex-wrap justify-start p-8'>
-				{properties.map((property) => (
+				{properties?.map((property) => (
 					<div className='card lg:card-side bg-base-100 shadow-xl'>
 						<figure>
-							<img src={property.mainImage} alt='Property Main Image' />
+							<img src={property.propertyImages[0]} alt='Property Main Image' />
 						</figure>
 						<div className='card-body'>
 							<h2 className='card-title'>{property.propertyType}</h2>
