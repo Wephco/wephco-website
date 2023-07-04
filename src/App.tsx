@@ -17,12 +17,15 @@ function App() {
 		<>
 			<AppProvider>
 				<BrowserRouter>
+					{notifications}
 					<Routes>
-						{notifications}
 						<Route path='/' element={<Login />} />
 						<Route path='/home' element={<Dashboard component={Home} />} />
 						<Route path='/property-listings' element={<Dashboard component={PropertyListing} />} />
-						<Route path='/property-listings/diaspora' element={<Dashboard component={DiasporaPropertyListing} />} />
+						<Route
+							path='/property-listings/diaspora'
+							element={<Dashboard component={DiasporaPropertyListing} />}
+						/>
 						<Route
 							path='/property-listings/add'
 							element={<Dashboard component={AddPropertyForm} />}
