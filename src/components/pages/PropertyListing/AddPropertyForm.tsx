@@ -5,7 +5,7 @@ import { newProperty } from '../../../interfaces/PropertyListingInterface';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 
 const AddPropertyForm = () => {
-	const { token } = useContext(AppContext) as AppContextType;
+	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
 
 	const [property, setProperty] = useState(newProperty);
 	const [loading, setLoading] = useState(false);
@@ -27,6 +27,8 @@ const AddPropertyForm = () => {
 		try {
 			await api.postData(endpoints.PropertyListings.mainUrl, property, token);
 		} catch (error) {
+			setToastContent('Error adding new property')
+			setToastOpen(true)
 		} finally {
 			setLoading(false);
 		}
