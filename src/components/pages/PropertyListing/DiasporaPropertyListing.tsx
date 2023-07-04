@@ -8,7 +8,7 @@ import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { Properties } from '../../../interfaces/PropertyListingInterface';
 
-const PropertyListing = () => {
+const DiasporaPropertyListing = () => {
 	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
 
 	const api = new ApiHelper();
@@ -27,7 +27,7 @@ const PropertyListing = () => {
 
 		try {
 			const response = await api.getData(
-				`${endpoints.PropertyListings.mainUrl}?isDiaspora=False`,
+				`${endpoints.PropertyListings.mainUrl}?isDiaspora=True`,
 				token,
 			);
 			setProperties(response);
@@ -124,4 +124,4 @@ const PropertyListing = () => {
 	);
 };
 
-export default PropertyListing;
+export default DiasporaPropertyListing;

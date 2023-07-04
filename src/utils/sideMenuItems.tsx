@@ -24,6 +24,11 @@ export const sideMenuItems: SideMenuItem[] = [
 		icon: <BsBuildingAdd />,
 	},
 	{
+		title: 'Diaspora Property Listings',
+		path: '/property-listings/diaspora',
+		icon: <BsBuildingAdd />,
+	},
+	{
 		title: 'Agents',
 		path: '/agents',
 		icon: <BsPersonAdd />,

@@ -9,6 +9,10 @@ export type AppContextType = {
 	setToken: any;
 	isAuthenticated: boolean;
 	setIsAuthenticated: any;
+	toastContent: string;
+	setToastContent: any;
+	toastOpen: boolean;
+	setToastOpen: any;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -18,6 +22,8 @@ export const AppProvider = ({ children }: { children: ReactElement }) => {
 	const [email, setEmail] = useState<string>('');
 	const [token, setToken] = useState<string>('');
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+	const [toastContent, setToastContent] = useState<string>('');
+	const [toastOpen, setToastOpen] = useState<boolean>(false);
 
 	const providerValue: AppContextType = {
 		name,
@@ -28,6 +34,10 @@ export const AppProvider = ({ children }: { children: ReactElement }) => {
 		setToken,
 		isAuthenticated,
 		setIsAuthenticated,
+		toastContent,
+		setToastContent,
+		toastOpen,
+		setToastOpen,
 	};
 
 	return <AppContext.Provider value={providerValue}>{children}</AppContext.Provider>;
