@@ -7,6 +7,8 @@ import AddDiasporaProperty from './components/pages/PropertyListing/AddDiasporaP
 import AgentTable from './components/pages/Agent/AgentTable';
 import AddAgentForm from './components/pages/Agent/AddAgentForm';
 import Login from './components/pages/Auth/Login';
+import UsersTable from './components/pages/Users/UsersTable';
+import CreateUser from './components/pages/Users/CreateUser';
 
 import { AppProvider } from './context/AppContext';
 
@@ -39,6 +41,8 @@ function App() {
 						/>
 						<Route path='/agents' element={<Dashboard component={AgentTable} />} />
 						<Route path='/agents/add' element={<Dashboard component={AddAgentForm} />} />
+						<Route path='/users' element={<Dashboard component={UsersTable} />} />
+						<Route path='/users/add' element={<Dashboard component={CreateUser} />} />
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>

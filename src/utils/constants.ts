@@ -15,10 +15,10 @@ export const user_roles = [
         label: 'customer',
         value: 'customer'
     },
-    {
-        label: 'agent',
-        value: 'agent'
-    }
+    // {
+    //     label: 'agent',
+    //     value: 'agent'
+    // }
 ]
 
 
