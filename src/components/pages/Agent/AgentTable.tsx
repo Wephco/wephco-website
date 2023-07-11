@@ -6,34 +6,33 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import { IProperties } from '../../../interfaces/PropertyListingInterface';
+import { IAgent } from '../../../interfaces/AgentsInterface';
 
-const PropertyListing = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(AppContext) as AppContextType;
+const AgentTable = () => {
+	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+		AppContext,
+	) as AppContextType;
 
 	const api = new ApiHelper();
 
 	const navigate = useNavigate();
 
-	const [properties, setProperties] = useState<IProperties[]>([]);
+	const [agents, setAgents] = useState<IAgent[]>([]);
 	const [loading, setLoading] = useState(false);
 
-	const addProperty = () => {
-		navigate('/property-listings/add');
+	const addAgent = () => {
+		navigate('/agents/add');
 	};
 
-	const getProperties = useCallback(async () => {
+	const getAgents = useCallback(async () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(
-				`${endpoints.PropertyListings.mainUrl}?isDiaspora=False`,
-				token,
-			);
-			setProperties(response);
+			const response = await api.getData(endpoints.Agents.mainUrl, token);
+			setAgents(response);
 		} catch (error) {
-			setToastContent('Error getting property listings. Try again later');
-			setToastVariant('error')
+			setToastVariant('error');
+			setToastContent(`${error}`);
 			setToastOpen(true);
 		} finally {
 			setLoading(false);
@@ -41,28 +40,25 @@ const PropertyListing = () => {
 	}, []);
 
 	useEffect(() => {
-		getProperties();
-	}, [getProperties]);
+		getAgents();
+	}, [getAgents]);
 
 	let tableHead = (
 		<thead>
 			<tr>
 				<th>Actions</th>
-				{/* <th>Agent ID</th> */}
-				<th>Location</th>
-				<th>Property Type</th>
-				<th>Number of Rooms</th>
-				{/* <th>Number of Toilets</th> */}
-				<th>Number of Bathrooms</th>
-				{/* <th>Number of Living Rooms</th> */}
-				{/* <th>Number of Kitchens</th> */}
+				<th>Name</th>
+				<th>Email</th>
+				<th>Address</th>
+				<th>Phone Number</th>
+				<th>Number of Properties</th>
 			</tr>
 		</thead>
 	);
 
 	let tableBody = (
 		<tbody>
-			{properties.map((property, index) => (
+			{agents.map((agent, index) => (
 				<tr key={index}>
 					<td className='flex flex-wrap'>
 						<div className='tooltip' data-tip='Edit Property'>
@@ -72,14 +68,11 @@ const PropertyListing = () => {
 							<FaTrash className='text-red-500 cursor-pointer' />
 						</div>
 					</td>
-					{/* <td>{property.agentId}</td> */}
-					<td>{property.location}</td>
-					<td>{property.propertyType}</td>
-					<td>{property.numberOfrooms}</td>
-					{/* <td>{property.numberOfToilets}</td> */}
-					<td>{property.numberOfBathrooms}</td>
-					{/* <td>{property.numberOfLivingRooms}</td> */}
-					{/* <td>{property.numberOfKitchens}</td> */}
+					<td>{agent.name}</td>
+					<td>{agent.email}</td>
+					<td>{agent.address}</td>
+					<td>{agent.phoneNumber}</td>
+					<td>{agent.propertyListings.length}</td>
 				</tr>
 			))}
 		</tbody>
@@ -94,9 +87,9 @@ const PropertyListing = () => {
 				<div>
 					<button
 						className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow'
-						onClick={addProperty}
+						onClick={addAgent}
 					>
-						Add Property
+						Add Agent
 					</button>
 				</div>
 			</div>
@@ -107,17 +100,17 @@ const PropertyListing = () => {
 				</div>
 			)}
 
-			{!loading && properties?.length === 0 && (
+			{!loading && agents?.length === 0 && (
 				<div className='flex justify-center items-center'>
-					<NoData content='No Properties listed' />
+					<NoData content='No Agents listed' />
 				</div>
 			)}
 
-			{!loading && properties?.length > 0 && (
+			{!loading && agents?.length > 0 && (
 				<div>
-					<div className='mt-10'>
+					<div className='mt-10 mb-5'>
 						<div>
-							<h3 className='text-3xl font-semibold mb-5'>Property Listings</h3>
+							<h3 className='text-3xl font-semibold'>Agents</h3>
 						</div>
 					</div>
 
@@ -133,4 +126,4 @@ const PropertyListing = () => {
 	);
 };
 
-export default PropertyListing;
+export default AgentTable;

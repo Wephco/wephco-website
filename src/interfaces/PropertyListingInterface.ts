@@ -1,4 +1,4 @@
-export interface Properties {
+export interface IProperties {
     location: string
     propertyType: string
     propertyImages: Array<string>
@@ -12,7 +12,7 @@ export interface Properties {
 }
 
 
-export interface CreateProperty {
+export interface ICreateProperty {
 	location: string;
 	propertyType: string;
 	propertyImages: string[];
@@ -22,9 +22,10 @@ export interface CreateProperty {
 	numberOfLivingRooms: number;
 	numberOfKitchens: number;
 	agentId: number;
+	agentName: string;
 }
 
-export const newProperty: CreateProperty = {
+export const newProperty: ICreateProperty = {
     location: '',
 	propertyType: '',
 	propertyImages: [],
@@ -33,6 +34,7 @@ export const newProperty: CreateProperty = {
 	numberOfBathrooms: 0,
 	numberOfLivingRooms: 0,
 	numberOfKitchens: 0,
-	agentId: 0
+	agentId: 0,
+	agentName: ''
 }
 

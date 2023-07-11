@@ -15,7 +15,7 @@ const SideMenuItem = ({ icon, title, path }: SideMenuItemProps) => {
 			className='flex items-center text-gray-200 hover:text-white py-2 cursor-pointer active:bg-white rounded-md active:text-gray-800'
 			onClick={() => navigate(path)}
 		>
-			<div className='w-6 mr-4'>{icon}</div>
+			<div className='mr-4'>{icon}</div>
 			<span className='text-xl'>{title}</span>
 		</div>
 	);

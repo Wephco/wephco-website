@@ -1,4 +1,5 @@
 import { createContext, useState, ReactElement } from 'react';
+import { IAgent } from '../interfaces/AgentsInterface';
 
 export type AppContextType = {
 	name: string;
@@ -13,6 +14,10 @@ export type AppContextType = {
 	setToastContent: any;
 	toastOpen: boolean;
 	setToastOpen: any;
+	toastVariant: string;
+	setToastVariant: any;
+	agentList: Array<IAgent>;
+	setAgentList: any;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -24,6 +29,8 @@ export const AppProvider = ({ children }: { children: ReactElement }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const [toastContent, setToastContent] = useState<string>('');
 	const [toastOpen, setToastOpen] = useState<boolean>(false);
+	const [toastVariant, setToastVariant] = useState('info');
+	const [agentList, setAgentList] = useState<IAgent[]>([]);
 
 	const providerValue: AppContextType = {
 		name,
@@ -38,6 +45,10 @@ export const AppProvider = ({ children }: { children: ReactElement }) => {
 		setToastContent,
 		toastOpen,
 		setToastOpen,
+		toastVariant,
+		setToastVariant,
+		agentList,
+		setAgentList,
 	};
 
 	return <AppContext.Provider value={providerValue}>{children}</AppContext.Provider>;

@@ -6,7 +6,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import { Properties } from '../../../interfaces/PropertyListingInterface';
+import { IProperties } from '../../../interfaces/PropertyListingInterface';
 
 const DiasporaPropertyListing = () => {
 	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
@@ -15,7 +15,7 @@ const DiasporaPropertyListing = () => {
 
 	const navigate = useNavigate();
 
-	const [properties, setProperties] = useState<Properties[]>([]);
+	const [properties, setProperties] = useState<IProperties[]>([]);
 	const [loading, setLoading] = useState(false);
 
 	const addProperty = () => {
