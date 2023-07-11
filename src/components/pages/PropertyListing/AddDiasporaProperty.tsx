@@ -10,7 +10,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import Loader from '../../common/Loader';
 import { IAgent } from '../../../interfaces/AgentsInterface';
 
-const AddPropertyForm = () => {
+const AddDiasporaProperty = () => {
 	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
 		AppContext,
 	) as AppContextType;
@@ -31,7 +31,7 @@ const AddPropertyForm = () => {
 
 	const uploadImages = async () => {
 		try {
-			const storageRef = ref(storage, `property-listings/images/${v4()}`);
+			const storageRef = ref(storage, `diaspora-property-listings/images/${v4()}`);
 			const imageUrls: string[] = [];
 
 			for (var i = 0; i < imageList.length; i++) {
@@ -67,7 +67,7 @@ const AddPropertyForm = () => {
 		property.propertyImages = propertyImages;
 
 		try {
-			await api.postData(endpoints.PropertyListings.mainUrl, property, token);
+			await api.postData(endpoints.DiasporaPropertyListings.mainUrl, property, token);
 			setToastVariant('success');
 			setToastContent('Property added successfully');
 			setToastOpen(true);
@@ -98,7 +98,7 @@ const AddPropertyForm = () => {
 
 	return (
 		<div className='mt-10'>
-			<h1 className='text-center text-2xl font-bold mb-5'>Add Property Form</h1>
+			<h1 className='text-center text-2xl font-bold mb-5'>Add Diaspora Property Form</h1>
 			<div className='flex flex-col items-center'>
 				<div className='shadow-2xl w-[500px] p-8 rounded-2xl'>
 					<form>
@@ -147,7 +147,7 @@ const AddPropertyForm = () => {
 										-
 									</option>
 									{property_types.map((property_type) => (
-										<option key={property_type.label} className='font-bold' value={property_type.value}>
+										<option className='font-bold' value={property_type.value}>
 											{property_type.label.toUpperCase()}
 										</option>
 									))}
@@ -241,4 +241,4 @@ const AddPropertyForm = () => {
 	);
 };
 
-export default AddPropertyForm;
+export default AddDiasporaProperty;

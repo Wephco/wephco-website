@@ -19,6 +19,9 @@ let endpoints = {
     PropertyListings: {
         mainUrl: `/api/property-listings`,
     },
+    DiasporaPropertyListings: {
+        mainUrl: '/api/diaspora/property-listings',
+    },
     Consultations: {
         mainUrl: '/api/consultations'
     }

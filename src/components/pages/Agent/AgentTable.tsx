@@ -79,10 +79,10 @@ const AgentTable = () => {
 	);
 
 	return (
-		<div className='bg-white p-10'>
-			<div className='flex justify-between mb-10'>
+		<div className='bg-white'>
+			<div className='flex justify-between m-5'>
 				<div>
-					<h1 className='text-2xl font-bold'></h1>
+					<h1 className='text-2xl font-semibold'>Agents</h1>
 				</div>
 				<div>
 					<button
@@ -107,19 +107,11 @@ const AgentTable = () => {
 			)}
 
 			{!loading && agents?.length > 0 && (
-				<div>
-					<div className='mt-10 mb-5'>
-						<div>
-							<h3 className='text-3xl font-semibold'>Agents</h3>
-						</div>
-					</div>
-
-					<div className='w-full overflow-x-auto'>
-						<table className='table table-xs'>
-							{tableHead}
-							{tableBody}
-						</table>
-					</div>
+				<div className='w-full overflow-x-auto'>
+					<table className='table table-xs'>
+						{tableHead}
+						{tableBody}
+					</table>
 				</div>
 			)}
 		</div>

@@ -19,17 +19,14 @@ const DiasporaPropertyListing = () => {
 	const [loading, setLoading] = useState(false);
 
 	const addProperty = () => {
-		navigate('/property-listings/add');
+		navigate('/diaspora/property-listings/add');
 	};
 
 	const getProperties = useCallback(async () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(
-				`${endpoints.PropertyListings.mainUrl}?isDiaspora=True`,
-				token,
-			);
+			const response = await api.getData(endpoints.DiasporaPropertyListings.mainUrl, token);
 			setProperties(response);
 		} catch (error) {
 			setToastContent('Error getting property listings. Try again later');
@@ -86,9 +83,9 @@ const DiasporaPropertyListing = () => {
 
 	return (
 		<div className='bg-white'>
-			<div className='flex justify-between'>
+			<div className='flex justify-between m-5'>
 				<div>
-					<h1 className='text-3xl font-semibold'>Property Listings</h1>
+					<h1 className='text-3xl font-semibold'>Diaspora Property Listings</h1>
 				</div>
 				<div>
 					<button
@@ -113,8 +110,8 @@ const DiasporaPropertyListing = () => {
 			)}
 
 			{!loading && properties?.length > 0 && (
-				<div className='w-full overflow-x-hidden p-10'>
-					<table className='w-full table-auto border-collapse'>
+				<div className='w-full overflow-x-auto'>
+					<table className='table table-xs'>
 						{tableHead}
 						{tableBody}
 					</table>

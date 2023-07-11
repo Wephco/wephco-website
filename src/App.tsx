@@ -3,6 +3,7 @@ import Home from './components/pages/Home/Home';
 import PropertyListing from './components/pages/PropertyListing/PropertyListing';
 import DiasporaPropertyListing from './components/pages/PropertyListing/DiasporaPropertyListing';
 import AddPropertyForm from './components/pages/PropertyListing/AddPropertyForm';
+import AddDiasporaProperty from './components/pages/PropertyListing/AddDiasporaProperty';
 import AgentTable from './components/pages/Agent/AgentTable';
 import AddAgentForm from './components/pages/Agent/AddAgentForm';
 import Login from './components/pages/Auth/Login';
@@ -31,6 +32,10 @@ function App() {
 						<Route
 							path='/property-listings/add'
 							element={<Dashboard component={AddPropertyForm} />}
+						/>
+						<Route
+							path='/diaspora/property-listings/add'
+							element={<Dashboard component={AddDiasporaProperty} />}
 						/>
 						<Route path='/agents' element={<Dashboard component={AgentTable} />} />
 						<Route path='/agents/add' element={<Dashboard component={AddAgentForm} />} />

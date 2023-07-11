@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { IProperties } from '../../../interfaces/PropertyListingInterface';
 
 const PropertyListing = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(AppContext) as AppContextType;
+	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+		AppContext,
+	) as AppContextType;
 
 	const api = new ApiHelper();
 
@@ -26,14 +28,11 @@ const PropertyListing = () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(
-				`${endpoints.PropertyListings.mainUrl}?isDiaspora=False`,
-				token,
-			);
+			const response = await api.getData(`${endpoints.PropertyListings.mainUrl}`, token);
 			setProperties(response);
 		} catch (error) {
 			setToastContent('Error getting property listings. Try again later');
-			setToastVariant('error')
+			setToastVariant('error');
 			setToastOpen(true);
 		} finally {
 			setLoading(false);
@@ -86,10 +85,10 @@ const PropertyListing = () => {
 	);
 
 	return (
-		<div className='bg-white p-10'>
-			<div className='flex justify-between mb-10'>
+		<div className='bg-white'>
+			<div className='flex justify-between m-5'>
 				<div>
-					<h1 className='text-2xl font-bold'></h1>
+					<h1 className='text-3xl font-semibold'>Property Listings</h1>
 				</div>
 				<div>
 					<button
@@ -114,19 +113,11 @@ const PropertyListing = () => {
 			)}
 
 			{!loading && properties?.length > 0 && (
-				<div>
-					<div className='mt-10'>
-						<div>
-							<h3 className='text-3xl font-semibold mb-5'>Property Listings</h3>
-						</div>
-					</div>
-
-					<div className='w-full overflow-x-auto'>
-						<table className='table table-xs'>
-							{tableHead}
-							{tableBody}
-						</table>
-					</div>
+				<div className='w-full overflow-x-auto'>
+					<table className='table table-xs'>
+						{tableHead}
+						{tableBody}
+					</table>
 				</div>
 			)}
 		</div>
