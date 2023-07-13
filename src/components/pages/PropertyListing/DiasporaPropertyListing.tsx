@@ -5,6 +5,9 @@ import { endpoints } from '../../../utils/URL';
 import { Properties } from '../../../interfaces/PropertyListingInterface';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
+import { FaMapMarkerAlt, FaToilet } from 'react-icons/fa';
+import { MdMeetingRoom, MdBathroom, MdSoupKitchen } from 'react-icons/md';
+import { SiGoogleclassroom } from 'react-icons/si';
 
 const DiasporaPropertyListing = () => {
 	const { token, setToastContent, setToastVariant, setToastOpen } = useContext(
@@ -20,11 +23,8 @@ const DiasporaPropertyListing = () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(
-				`${endpoints.PropertyListings.mainUrl}?isDiaspora=True`,
-				token,
-			);
-			setProperties(response.data);
+			const response = await api.getData(`${endpoints.DiasporaPropertyListings.mainUrl}`, token);
+			setProperties(response);
 		} catch (error) {
 			setToastContent('Error getting property listings. Try again later');
 			setToastVariant('error');
@@ -60,23 +60,53 @@ const DiasporaPropertyListing = () => {
 			<div className='flex flex-row flex-wrap justify-start p-8'>
 				{properties &&
 					properties.map((property) => (
-						<div className='card lg:card-side bg-base-100 shadow-xl'>
-							<figure>
-								<img src={property.propertyImages[0]} alt='Property Main Image' />
-							</figure>
-							<div className='card-body'>
-								<h2 className='card-title'>{property.propertyType}</h2>
-								<p>Location: {property.location}</p>
-								<p>Number Of Rooms: {property.numberOfrooms}</p>
-								<p>Number Of Toilets: {property.numberOfToilets}</p>
-								<p>Number Of Bathrooms: {property.numberOfBathrooms}</p>
-								<p>Number Of Living Rooms: {property.numberOfLivingRooms}</p>
-								<p>Number Of Kitchens: {property.numberOfKitchens}</p>
-								<div className='card-actions justify-end'>
-									<button className='btn btn-primary'>Book Viewing</button>
-								</div>
+						<div className='card lg:card-side bg-base-100 shadow-xl m-5'>
+						<figure>
+							<img
+								src={property.propertyImages[0]}
+								alt='Property Main Image'
+								className='w-72 h-72'
+							/>
+						</figure>
+						<div className='card-body p-8'>
+							<h2 className='card-title uppercase font-bold'>{property.propertyType}</h2>
+							<div className='flex justify-evenly'>
+								<FaMapMarkerAlt className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>Location: {property.location}</p>
+							</div>
+							<div className='flex justify-around'>
+								<MdMeetingRoom className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>Rooms: {property.numberOfrooms}</p>
+							</div>
+							<div className='flex justify-around'>
+								<FaToilet className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>
+									Toilets: {property.numberOfToilets}
+								</p>
+							</div>
+							<div className='flex justify-around'>
+								<MdBathroom className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>
+									Bathrooms: {property.numberOfBathrooms}
+								</p>
+							</div>
+							<div className='flex justify-around'>
+								<SiGoogleclassroom className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>
+									LivingRooms: {property.numberOfLivingRooms}
+								</p>
+							</div>
+							<div className='flex justify-around'>
+								<MdSoupKitchen className='text-2xl mr-2' />
+								<p className='text-xl uppercase font-semibold'>
+									Kitchens: {property.numberOfKitchens}
+								</p>
+							</div>
+							<div className='card-actions justify-end'>
+								<button className='btn btn-primary'>View Property</button>
 							</div>
 						</div>
+					</div>
 					))}
 			</div>
 		</div>

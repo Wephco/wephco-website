@@ -3,6 +3,7 @@ import { endpoints } from '../../../utils/URL';
 import styles from '../../style';
 import ApiHelper from '../../../utils/apiHelper';
 import { AppContext, AppContextType } from '../../../context/AppContext';
+import { services } from '../../../utils/constants';
 
 const ConsultUs = () => {
 	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
@@ -13,6 +14,7 @@ const ConsultUs = () => {
 	const [contactMethod, setContactMethod] = useState('');
 	const [message, setMessage] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [service, setService] = useState('');
 
 	const api = new ApiHelper();
 
@@ -21,6 +23,7 @@ const ConsultUs = () => {
 		setEmail('');
 		setPhoneNumber('');
 		setMessage('');
+		setService('');
 	};
 
 	const submit = async (e: any) => {
@@ -42,11 +45,11 @@ const ConsultUs = () => {
 
 		const payload = {
 			name: fullName,
-			location: '',
 			phoneNumber,
 			email,
 			message,
 			contactMethod,
+			service,
 		};
 
 		try {
@@ -70,7 +73,7 @@ const ConsultUs = () => {
 				</div>
 			</div>
 			<div className='flex justify-center'>
-				<div className='card w-96 shadow-xl rounded-xl p-12 my-5'>
+				<div className='card w-[500px] shadow-xl rounded-xl p-12 my-5'>
 					<form onSubmit={submit}>
 						<fieldset disabled={loading}>
 							<div className='form-control w-full'>
@@ -108,6 +111,27 @@ const ConsultUs = () => {
 									placeholder=''
 									className='input input-bordered w-full'
 								/>
+							</div>
+							<div className='form-control mt-3'>
+								<label className='label font-bold'>Service</label>
+								<select
+									value={service}
+									onChange={(e) => setService(e.target.value)}
+									className='select select-bordered'
+								>
+									<option className='font-poppins font-semibold uppercase' value='-'>
+										-
+									</option>
+									{services.map((service) => (
+										<option
+											className='font-poppins font-semibold uppercase'
+											key={service.value}
+											value={service.value}
+										>
+											{service.label}
+										</option>
+									))}
+								</select>
 							</div>
 							<div className='form-control w-full'>
 								<label className='label font-bold'>

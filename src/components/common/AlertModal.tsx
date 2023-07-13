@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext, AppContextType } from '../../context/AppContext';
 import Modal from '../../utils/Modal';
+import { AppContext, AppContextType } from '../../context/AppContext';
 
 const AlertModal = () => {
 	const { setToastOpen } = useContext(AppContext) as AppContextType;

@@ -168,3 +168,124 @@ export const navLinks = [
       link: "https://www.linkedin.com/",
     },
   ];
+
+  export const property_locations = [
+    {
+      label: 'Asokoro',
+      value: 'Asokoro'
+    },
+    {
+      label: 'Maitama',
+      value: 'Maitama'
+    },
+    {
+      label: 'Gwarimpa',
+      value: 'Gwarimpa'
+    },
+    {
+      label: 'Jabi',
+      value: 'Jabi'
+    },
+    {
+      label: 'Utako',
+      value: 'Utako'
+    },
+    {
+      label: 'Wuye',
+      value: 'Wuye'
+    },
+    {
+      label: 'Lokogoma',
+      value: 'Lokogoma'
+    },
+    {
+      label: 'Apo',
+      value: 'Apo'
+    },
+    {
+      label: 'Wuse 2',
+      value: 'Wuse 2'
+    },
+    {
+      label: 'Mabushi',
+      value: 'Mabushi'
+    },
+    {
+      label: 'Lugbe',
+      value: 'Lugbe'
+    },
+    {
+      label: 'Garki',
+      value: 'Garki'
+    },
+    {
+      label: 'Guzape',
+      value: 'Guzape'
+    },
+    {
+      label: 'Lifecamp',
+      value: 'Lifecamp'
+    },
+    {
+      label: 'Katampe',
+      value: 'Katampe'
+    },
+    {
+      label: 'Others',
+      value: 'Others'
+    }
+  ];
+
+  export const titles = [
+    {
+      label: 'Mr',
+      value: 'Mr'
+    },
+    {
+      label: 'Mrs',
+      value: 'Mrs'
+    },
+    {
+      label: 'Engr',
+      value: 'Engr'
+    },
+    {
+      label: 'Dr',
+      value: 'Dr'
+    },
+    {
+      label: 'Alh',
+      value: 'Alh'
+    }
+  ];
+
+  export const services = [
+    {
+      label: 'Property Interest',
+      value: 'Property Interest'
+    },
+    {
+      label: 'Event/Hall',
+      value: 'Event/Hall'
+    },
+    {
+      label: 'Wephco FX',
+      value: 'Wephco FX'
+    },
+    {
+      label: 'International Investments',
+      value: 'International Investments'
+    },
+    {
+      label: 'Hotel Inquiry',
+      value: 'Hotel Inquiry'
+    },
+    {
+      label: 'Meeting/Office Space',
+      value: 'Meeting/Office Space'
+    },
+    {
+      label: 'Report an Issue',
+      value: 'Report an Issue'
+    }
+  ]

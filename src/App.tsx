@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home/Home';
 import PropertyListing from './components/pages/PropertyListing/PropertyListing';
 import { DiasporaPropertyListing } from './components/pages/PropertyListing/DiasporaPropertyListing';
+import { PropertyRequest } from './components/pages/PropertyRequest/PropertyRequest';
 import ConsultUs from './components/pages/Consultation/ConsultUs';
 
 import { AppProvider } from './context/AppContext';
@@ -34,6 +35,7 @@ function App() {
 						<Route path='/property-listings' element={<PropertyListing />} />
 						<Route path='/diaspora' element={<DiasporaPropertyListing />} />
 						<Route path='/consult-us' element={<ConsultUs />} />
+						<Route path='/property-request' element={<PropertyRequest />} />
 					</Routes>
 					<Footer />
 				</BrowserRouter>
