@@ -1,23 +1,25 @@
 import { useState, FormEvent, useContext } from 'react';
 import Loader from '../../common/Loader';
-import useAlertModal from '../../../hooks/useAlertModal';
 import { endpoints } from '../../../utils/URL';
-import axios from 'axios';
+// import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import ApiHelper from '../../../utils/apiHelper';
 
-interface LoginResponse {
-	token: string;
-	name: string;
-	email: string;
-}
+// interface LoginResponse {
+// 	token: string;
+// 	name: string;
+// 	email: string;
+// }
 
 const Login = () => {
-	const { setName, setEmail, setToken } = useContext(AppContext) as AppContextType;
-
-	const alert: any = useAlertModal();
+	const { setName, setEmail, setToken, setToastContent, setToastOpen } = useContext(
+		AppContext,
+	) as AppContextType;
 
 	const navigate = useNavigate();
+
+	const api = new ApiHelper();
 
 	const [emailAddress, setEmailAddress] = useState('');
 	const [password, setPassword] = useState('');
@@ -28,9 +30,8 @@ const Login = () => {
 
 		// Validate form
 		if (!emailAddress || !password) {
-			alert.setContent('Please fill in all fields!');
-			alert.setVariant('warning');
-			alert.open();
+			setToastContent('Please fill in all fields!');
+			setToastOpen(true);
 			return;
 		}
 
@@ -43,15 +44,12 @@ const Login = () => {
 			password: password,
 		};
 
-		axios
-			.post(endpoints.Auth.login, payload)
-			.then((response) => {
-				const loginData: LoginResponse = response.data;
-
-				// Set user data
-				setName(loginData.name);
-				setEmail(loginData.email);
-				setToken(loginData.token);
+		await api
+			.postData(endpoints.Auth.login, payload)
+			.then((data) => {
+				setName(data.name);
+				setEmail(data.email);
+				setToken(data.token);
 				sessionStorage.setItem('isAuthenticated', 'true');
 			})
 			.then(() => {
@@ -63,14 +61,41 @@ const Login = () => {
 				setPassword('');
 			})
 			.catch((error) => {
-				alert.setContent(error);
-				alert.setVariant('error');
-				alert.open();
+				setToastContent(error);
+				setToastOpen(true);
 			})
 			.finally(() => {
 				// Stop loading
 				setLoading(false);
 			});
+
+		// axios
+		// 	.post(endpoints.Auth.login, payload)
+		// 	.then((response) => {
+		// 		const loginData: LoginResponse = response.data;
+
+		// 		// Set user data
+		// 		setName(loginData.name);
+		// 		setEmail(loginData.email);
+		// 		setToken(loginData.token);
+		// 		sessionStorage.setItem('isAuthenticated', 'true');
+		// 	})
+		// 	.then(() => {
+		// 		// Redirect to home
+		// 		navigate('/home');
+
+		// 		// Reset form
+		// 		setEmailAddress('');
+		// 		setPassword('');
+		// 	})
+		// 	.catch((error) => {
+		// 		setToastContent(error);
+		// 		setToastOpen(true);
+		// 	})
+		// 	.finally(() => {
+		// 		// Stop loading
+		// 		setLoading(false);
+		// 	});
 	};
 
 	return (
