@@ -6,7 +6,7 @@ import { AppContext, AppContextType } from '../../../context/AppContext';
 import { property_types } from '../../../utils/constants';
 import { v4 } from 'uuid';
 import { storage } from '../../../utils/firebaseConfig';
-import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import Loader from '../../common/Loader';
 import { IAgent } from '../../../interfaces/AgentsInterface';
 
@@ -20,6 +20,7 @@ const AddPropertyForm = () => {
 	const [propertyImages, setPropertyImages] = useState<string[]>([]);
 	const [imageList, setImageList] = useState<File[]>([]);
 	const [agentList, setAgentList] = useState<IAgent[]>([]);
+	// const [imageUrls, setImageUrls] = useState<string[]>([]);
 
 	const api = new ApiHelper();
 
@@ -29,25 +30,19 @@ const AddPropertyForm = () => {
 		setImageList(fileList);
 	};
 
-	const uploadImages = async () => {
-		try {
-			const storageRef = ref(storage, `property-listings/images/${v4()}`);
-			const imageUrls: string[] = [];
+	const uploadImage = async (image: any) => {
+		const storageRef = ref(storage, `property-listings/images/${v4()}`);
 
-			for (var i = 0; i < imageList.length; i++) {
-				const uploadTask = await uploadBytesResumable(storageRef, imageList[i]);
+		const response = await uploadBytes(storageRef, image);
+		const url = await getDownloadURL(response.ref);
+		return url;
+	};
 
-				getDownloadURL(uploadTask.ref).then((imageURL) => {
-					imageUrls.push(imageURL);
-				});
-			}
+	const uploadImages = async (images: any) => {
+		const imagePromises = Array.from(images, (image) => uploadImage(image));
 
-			setPropertyImages(imageUrls);
-		} catch (error) {
-			setToastVariant('error');
-			setToastContent(`${error}`);
-			setToastOpen(true);
-		}
+		const imageRes = await Promise.all(imagePromises);
+		setPropertyImages(imageRes);
 	};
 
 	const handleChange = (input: string) => (e: any) => {
@@ -62,7 +57,15 @@ const AddPropertyForm = () => {
 
 		setLoading(true);
 
-		await uploadImages();
+		await uploadImages(imageList);
+
+		// if (propertyImages.length === 0) {
+		// 	setToastVariant('error');
+		// 	setToastContent('Please upload at least 1 image');
+		// 	setToastOpen(true);
+		// 	setLoading(false);
+		// 	return;
+		// }
 
 		property.propertyImages = propertyImages;
 
@@ -147,7 +150,11 @@ const AddPropertyForm = () => {
 										-
 									</option>
 									{property_types.map((property_type) => (
-										<option key={property_type.label} className='font-bold' value={property_type.value}>
+										<option
+											key={property_type.label}
+											className='font-bold'
+											value={property_type.value}
+										>
 											{property_type.label.toUpperCase()}
 										</option>
 									))}
