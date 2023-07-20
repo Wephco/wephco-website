@@ -57,15 +57,14 @@ const DiasporaPropertyListing = () => {
 			)}
 
 			{/* property mapping */}
-			<div className='flex flex-row flex-wrap justify-start p-8'>
-				{properties &&
-					properties.map((property) => (
-						<div className='card lg:card-side bg-base-100 shadow-xl m-5'>
+			<div className='flex-1 flex flex-row flex-wrap justify-center p-8 lg:p-3'>
+				{properties?.map((property) => (
+					<div className='card lg:card-side sm:card-compact bg-base-100 shadow-xl m-5 lg:m-3'>
 						<figure>
 							<img
 								src={property.propertyImages[0]}
 								alt='Property Main Image'
-								className='w-72 h-72'
+								className='w-80 h-80 lg:w-72 lg:h-72'
 							/>
 						</figure>
 						<div className='card-body p-8'>
@@ -107,7 +106,7 @@ const DiasporaPropertyListing = () => {
 							</div>
 						</div>
 					</div>
-					))}
+				))}
 			</div>
 		</div>
 	);
