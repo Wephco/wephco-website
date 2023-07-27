@@ -10,41 +10,41 @@ import twitter from '../assets/twitter.svg'
 
 export const navLinks = [
     {
-      id: "home",
-      title: "Home",
+      id: "how-it-works",
+      title: "How It Works",
     },
-    {
-      id: "property-listings",
-      title: "Property Listings",
-    },
-    {
-      id: "diaspora",
-      title: "Diaspora",
-    },
+    // {
+    //   id: "property-listings",
+    //   title: "Property Listings",
+    // },
+    // {
+    //   id: "diaspora",
+    //   title: "Diaspora",
+    // },
     // {
     //   id: "exclusive-offers",
     //   title: "Exclusive Offers",
     // },
     {
-      id: "consult-us",
-      title: "Consultations"
+      id: "contact",
+      title: "Contact"
     }
   ];
 
   export const stats = [
     {
         id: "stats-1",
-        title: "Properties",
+        title: "Fast Payouts",
         value: "4,000+",
       },
       {
         id: "stats-2",
-        title: "Satisfied Customers",
+        title: "Low Fees",
         value: "40,000+",
       },
       {
         id: "stats-3",
-        title: "Years in Business",
+        title: "Private & Secure",
         value: "10+",
       },
   ]
@@ -260,32 +260,32 @@ export const navLinks = [
   ];
 
   export const services = [
-    {
-      label: 'Property Interest',
-      value: 'Property Interest'
-    },
-    {
-      label: 'Event/Hall',
-      value: 'Event/Hall'
-    },
+    // {
+    //   label: 'Property Interest',
+    //   value: 'Property Interest'
+    // },
+    // {
+    //   label: 'Event/Hall',
+    //   value: 'Event/Hall'
+    // },
     {
       label: 'Wephco FX',
       value: 'Wephco FX'
     },
-    {
-      label: 'International Investments',
-      value: 'International Investments'
-    },
-    {
-      label: 'Hotel Inquiry',
-      value: 'Hotel Inquiry'
-    },
-    {
-      label: 'Meeting/Office Space',
-      value: 'Meeting/Office Space'
-    },
-    {
-      label: 'Report an Issue',
-      value: 'Report an Issue'
-    }
+    // {
+    //   label: 'International Investments',
+    //   value: 'International Investments'
+    // },
+    // {
+    //   label: 'Hotel Inquiry',
+    //   value: 'Hotel Inquiry'
+    // },
+    // {
+    //   label: 'Meeting/Office Space',
+    //   value: 'Meeting/Office Space'
+    // },
+    // {
+    //   label: 'Report an Issue',
+    //   value: 'Report an Issue'
+    // }
   ]

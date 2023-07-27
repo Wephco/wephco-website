@@ -1,6 +1,5 @@
 import styles from "../../style";
-import Clients from "./Clients";
-import Feedback from "./Feedback";
+import ConsultUs from "../Consultation/ConsultUs";
 import Hero from "./Hero";
 import Stats from "./Stats";
 import Steps from "./Steps";
@@ -18,8 +17,7 @@ const Home = () => {
         		<div className={`${styles.boxWidth}`}>
 					<Stats />
 					<Steps />
-					<Clients />
-					<Feedback />
+					<ConsultUs />
 				</div>
 			</div>
 		</div>

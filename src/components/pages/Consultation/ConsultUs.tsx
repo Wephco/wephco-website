@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { endpoints } from '../../../utils/URL';
-import styles from '../../style';
+// import styles from '../../style';
 import ApiHelper from '../../../utils/apiHelper';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { services } from '../../../utils/constants';
 
 const ConsultUs = () => {
-	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
+	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(AppContext) as AppContextType;
 
 	const [fullName, setFullName] = useState('');
 	const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const ConsultUs = () => {
 	const [contactMethod, setContactMethod] = useState('');
 	const [message, setMessage] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [service, setService] = useState('');
+	const [service, setService] = useState('Wephco FX');
 
 	const api = new ApiHelper();
 
@@ -36,7 +36,8 @@ const ConsultUs = () => {
 			contactMethod.trim() === '' ||
 			message.trim() === ''
 		) {
-			setToastContent('Please fill all fields');
+			setToastVariant('warning')
+			setToastContent('Please fill all required fields');
 			setToastOpen(true);
 			return;
 		}
@@ -66,10 +67,10 @@ const ConsultUs = () => {
 	};
 
 	return (
-		<>
+		<section id='contact'>
 			<div className='flex justify-center'>
 				<div className='my-5'>
-					<h3 className={styles.heading2}>Consult Us</h3>
+					<h3 className='font-poppins font-semibold xs:text-[48px] text-[30px] xs:leading-[76.8px] leading-[66.8px] w-full'>Have any Concerns?</h3>
 				</div>
 			</div>
 			<div className='flex justify-center'>
@@ -86,6 +87,7 @@ const ConsultUs = () => {
 									type='text'
 									placeholder=''
 									className='input input-bordered w-full'
+									required
 								/>
 							</div>
 							<div className='form-control w-full'>
@@ -98,6 +100,7 @@ const ConsultUs = () => {
 									type='email'
 									placeholder=''
 									className='input input-bordered w-full'
+									required
 								/>
 							</div>
 							<div className='form-control w-full'>
@@ -110,6 +113,7 @@ const ConsultUs = () => {
 									type='text'
 									placeholder=''
 									className='input input-bordered w-full'
+									required
 								/>
 							</div>
 							<div className='form-control mt-3'>
@@ -119,12 +123,9 @@ const ConsultUs = () => {
 									onChange={(e) => setService(e.target.value)}
 									className='select select-bordered'
 								>
-									<option className='font-poppins font-semibold uppercase' value='-'>
-										-
-									</option>
 									{services.map((service) => (
 										<option
-											className='font-poppins font-semibold uppercase'
+											className='font-poppins font-semibold'
 											key={service.value}
 											value={service.value}
 										>
@@ -168,7 +169,8 @@ const ConsultUs = () => {
 									value={message}
 									onChange={(e) => setMessage(e.target.value)}
 									rows={3}
-									className='textarea textarea-bordered w-full'
+									className='textarea textarea-bordered w-full rounded-2xl'
+									required
 								></textarea>
 							</div>
 							<button type='submit' className='btn btn-success btn-block mt-5'>
@@ -178,7 +180,7 @@ const ConsultUs = () => {
 					</form>
 				</div>
 			</div>
-		</>
+		</section>
 	);
 };
 
