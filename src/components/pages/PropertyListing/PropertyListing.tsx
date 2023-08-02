@@ -1,19 +1,20 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
-import ApiHelper from '../../../utils/apiHelper';
+// import ApiHelper from '../../../utils/apiHelper';
 import NoData from '../../common/NoData';
-import { endpoints } from '../../../utils/URL';
+// import { endpoints } from '../../../utils/URL';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { IProperties } from '../../../interfaces/PropertyListingInterface';
+import { getAllDocuments } from '../../../utils/firebaseFunctions';
 
 const PropertyListing = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+	const { setToastContent, setToastOpen, setToastVariant } = useContext(
 		AppContext,
 	) as AppContextType;
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const PropertyListing = () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(`${endpoints.PropertyListings.mainUrl}`, token);
+			const response = await getAllDocuments('localProperties');
 			setProperties(response);
 		} catch (error) {
 			setToastContent('Error getting property listings. Try again later');

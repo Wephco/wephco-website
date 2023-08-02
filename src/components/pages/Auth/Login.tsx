@@ -1,10 +1,11 @@
 import { useState, FormEvent, useContext } from 'react';
 import Loader from '../../common/Loader';
-import { endpoints } from '../../../utils/URL';
+// import { endpoints } from '../../../utils/URL';
 // import axios from 'axios';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import ApiHelper from '../../../utils/apiHelper';
+// import ApiHelper from '../../../utils/apiHelper';
+import { loginUser } from '../../../utils/firebaseFunctions';
 
 // interface LoginResponse {
 // 	token: string;
@@ -13,13 +14,13 @@ import ApiHelper from '../../../utils/apiHelper';
 // }
 
 const Login = () => {
-	const { setName, setEmail, setToken, setToastContent, setToastOpen } = useContext(
+	const { setName, setEmail, setToastContent, setToastOpen } = useContext(
 		AppContext,
 	) as AppContextType;
 
 	const navigate = useNavigate();
 
-	const api = new ApiHelper()
+	// const api = new ApiHelper()
 
 	const [emailAddress, setEmailAddress] = useState('');
 	const [password, setPassword] = useState('');
@@ -44,27 +45,27 @@ const Login = () => {
 			password: password,
 		};
 
-		await api.postData(endpoints.Auth.login, payload).then((data) => {
-			setName(data.name);
-				setEmail(data.email);
-				setToken(data.token);
+		await loginUser(payload.email, payload.password)
+			.then((user) => {
+				setName(user.user.displayName);
+				setEmail(user.user.email);
 				sessionStorage.setItem('isAuthenticated', 'true');
-		}).then(() => {
-			// Redirect to home
-			navigate('/home');
-
-			// Reset form
-			setEmailAddress('');
-			setPassword('');
-		})
-		.catch((error) => {
-			setToastContent(error);
-			setToastOpen(true);
-		})
-		.finally(() => {
-			// Stop loading
-			setLoading(false);
-		});
+			})
+			.then(() => {
+				// Redirect to home
+				navigate('/home');
+			})
+			.catch((error) => {
+				setToastContent(error);
+				setToastOpen(true);
+			})
+			.finally(() => {
+				// Reset form
+				setEmailAddress('');
+				setPassword('');
+				// Stop loading
+				setLoading(false);
+			});
 
 		// axios
 		// 	.post(endpoints.Auth.login, payload)

@@ -1,13 +1,14 @@
 import { useState, useContext } from 'react';
-import { endpoints } from '../../../utils/URL';
-import ApiHelper from '../../../utils/apiHelper';
+// import { endpoints } from '../../../utils/URL';
+// import ApiHelper from '../../../utils/apiHelper';
 import { newUser } from '../../../interfaces/UserInterface';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import Loader from '../../common/Loader';
 import { user_roles } from '../../../utils/constants';
+import { createUser, addDocument } from '../../../utils/firebaseFunctions';
 
 const CreateUser = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+	const { setToastContent, setToastOpen, setToastVariant } = useContext(
 		AppContext,
 	) as AppContextType;
 
@@ -15,7 +16,7 @@ const CreateUser = () => {
 	const [loading, setLoading] = useState(false);
 	const [code, setCode] = useState('');
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const handleChange = (input: string) => (e: any) => {
 		setUser({
@@ -27,20 +28,27 @@ const CreateUser = () => {
 	const submitNewUser = async (e: any) => {
 		e.preventDefault();
 
-		setLoading(true);
+		if (code.trim() === 'neto' || code.trim() === 'wisdom') {
+			setLoading(true);
 
-		try {
-			await api.postData(`${endpoints.User.mainUrl}?authorizationCode=${code}`, user, token);
-			setToastVariant('success');
-			setToastContent('User Created successfully');
-			setToastOpen(true);
-			setUser(newUser);
-		} catch (error) {
+			try {
+				await createUser(user.email, user.password);
+				await addDocument('users', user);
+				setToastVariant('success');
+				setToastContent('User Created successfully');
+				setToastOpen(true);
+				setUser(newUser);
+			} catch (error) {
+				setToastVariant('error');
+				setToastContent(`${error}`);
+				setToastOpen(true);
+			} finally {
+				setLoading(false);
+			}
+		} else {
 			setToastVariant('error');
-			setToastContent(`${error}`);
+			setToastContent(`Cannot create new user. Wrong authorization code`);
 			setToastOpen(true);
-		} finally {
-			setLoading(false);
 		}
 	};
 

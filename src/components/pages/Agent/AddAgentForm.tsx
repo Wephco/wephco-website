@@ -1,17 +1,20 @@
 import { useState, useContext } from 'react';
-import { endpoints } from '../../../utils/URL';
-import ApiHelper from '../../../utils/apiHelper';
+// import { endpoints } from '../../../utils/URL';
+// import ApiHelper from '../../../utils/apiHelper';
 import { initialAgentObject } from '../../../interfaces/AgentsInterface';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import Loader from '../../common/Loader';
+import { addDocument } from '../../../utils/firebaseFunctions';
 
 const AddAgentForm = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(AppContext) as AppContextType;
+	const { setToastContent, setToastOpen, setToastVariant } = useContext(
+		AppContext,
+	) as AppContextType;
 
 	const [agent, setAgent] = useState(initialAgentObject);
 	const [loading, setLoading] = useState(false);
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const handleChange = (input: string) => (e: any) => {
 		setAgent({
@@ -26,13 +29,13 @@ const AddAgentForm = () => {
 		setLoading(true);
 
 		try {
-			await api.postData(endpoints.Agents.mainUrl, agent, token);
-            setToastVariant('success')
+			await addDocument('agents', agent);
+			setToastVariant('success');
 			setToastContent('Agent Created successfully');
 			setToastOpen(true);
-			setAgent(initialAgentObject)
+			setAgent(initialAgentObject);
 		} catch (error) {
-            setToastVariant('error')
+			setToastVariant('error');
 			setToastContent(`${error}`);
 			setToastOpen(true);
 		} finally {

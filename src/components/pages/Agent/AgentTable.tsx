@@ -1,19 +1,20 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
-import ApiHelper from '../../../utils/apiHelper';
+// import ApiHelper from '../../../utils/apiHelper';
 import NoData from '../../common/NoData';
-import { endpoints } from '../../../utils/URL';
+// import { endpoints } from '../../../utils/URL';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { IAgent } from '../../../interfaces/AgentsInterface';
+import { getAllDocuments } from '../../../utils/firebaseFunctions';
 
 const AgentTable = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+	const { setToastContent, setToastOpen, setToastVariant } = useContext(
 		AppContext,
 	) as AppContextType;
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const AgentTable = () => {
 		setLoading(true);
 
 		try {
-			const response = await api.getData(endpoints.Agents.mainUrl, token);
+			const response = await getAllDocuments('agents');
 			setAgents(response);
 		} catch (error) {
 			setToastVariant('error');

@@ -1,17 +1,18 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
-import { endpoints } from '../../../utils/URL';
-import ApiHelper from '../../../utils/apiHelper';
+// import { endpoints } from '../../../utils/URL';
+// import ApiHelper from '../../../utils/apiHelper';
 import { newProperty } from '../../../interfaces/PropertyListingInterface';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { property_types } from '../../../utils/constants';
 import { v4 } from 'uuid';
-import { storage } from '../../../utils/firebaseConfig';
+import { storage } from '../../../utils/firebaseFunctions';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import Loader from '../../common/Loader';
 import { IAgent } from '../../../interfaces/AgentsInterface';
+import { addDocument, getAllDocuments } from '../../../utils/firebaseFunctions';
 
 const AddPropertyForm = () => {
-	const { token, setToastContent, setToastOpen, setToastVariant } = useContext(
+	const { setToastContent, setToastOpen, setToastVariant } = useContext(
 		AppContext,
 	) as AppContextType;
 
@@ -22,7 +23,7 @@ const AddPropertyForm = () => {
 	const [agentList, setAgentList] = useState<IAgent[]>([]);
 	// const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFiles = e.target.files as FileList;
@@ -70,7 +71,7 @@ const AddPropertyForm = () => {
 		property.propertyImages = propertyImages;
 
 		try {
-			await api.postData(endpoints.PropertyListings.mainUrl, property, token);
+			await addDocument('localProperties', property);
 			setToastVariant('success');
 			setToastContent('Property added successfully');
 			setToastOpen(true);
@@ -86,7 +87,7 @@ const AddPropertyForm = () => {
 
 	const getAgentList = useCallback(async () => {
 		try {
-			const response = await api.getData(endpoints.Agents.mainUrl, token);
+			const response = await getAllDocuments('agents');
 			setAgentList(response);
 		} catch (error) {
 			setToastVariant('error');
