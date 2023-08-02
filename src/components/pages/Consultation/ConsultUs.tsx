@@ -1,12 +1,13 @@
 import { useState, useContext } from 'react';
-import { endpoints } from '../../../utils/URL';
+// import { endpoints } from '../../../utils/URL';
 import styles from '../../style';
-import ApiHelper from '../../../utils/apiHelper';
+// import ApiHelper from '../../../utils/apiHelper';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { services } from '../../../utils/constants';
+import { addDocument } from '../../../utils/firebaseFunctions';
 
 const ConsultUs = () => {
-	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
+	const { setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
 
 	const [fullName, setFullName] = useState('');
 	const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const ConsultUs = () => {
 	const [loading, setLoading] = useState(false);
 	const [service, setService] = useState('');
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const clearForm = () => {
 		setFullName('');
@@ -53,10 +54,11 @@ const ConsultUs = () => {
 		};
 
 		try {
-			await api.postData(endpoints.Consultations.mainUrl, payload, token);
+			const response = await addDocument('consultations', payload);
 			setToastContent(`Message sent successfully.`);
 			setToastOpen(true);
 			clearForm();
+			console.log(response);
 		} catch (error) {
 			setToastContent('Error submitting form. Please try again.');
 			setToastOpen(true);
@@ -85,6 +87,7 @@ const ConsultUs = () => {
 									onChange={(e) => setFullName(e.target.value)}
 									type='text'
 									placeholder=''
+									required
 									className='input input-bordered w-full'
 								/>
 							</div>
@@ -97,6 +100,7 @@ const ConsultUs = () => {
 									onChange={(e) => setEmail(e.target.value)}
 									type='email'
 									placeholder=''
+									required
 									className='input input-bordered w-full'
 								/>
 							</div>
@@ -109,6 +113,7 @@ const ConsultUs = () => {
 									onChange={(e) => setPhoneNumber(e.target.value)}
 									type='text'
 									placeholder=''
+									required
 									className='input input-bordered w-full'
 								/>
 							</div>
@@ -118,6 +123,7 @@ const ConsultUs = () => {
 									value={service}
 									onChange={(e) => setService(e.target.value)}
 									className='select select-bordered'
+									required
 								>
 									<option className='font-poppins font-semibold uppercase' value='-'>
 										-

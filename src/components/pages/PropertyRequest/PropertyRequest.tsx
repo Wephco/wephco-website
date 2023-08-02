@@ -2,14 +2,15 @@ import { useState, useContext } from 'react';
 import styles from '../../style';
 import property1 from '../../../assets/property1.svg';
 import { property_locations, titles } from '../../../utils/constants';
-import ApiHelper from '../../../utils/apiHelper';
+// import ApiHelper from '../../../utils/apiHelper';
 import { AppContext, AppContextType } from '../../../context/AppContext';
-import { endpoints } from '../../../utils/URL';
+// import { endpoints } from '../../../utils/URL';
 import Loader from '../../common/Loader';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
+import { addDocument } from '../../../utils/firebaseFunctions';
 
 const PropertyRequest = () => {
-	const { token, setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
+	const { setToastContent, setToastOpen } = useContext(AppContext) as AppContextType;
 
 	const [title, setTitle] = useState('');
 	const [name, setName] = useState('');
@@ -21,8 +22,10 @@ const PropertyRequest = () => {
 	const [budget, setBudget] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [preferredService, setPreferredService] = useState('');
+	const [additionalNotes, setAdditionalNotes] = useState('');
+	const [id, setId] = useState('')
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	const clearForm = () => {
 		setTitle('');
@@ -42,6 +45,7 @@ const PropertyRequest = () => {
 		setLoading(true);
 
 		const payload = {
+			title,
 			name,
 			email,
 			phoneNumber: phone,
@@ -50,11 +54,13 @@ const PropertyRequest = () => {
 			propertyType,
 			requestType,
 			budget,
+			additionalNotes,
 			isPaid: false,
 		};
 
 		try {
-			await api.postData(endpoints.PropertyRequests.mainUrl, payload, token);
+			const response = await addDocument('propertyRequests', payload)
+			setId(response)
 			setToastContent(`Request sent successfully.`);
 			setToastOpen(true);
 			clearForm();
@@ -68,7 +74,7 @@ const PropertyRequest = () => {
 
 	return (
 		<section className='flex md:flex-row flex-col'>
-			<div className={`flex-1 hidden md:flex ${styles.flexCenter} md:my-0 my-10 relative`}>
+			<div className={`hidden md:flex ${styles.flexStart}`}>
 				<img src={property1} alt='Property' className='w-[100%] h-[100%] relative z-[5]' />
 			</div>
 			<div className={`flex-1 flex-col xl:px-0 sm:px-16 px-6`}>
@@ -111,6 +117,7 @@ const PropertyRequest = () => {
 									value={name}
 									onChange={(e) => setName(e.target.value)}
 									type='text'
+									required
 									className='input input-bordered'
 								/>
 							</div>
@@ -120,6 +127,7 @@ const PropertyRequest = () => {
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									type='email'
+									required
 									className='input input-bordered'
 								/>
 							</div>
@@ -129,6 +137,7 @@ const PropertyRequest = () => {
 									value={phone}
 									onChange={(e) => setPhone(e.target.value)}
 									type='tel'
+									required
 									className='input input-bordered'
 								/>
 							</div>
@@ -138,6 +147,7 @@ const PropertyRequest = () => {
 									value={requestType}
 									onChange={(e) => setRequestType(e.target.value)}
 									className='select select-bordered'
+									required
 								>
 									<option className='font-poppins font-semibold uppercase' value='-'>
 										-
@@ -157,8 +167,10 @@ const PropertyRequest = () => {
 								<label className='label font-bold'>Location</label>
 								<select
 									value={location}
-									onChange={(e) => setLocation(e.target.value)}
+									onChange={(e) => setLocation(`${location} ${e.target.value}`)}
 									className='select select-bordered'
+									multiple
+									required
 								>
 									<option className='font-poppins font-semibold uppercase' value='-'>
 										-
@@ -173,6 +185,7 @@ const PropertyRequest = () => {
 										</option>
 									))}
 								</select>
+								<span className='font-medium'>{location}</span>
 							</div>
 							<div className='form-control mt-3'>
 								<label className='label font-bold'>Property Type</label>
@@ -180,6 +193,7 @@ const PropertyRequest = () => {
 									value={propertyType}
 									onChange={(e) => setPropertyType(e.target.value)}
 									className='select select-bordered'
+									required
 								>
 									<option className='font-poppins font-semibold uppercase' value='-'>
 										-
@@ -206,6 +220,15 @@ const PropertyRequest = () => {
 									type='number'
 									className='input input-bordered'
 								/>
+							</div>
+							<div className='form-control mt-3'>
+								<label className='label font-bold'>Additional Notes</label>
+								<textarea
+									value={additionalNotes}
+									onChange={(e) => setAdditionalNotes(e.target.value)}
+									rows={3}
+									className='textarea textarea-bordered'
+								></textarea>
 							</div>
 							<div className='form-control w-full'>
 								<label className='label font-bold'>
@@ -250,6 +273,7 @@ const PropertyRequest = () => {
 									</label>
 								</div>
 							</div>
+							<span className='hidden'>{id}</span>
 							<div className='form-control'>
 								<button
 									type='button'

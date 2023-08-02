@@ -1,44 +1,44 @@
-import { useState, useCallback, useEffect, useContext } from 'react';
-import ApiHelper from '../../../utils/apiHelper';
-import NoData from '../../common/NoData';
-import { endpoints } from '../../../utils/URL';
-import { Properties } from '../../../interfaces/PropertyListingInterface';
-import Loader from '../../common/Loader';
-import { AppContext, AppContextType } from '../../../context/AppContext';
-import { FaMapMarkerAlt, FaToilet } from 'react-icons/fa';
-import { MdMeetingRoom, MdBathroom, MdSoupKitchen } from 'react-icons/md';
-import { SiGoogleclassroom } from 'react-icons/si';
+// import { useState, useCallback, useEffect, useContext } from 'react';
+// import ApiHelper from '../../../utils/apiHelper';
+// import NoData from '../../common/NoData';
+// import { endpoints } from '../../../utils/URL';
+// import { Properties } from '../../../interfaces/PropertyListingInterface';
+// import Loader from '../../common/Loader';
+// import { AppContext, AppContextType } from '../../../context/AppContext';
+// import { FaMapMarkerAlt, FaToilet } from 'react-icons/fa';
+// import { MdMeetingRoom, MdBathroom, MdSoupKitchen } from 'react-icons/md';
+// import { SiGoogleclassroom } from 'react-icons/si';
 
 const PropertyListing = () => {
-	const { token, setToastContent, setToastVariant, setToastOpen } = useContext(
-		AppContext,
-	) as AppContextType;
+	// const { token, setToastContent, setToastVariant, setToastOpen } = useContext(
+	// AppContext,
+	// ) as AppContextType;
 
-	const api = new ApiHelper();
+	// const api = new ApiHelper();
 
 	// const navigate = useNavigate();
 
-	const [properties, setProperties] = useState<Properties[]>([]);
-	const [loading, setLoading] = useState(false);
+	// const [properties, setProperties] = useState<Properties[]>([]);
+	// const [loading, setLoading] = useState(false);
 
-	const getProperties = useCallback(async () => {
-		setLoading(true);
+	// const getProperties = useCallback(async () => {
+	// 	setLoading(true);
 
-		try {
-			const response = await api.getData(`${endpoints.PropertyListings.mainUrl}`, token);
-			setProperties(response);
-		} catch (error) {
-			setToastContent('Error getting property listings. Try again later');
-			setToastVariant('error');
-			setToastOpen(true);
-		} finally {
-			setLoading(false);
-		}
-	}, []);
+	// 	try {
+	// 		const response = await api.getData(`${endpoints.PropertyListings.mainUrl}`, token);
+	// 		setProperties(response);
+	// 	} catch (error) {
+	// 		setToastContent('Error getting property listings. Try again later');
+	// 		setToastVariant('error');
+	// 		setToastOpen(true);
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// }, []);
 
-	useEffect(() => {
-		getProperties();
-	}, [getProperties]);
+	// useEffect(() => {
+	// 	getProperties();
+	// }, [getProperties]);
 
 	return (
 		<div className=''>
@@ -46,20 +46,24 @@ const PropertyListing = () => {
 				<h1 className='text-2xl font-semibold my-8'>Local Property Listings</h1>
 			</div>
 
-			{loading && (
+			<div className='flex justify-center items-center py-52'>
+				<h1 className='font-bold text-4xl'>Coming Soon</h1>
+			</div>
+
+			{/* {loading && (
 				<div className='flex justify-center items-center'>
 					<Loader />
 				</div>
-			)}
+			)} */}
 
-			{!loading && properties?.length === 0 && (
+			{/* {!loading && properties?.length === 0 && (
 				<div className='flex justify-center items-center'>
 					<NoData content='No Properties listed' />
 				</div>
-			)}
+			)} */}
 
 			{/* property mapping */}
-			<div className='flex-1 flex flex-row flex-wrap justify-center p-8 lg:p-3'>
+			{/* <div className='flex-1 flex flex-row flex-wrap justify-center p-8 lg:p-3'>
 				{properties?.map((property) => (
 					<div className='card lg:card-side sm:card-compact bg-base-100 shadow-xl m-5 lg:m-3'>
 						<figure>
@@ -109,7 +113,7 @@ const PropertyListing = () => {
 						</div>
 					</div>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 };
