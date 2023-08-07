@@ -34,8 +34,8 @@ export const sideMenuItems: SideMenuItem[] = [
 		icon: <BsPersonAdd />,
 	},
 	{
-		title: 'Hotel Requests',
-		path: '/hotel-requests',
+		title: 'Property Requests',
+		path: '/property-requests',
 		icon: <BsBuildingCheck />,
 	},
 	{

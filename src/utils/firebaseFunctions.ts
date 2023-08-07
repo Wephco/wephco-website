@@ -29,7 +29,11 @@ const getAllDocuments = async (collectionName: string) => {
   var documents: any[] = []
   const querySnapshot = await getDocs(collection(db, collectionName))
   querySnapshot.forEach((doc) => {
-    documents.push(doc.data())
+    if(collectionName === 'propertyRequests'){
+      documents.push(doc.data().data)
+    } else {
+      documents.push(doc.data())
+    }
   })
   return documents;
 }
@@ -67,4 +71,4 @@ const logoutUser = async () => {
   await signOut(auth);
 }
 
-export { addDocument, getAllDocuments, getADocument, updateDocument, deleteDocument, storage, createUser, loginUser, logoutUser }
+export { db, addDocument, getAllDocuments, getADocument, updateDocument, deleteDocument, storage, createUser, loginUser, logoutUser }

@@ -44,7 +44,6 @@ const PropertyRequests = () => {
 		<thead>
 			<tr>
 				<th>Actions</th>
-				<th>title</th>
 				<th>Name</th>
 				<th>Email</th>
 				<th>Phone Number</th>
@@ -52,7 +51,7 @@ const PropertyRequests = () => {
 				<th>Property Type</th>
 				<th>Location</th>
 				<th>Prefered Service</th>
-				<th>budget</th>
+				<th>Budget</th>
 				<th>Notes</th>
 			</tr>
 		</thead>
@@ -60,8 +59,8 @@ const PropertyRequests = () => {
 
 	let tableBody = (
 		<tbody>
-			{requests.map((request, index) => (
-				<tr key={index}>
+			{requests.map((request) => (
+				<tr key={request.id}>
 					<td className='flex flex-wrap'>
 						<div className='tooltip' data-tip='Edit Property'>
 							<FaEdit className='text-yellow-500 mr-2 cursor-pointer' />
@@ -70,7 +69,6 @@ const PropertyRequests = () => {
 							<FaTrash className='text-red-500 cursor-pointer' />
 						</div>
 					</td>
-					<td>{request.title}</td>
 					<td>{request.name}</td>
 					<td>{request.email}</td>
 					<td>{request.phoneNumber}</td>

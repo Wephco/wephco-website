@@ -14,6 +14,7 @@ import { AppProvider } from './context/AppContext';
 
 import Dashboard from './components/common/Dashboard';
 import AlertModal from './components/common/AlertModal';
+import PropertyRequests from './components/pages/PropertyRequests/PropertyRequests';
 
 let notifications = <AlertModal />;
 
@@ -43,6 +44,7 @@ function App() {
 						<Route path='/agents/add' element={<Dashboard component={AddAgentForm} />} />
 						<Route path='/users' element={<Dashboard component={UsersTable} />} />
 						<Route path='/users/add' element={<Dashboard component={CreateUser} />} />
+						<Route path='/property-requests' element={<Dashboard component={PropertyRequests} />} />
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>
