@@ -28,7 +28,7 @@ const CreateUser = () => {
 	const submitNewUser = async (e: any) => {
 		e.preventDefault();
 
-		if (code.toLowerCase().trim() === 'neto' || code.toLowerCase().trim() === 'Weph20233') {
+		if (code.toLowerCase().trim() === 'neto' || code.toLowerCase().trim() === 'weph20233') {
 			setLoading(true);
 
 			try {

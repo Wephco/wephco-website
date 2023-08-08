@@ -1,13 +1,16 @@
-import { useState, useCallback, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import ApiHelper from '../../../utils/apiHelper';
 import NoData from '../../common/NoData';
 // import { endpoints } from '../../../utils/URL';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import Loader from '../../common/Loader';
+import { FaTrash } from 'react-icons/fa';
+// import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 // import { useNavigate } from 'react-router-dom';
 import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
-import { getAllDocuments } from '../../../utils/firebaseFunctions';
+import { db, deleteDocument } from '../../../utils/firebaseFunctions';
+import { query, collection, onSnapshot } from 'firebase/firestore';
+// import { ModalPrompt } from '../../common/ModalPrompt';
+// import { Modal, Button } from 'react-daisyui';
 
 const PropertyRequests = () => {
 	const { setToastContent, setToastOpen, setToastVariant } = useContext(
@@ -18,27 +21,95 @@ const PropertyRequests = () => {
 
 	// const navigate = useNavigate();
 
+	// const { Dialog, handleShow } = Modal.useDialog();
+
 	const [requests, setRequests] = useState<IPropertyRequest[]>([]);
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
+	// const [code, setCode] = useState('');
 
-	const getRequests = useCallback(async () => {
-		setLoading(true);
+	// const ref = useRef<HTMLDialogElement>(null);
 
-		try {
-			const response = await getAllDocuments('propertyRequests');
-			setRequests(response);
-		} catch (error) {
-			setToastContent('Error getting property listings. Try again later');
+	// const handleShow = useCallback(() => {
+	// 	ref.current?.showModal();
+	// }, [ref]);
+
+	// const editRequest = (id: string) => {}
+
+	// const updatePropertyRequest = async (id: string, property: IPropertyRequest) => {
+	// 	const code = prompt('Please Enter Authorization Code') as string;
+
+	// 	if (code.toLowerCase().trim() === 'weph20233' || code.toLowerCase().trim() === 'neto') {
+	// 		try {
+	// 			await updateDocument('propertyRequests', property, id)
+	// 			setToastContent('Property Request updated successfully');
+	// 			setToastVariant('success');
+	// 			setToastOpen(true);
+	// 		} catch (error) {
+	// 			setToastContent('Error updating property');
+	// 			setToastVariant('error');
+	// 			setToastOpen(true);
+	// 		}
+	// 	} else {
+	// 		setToastContent('Invalid Authorization Code');
+	// 		setToastVariant('error');
+	// 		setToastOpen(true);
+	// 		return;
+	// 	}
+	// }
+
+	const deleteRequest = (id: string) => {
+		deleteProperty(id);
+	};
+
+	const deleteProperty = async (id: string) => {
+		const code = prompt('Please Enter Authorization Code') as string;
+
+		if (code.toLowerCase().trim() === 'weph20233' || code.toLowerCase().trim() === 'neto') {
+			try {
+				await deleteDocument('propertyRequests', id);
+				setToastContent('Property Request deleted successfully');
+				setToastVariant('success');
+				setToastOpen(true);
+			} catch (error) {
+				setToastContent('Error deleting property');
+				setToastVariant('error');
+				setToastOpen(true);
+			}
+		} else {
+			setToastContent('Invalid Authorization Code');
 			setToastVariant('error');
 			setToastOpen(true);
-		} finally {
-			setLoading(false);
+			return;
 		}
-	}, []);
+	};
+
+	// const getRequests = useCallback(async () => {
+	// 	setLoading(true);
+
+	// 	try {
+	// 		const response = await getAllDocuments('propertyRequests');
+	// 		setRequests(response);
+	// 	} catch (error) {
+	// 		setToastContent('Error getting property listings. Try again later');
+	// 		setToastVariant('error');
+	// 		setToastOpen(true);
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
-		getRequests();
-	}, [getRequests]);
+		const q = query(collection(db, 'propertyRequests'));
+		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			const propertyRequests: React.SetStateAction<any[]> = [];
+			querySnapshot.forEach((doc) => {
+				propertyRequests.push({ ...doc.data().data, id: doc.id });
+			});
+			setRequests(propertyRequests);
+		});
+
+		return unsubscribe;
+	}, []);
 
 	let tableHead = (
 		<thead>
@@ -61,12 +132,15 @@ const PropertyRequests = () => {
 		<tbody>
 			{requests.map((request) => (
 				<tr key={request.id}>
-					<td className='flex flex-wrap'>
-						<div className='tooltip' data-tip='Edit Property'>
+					<td className='flex flex-wrap cursor-pointer'>
+						{/* <div className='tooltip tooltip-right' data-tip='Edit Property'>
 							<FaEdit className='text-yellow-500 mr-2 cursor-pointer' />
-						</div>
-						<div className='tooltip' data-tip='Delete Property'>
-							<FaTrash className='text-red-500 cursor-pointer' />
+						</div> */}
+						<div className='tooltip tooltip-right' data-tip='Delete Property'>
+							<FaTrash
+								className='text-red-500 cursor-pointer'
+								onClick={() => deleteRequest(request.id)}
+							/>
 						</div>
 					</td>
 					<td>{request.name}</td>
@@ -83,6 +157,22 @@ const PropertyRequests = () => {
 		</tbody>
 	);
 
+	// let promptModal = (
+	// 	<Dialog>
+	// 		<Button size='sm' color='ghost' shape='circle' className='absolute right-2 top-2'>
+	// 			X
+	// 		</Button>
+	// 		<Modal.Header className='mt-10'>{promptHeader}</Modal.Header>
+	// 		<Modal.Body>{promptContent}</Modal.Body>
+	// 		<Modal.Actions className='flex justify-between'>
+	// 			<Button className='btn-error'>NO</Button>
+	// 			<Button className='btn-success' onClick={() => deleteProperty(docId)}>
+	// 				YES
+	// 			</Button>
+	// 		</Modal.Actions>
+	// 	</Dialog>
+	// );
+
 	return (
 		<section>
 			<div className='bg-white'>
@@ -97,19 +187,19 @@ const PropertyRequests = () => {
 					</div>
 				</div>
 
-				{loading && (
+				{/* {loading && (
 					<div className='flex justify-center items-center'>
 						<Loader />
 					</div>
-				)}
+				)} */}
 
-				{!loading && requests?.length === 0 && (
+				{requests?.length === 0 && (
 					<div className='flex justify-center items-center'>
 						<NoData content='No Properties listed' />
 					</div>
 				)}
 
-				{!loading && requests?.length > 0 && (
+				{requests?.length > 0 && (
 					<div className='w-full overflow-x-auto'>
 						<table className='table table-xs'>
 							{tableHead}

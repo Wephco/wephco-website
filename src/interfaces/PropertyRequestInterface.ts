@@ -1,5 +1,5 @@
 export interface IPropertyRequest{
-    id: number
+    id: string
     title: string
     name: string
     email: string
