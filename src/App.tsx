@@ -15,6 +15,7 @@ import { AppProvider } from './context/AppContext';
 import Dashboard from './components/common/Dashboard';
 import AlertModal from './components/common/AlertModal';
 import PropertyRequests from './components/pages/PropertyRequests/PropertyRequests';
+import { ConsultationTable } from './components/pages/Consultations/ConsultationTable';
 
 let notifications = <AlertModal />;
 
@@ -45,6 +46,7 @@ function App() {
 						<Route path='/users' element={<Dashboard component={UsersTable} />} />
 						<Route path='/users/add' element={<Dashboard component={CreateUser} />} />
 						<Route path='/property-requests' element={<Dashboard component={PropertyRequests} />} />
+						<Route path='/consultations' element={<Dashboard component={ConsultationTable} />} />
 					</Routes>
 				</BrowserRouter>
 			</AppProvider>

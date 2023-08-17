@@ -4,6 +4,7 @@ import {
 	BsPersonAdd,
 	BsBuildingAdd,
 	BsPeopleFill,
+	BsChatFill,
 } from 'react-icons/bs';
 
 interface SideMenuItem {
@@ -37,6 +38,11 @@ export const sideMenuItems: SideMenuItem[] = [
 		title: 'Property Requests',
 		path: '/property-requests',
 		icon: <BsBuildingCheck />,
+	},
+	{
+		title: 'Consultations',
+		path: '/consultations',
+		icon: <BsChatFill />,
 	},
 	{
 		title: 'Users',
