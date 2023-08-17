@@ -29,10 +29,10 @@ const getAllDocuments = async (collectionName: string) => {
   var documents: any[] = []
   const querySnapshot = await getDocs(collection(db, collectionName))
   querySnapshot.forEach((doc) => {
-    if(collectionName === 'propertyRequests'){
-      documents.push(doc.data().data)
+    if(collectionName === 'propertyRequests' || collectionName === 'consultations'){
+      documents.push({...doc.data().data, id: doc.id})
     } else {
-      documents.push(doc.data())
+      documents.push({...doc.data(), id: doc.id})
     }
   })
   return documents;
