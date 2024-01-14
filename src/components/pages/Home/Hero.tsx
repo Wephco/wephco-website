@@ -31,10 +31,12 @@ const Hero = () => {
 						</h1>
 					</div>
 
+					{/* Subheadline */}
 					<h1 className='font-poppins font-semibold text-4xl sm:text-6xl mb-4 text-white'>
 						Real Estate.
 					</h1>
 
+					{/* Description */}
 					<p className={`${styles.paragraph} max-w-[470px] mb-8 text-lg text-white`}>
 						Get all your real estate needs through technology. We have taken the stress in real
 						estate away from you, the customer.
