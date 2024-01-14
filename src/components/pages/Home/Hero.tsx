@@ -4,18 +4,24 @@ import GetStarted from '../../common/GetStartedButton';
 import property from '../../../assets/property.png';
 import { property_locations } from '../../../utils/constants';
 
+/**
+ * Hero component represents the main section of the home page.
+ * It combines a background image, content, and a form for real estate inquiries.
+ */
 const Hero = () => {
 	return (
 		<section id='home' className={`relative h-screen ${styles.paddingY}`}>
+			{/* Background Image with Overlay */}
 			<div className='absolute inset-0'>
 				<img src={property} alt='Property' className='w-full h-full object-cover' />
 				<div className='absolute inset-0 bg-black opacity-50'></div>
 			</div>
 
-			<div
-				className={`absolute inset-0 flex flex-row ${styles.flexStart} ${styles.flexCenter} px-6 text-white`}
-			>
-				<div className='flex flex-col items-center text-center pr-6'>
+			{/* Content Container */}
+			<div className={`absolute inset-0 flex ${styles.flexCenter}`}>
+				{/* Left Content */}
+				<div className='text-center'>
+					{/* Headline */}
 					<div className='mb-4'>
 						<h1 className='font-poppins font-semibold text-4xl sm:text-6xl text-white'>
 							Tech <br className='sm:block hidden' />{' '}
@@ -35,7 +41,9 @@ const Hero = () => {
 					</p>
 				</div>
 
-				<form className={`${styles.paragraph} max-w-[470px] ml-auto`}>
+				{/* Form Section with Submit Button */}
+				<form className={`${styles.paragraph} max-w-[470px] mt-4 ml-4`}>
+					{/* Form Fields */}
 					<div className='mb-4'>
 						<label htmlFor='name' className='text-white'>
 							Name:
@@ -91,6 +99,7 @@ const Hero = () => {
 						</select>
 					</div>
 
+					{/* Submit Button */}
 					<button
 						type='submit'
 						className='bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300'
@@ -100,6 +109,7 @@ const Hero = () => {
 				</form>
 			</div>
 
+			{/* Right Content */}
 			<div className={`ss:hidden ${styles.flexCenter}`}>
 				<GetStarted />
 			</div>
