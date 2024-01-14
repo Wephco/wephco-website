@@ -1,44 +1,103 @@
+import React from 'react';
 import styles from '../../style';
 import GetStarted from '../../common/GetStartedButton';
 import property from '../../../assets/property.png';
-import { Link } from 'react-router-dom';
+import { property_locations } from '../../../utils/constants';
 
 const Hero = () => {
 	return (
-		<section id='home' className={`flex md:flex-row flex-col ${styles.paddingY}`}>
-			<div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
-				<div className='flex flex-row items-center py-[6px] px-4 bg-black rounded-[10px] mb-2'>
-					<Link to='/property-request' className={`${styles.paragraph} ml-2 text-white`}>
-						FIND A <span className=''> PROPERTY </span>
-						NOW
-					</Link>
-				</div>
-
-				<div className='flex flex-row justify-between items-center w-full'>
-					<h1 className='flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-black ss:leading-[100px] leading-[75px]'>
-						Tech <br className='sm:block hidden' />{' '}
-						<span className='text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-black'>
-							Meets
-						</span>{' '}
-					</h1>
-				</div>
-
-				<h1 className='font-poppins font-semibold ss:text-[68px] text-[52px] text-black ss:leading-[100px] leading-[75px] w-full'>
-					Real Estate.
-				</h1>
-
-				<p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-					Get all your real estate needs through technology. We have taken the stress in real estate
-					away from you, the customer.
-				</p>
+		<section id='home' className={`relative h-screen ${styles.paddingY}`}>
+			<div className='absolute inset-0'>
+				<img src={property} alt='Property' className='w-full h-full object-cover' />
+				<div className='absolute inset-0 bg-black opacity-50'></div>
 			</div>
 
-			<div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
-				<img src={property} alt='Property' className='w-[100%] h-[100%] relative z-[5]' />
+			<div
+				className={`absolute inset-0 flex flex-row ${styles.flexStart} ${styles.flexCenter} px-6 text-white`}
+			>
+				<div className='flex flex-col items-center text-center pr-6'>
+					<div className='mb-4'>
+						<h1 className='font-poppins font-semibold text-4xl sm:text-6xl text-white'>
+							Tech <br className='sm:block hidden' />{' '}
+							<span className='text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-black'>
+								Meets
+							</span>{' '}
+						</h1>
+					</div>
 
-				<div className='absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient' />
-				<div className='absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 black__gradient' />
-				<div className='absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient' />
+					<h1 className='font-poppins font-semibold text-4xl sm:text-6xl mb-4 text-white'>
+						Real Estate.
+					</h1>
+
+					<p className={`${styles.paragraph} max-w-[470px] mb-8 text-lg text-white`}>
+						Get all your real estate needs through technology. We have taken the stress in real
+						estate away from you, the customer.
+					</p>
+				</div>
+
+				<form className={`${styles.paragraph} max-w-[470px] ml-auto`}>
+					<div className='mb-4'>
+						<label htmlFor='name' className='text-white'>
+							Name:
+						</label>
+						<input
+							type='text'
+							id='name'
+							name='name'
+							className='w-full px-3 py-2 border rounded-md text-black'
+						/>
+					</div>
+
+					<div className='mb-4'>
+						<label htmlFor='email' className='text-white'>
+							Email:
+						</label>
+						<input
+							type='email'
+							id='email'
+							name='email'
+							className='w-full px-3 py-2 border rounded-md text-black'
+						/>
+					</div>
+
+					<div className='mb-4'>
+						<label htmlFor='location' className='text-white'>
+							Location:
+						</label>
+						<select
+							id='location'
+							name='location'
+							className='w-full px-3 py-2 border rounded-md text-black'
+						>
+							{property_locations.map((location) => (
+								<option key={location.value} value={location.value}>
+									{location.label}
+								</option>
+							))}
+						</select>
+					</div>
+
+					<div className='mb-4'>
+						<label htmlFor='propertyType' className='text-white'>
+							Property Type:
+						</label>
+						<select
+							id='propertyType'
+							name='propertyType'
+							className='w-full px-3 py-2 border rounded-md text-black'
+						>
+							<option value='residential'>Residential</option>
+							<option value='commercial'>Commercial</option>
+						</select>
+					</div>
+
+					<button
+						type='submit'
+						className='bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300'
+					>
+						Submit
+					</button>
+				</form>
 			</div>
 
 			<div className={`ss:hidden ${styles.flexCenter}`}>
