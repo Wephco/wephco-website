@@ -1,14 +1,22 @@
-import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import styles from '../../style';
 import GetStarted from '../../common/GetStartedButton';
 import property from '../../../assets/property.png';
 import { property_locations } from '../../../utils/constants';
 
-/**
- * Hero component represents the main section of the home page.
- * It combines a background image, content, and a form for real estate inquiries.
- */
 const Hero = () => {
+	const fadeIn = useSpring({
+		opacity: 1,
+		from: { opacity: 0 },
+		config: { duration: 2000 }, // Adjusted duration for fade-in
+	});
+
+	const slideInFromLeft = useSpring({
+		marginLeft: 0,
+		from: { marginLeft: -100 },
+		config: { duration: 1500 }, // Adjusted duration for slide-in
+	});
+
 	return (
 		<section id='home' className={`relative h-screen ${styles.paddingY}`}>
 			{/* Background Image with Overlay */}
@@ -20,38 +28,45 @@ const Hero = () => {
 			{/* Content Container */}
 			<div className={`absolute inset-0 flex ${styles.flexCenter}`}>
 				{/* Left Content */}
-				<div className='text-center'>
-					{/* Headline */}
+				<animated.div style={fadeIn} className='text-center'>
 					<div className='mb-4'>
-						<h1 className='font-poppins font-semibold text-4xl sm:text-6xl text-white'>
+						<animated.h1
+							style={fadeIn}
+							className='font-poppins font-semibold text-4xl sm:text-6xl text-white'
+						>
 							Tech <br className='sm:block hidden' />{' '}
 							<span className='text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-black'>
 								Meets
 							</span>{' '}
-						</h1>
+						</animated.h1>
 					</div>
 
-					{/* Subheadline */}
-					<h1 className='font-poppins font-semibold text-4xl sm:text-6xl mb-4 text-white'>
+					<animated.h1
+						style={fadeIn}
+						className='font-poppins font-semibold text-4xl sm:text-6xl mb-4 text-white'
+					>
 						Real Estate.
-					</h1>
+					</animated.h1>
 
-					{/* Description */}
-					<p className={`${styles.paragraph} max-w-[470px] mb-8 text-lg text-white`}>
+					<animated.p
+						style={fadeIn}
+						className={`${styles.paragraph} max-w-[470px] mb-8 text-lg text-white`}
+					>
 						Get all your real estate needs through technology. We have taken the stress in real
 						estate away from you, the customer.
-					</p>
-				</div>
+					</animated.p>
+				</animated.div>
 
 				{/* Form Section with Submit Button */}
-				<form className={`${styles.paragraph} max-w-[470px] mt-4 ml-4`}>
-					{/* "FIND A PROPERTY" */}
-					<div className='mb-4'>
+				<animated.form
+					style={{ ...fadeIn, ...slideInFromLeft }}
+					className={`${styles.paragraph} max-w-[470px] mt-4 ml-4`}
+				>
+					<animated.div style={fadeIn} className='mb-4'>
 						<h2 className='text-white font-bold text-xl'>FIND A PROPERTY</h2>
-					</div>
+					</animated.div>
 
-					{/* Form Fields */}
-					<div className='mb-4'>
+					<animated.div style={fadeIn} className='mb-4'>
 						<label htmlFor='name' className='text-white'>
 							Name:
 						</label>
@@ -61,9 +76,9 @@ const Hero = () => {
 							name='name'
 							className='w-full px-3 py-2 border rounded-md text-black'
 						/>
-					</div>
+					</animated.div>
 
-					<div className='mb-4'>
+					<animated.div style={fadeIn} className='mb-4'>
 						<label htmlFor='email' className='text-white'>
 							Email:
 						</label>
@@ -73,16 +88,16 @@ const Hero = () => {
 							name='email'
 							className='w-full px-3 py-2 border rounded-md text-black'
 						/>
-					</div>
+					</animated.div>
 
-					<div className='mb-4'>
+					<animated.div style={fadeIn} className='mb-4'>
 						<label htmlFor='location' className='text-white'>
 							Location:
 						</label>
 						<select
 							id='location'
 							name='location'
-							className='w-full px-3 py-2 border rounded-md text-black'
+							className='w-full px-3 py-2 border rounded-md text-black bg-transparent backdrop-blur-md'
 						>
 							{property_locations.map((location) => (
 								<option key={location.value} value={location.value}>
@@ -90,36 +105,39 @@ const Hero = () => {
 								</option>
 							))}
 						</select>
-					</div>
+					</animated.div>
 
-					<div className='mb-4'>
+					<animated.div style={fadeIn} className='mb-4'>
 						<label htmlFor='propertyType' className='text-white'>
 							Property Type:
 						</label>
 						<select
 							id='propertyType'
 							name='propertyType'
-							className='w-full px-3 py-2 border rounded-md text-black'
+							className='w-full px-3 py-2 border rounded-md text-black bg-transparent backdrop-blur-md'
 						>
 							<option value='residential'>Residential</option>
 							<option value='commercial'>Commercial</option>
 						</select>
-					</div>
+					</animated.div>
 
-					{/* Submit Button */}
-					<button
+					<animated.button
+						style={fadeIn}
 						type='submit'
 						className='bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300'
 					>
 						Submit
-					</button>
-				</form>
+					</animated.button>
+				</animated.form>
 			</div>
 
 			{/* Right Content */}
-			<div className={`ss:hidden ${styles.flexCenter}`}>
+			<animated.div
+				style={{ ...fadeIn, marginLeft: -100 }}
+				className={`ss:hidden ${styles.flexCenter}`}
+			>
 				<GetStarted />
-			</div>
+			</animated.div>
 		</section>
 	);
 };
