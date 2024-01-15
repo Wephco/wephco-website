@@ -45,6 +45,11 @@ const Hero = () => {
 
 				{/* Form Section with Submit Button */}
 				<form className={`${styles.paragraph} max-w-[470px] mt-4 ml-4`}>
+					{/* "FIND A PROPERTY" */}
+					<div className='mb-4'>
+						<h2 className='text-white font-bold text-xl'>FIND A PROPERTY</h2>
+					</div>
+
 					{/* Form Fields */}
 					<div className='mb-4'>
 						<label htmlFor='name' className='text-white'>
