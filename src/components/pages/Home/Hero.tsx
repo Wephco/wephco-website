@@ -26,7 +26,7 @@ const Hero = () => {
 			<section
 				id='home'
 				className={`relative h-screen ${styles.flexCenter} ${styles.paddingY} md:paddingY-24 lg:paddingY-32`}
-				style={{ margin: '0 2rem', marginBottom: '4rem' }} // Add margin to the left and right
+				style={{ margin: '0' }} // Default margin for small screens
 			>
 				{/* Background Image with Overlay */}
 				<div className='absolute inset-0'>
@@ -39,7 +39,7 @@ const Hero = () => {
 							borderTopRightRadius: '20px',
 							borderBottomLeftRadius: '20px',
 							borderBottomRightRadius: '20px',
-							margin: '0', // Reset margin for the image
+							margin: '0', // Default margin for small screens
 						}}
 					/>
 					<div
@@ -49,7 +49,7 @@ const Hero = () => {
 							borderTopRightRadius: '20px',
 							borderBottomLeftRadius: '20px',
 							borderBottomRightRadius: '20px',
-							margin: '0', // Reset margin for the overlay
+							margin: '0', // Default margin for small screens
 						}}
 					></div>
 				</div>
@@ -99,8 +99,9 @@ const Hero = () => {
 								display: 'flex',
 								flexDirection: 'column',
 								alignItems: 'center',
+								margin: '2rem 0', // Apply margin for desktop and tablet screens
 							}}
-							className={`${styles.paragraph} max-w-[470px] mt-4 mx-auto`}
+							className={`${styles.paragraph} max-w-[470px] mt-4 mx-auto md:mx-0 lg:mx-0`}
 						>
 							{/* Name and Email Fields on the same line */}
 							<div className='mb-4 flex flex-col gap-4 w-full md:flex-row md:items-center'>
