@@ -26,11 +26,11 @@ const Hero = () => {
 			<section
 				id='home'
 				className={`relative h-screen ${styles.flexCenter} ${styles.paddingY} md:paddingY-24 lg:paddingY-32`}
-				style={{ marginBottom: '4rem' }}
+				style={{ margin: '0 2rem', marginBottom: '4rem' }} // Add margin to the left and right
 			>
 				{/* Background Image with Overlay */}
 				<div className='absolute inset-0'>
-					<img
+					<animated.img
 						src={property}
 						alt='Property'
 						className='w-full h-full object-cover rounded-b-2xl'
@@ -39,6 +39,7 @@ const Hero = () => {
 							borderTopRightRadius: '20px',
 							borderBottomLeftRadius: '20px',
 							borderBottomRightRadius: '20px',
+							margin: '0', // Reset margin for the image
 						}}
 					/>
 					<div
@@ -48,6 +49,7 @@ const Hero = () => {
 							borderTopRightRadius: '20px',
 							borderBottomLeftRadius: '20px',
 							borderBottomRightRadius: '20px',
+							margin: '0', // Reset margin for the overlay
 						}}
 					></div>
 				</div>
