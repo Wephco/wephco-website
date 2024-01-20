@@ -17,7 +17,7 @@
     "react-icons": "^4.9.0",
     "react-paystack": "^4.0.3",
     "react-router-dom": "^6.11.2",
-    "react-toast-notifications": "^2.5.1",
+    "react-spring": "^9.7.3",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

@@ -1,51 +1,128 @@
-import styles from '../../style';
-import GetStarted from '../../common/GetStartedButton';
-import property from '../../../assets/property.png';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import property from '../../../assets/property2.jpg';
+import { property_locations, property_types } from '../../../utils/constants';
+// import styles from '../../style';
 
 const Hero = () => {
+	const [buttonNumber, setButtonNumber] = useState(1);
+
+	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
+
 	return (
-		<section id='home' className={`flex md:flex-row flex-col ${styles.paddingY}`}>
-			<div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
-				<div className='flex flex-row items-center py-[6px] px-4 bg-black rounded-[10px] mb-2'>
-					<Link to='/property-request' className={`${styles.paragraph} ml-2 text-white`}>
-						FIND A <span className=''> PROPERTY </span>
-						NOW
-					</Link>
+		<div>
+			<div
+				className='hero min-h-screen'
+				style={{
+					backgroundImage: `url(${property})`,
+				}}
+			>
+				<div className='hero-overlay bg-opacity-50'></div>
+				<div className='hero-content text-center text-neutral-content font-poppins'>
+					<div className='max-w-4xl'>
+						<h1 className='mb-5 text-4xl font-bold'>Unlocking your dream home, together</h1>
+						<p className={`font-poppins font-semibold text-white text-[18px] leading-[30.8px]`}>
+							UAE | NIGERIA
+						</p>
+						{/* Buttons */}
+						<div className='flex justify-center flex-wrap gap-4 my-4'>
+							<button
+								onClick={() => setButtonNumber(1)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 1
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
+							>
+								All
+							</button>
+							<button
+								onClick={() => setButtonNumber(2)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 2
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
+							>
+								For Rent
+							</button>
+							<button
+								onClick={() => setButtonNumber(3)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 3
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
+							>
+								For Sale
+							</button>
+						</div>
+						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
+							<form>
+								<fieldset>
+									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Name'
+										/>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Email'
+											type='email'
+										/>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Location'
+										>
+											<option value='-'>Location</option>
+											{property_locations.map((location) => (
+												<option className='text-black' key={location.value} value={location.value}>
+													{location.label}
+												</option>
+											))}
+										</select>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Budget'
+											type='number'
+										/>
+									</div>
+									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Property Type'
+										>
+											<option value='-'>Property Type</option>
+											{property_types.map((property) => (
+												<option className='text-black' key={property.value} value={property.value}>
+													{property.label}
+												</option>
+											))}
+										</select>
+										<input
+											type='number'
+											className='input input-bordered rounded-full text-black'
+											placeholder='Beds'
+										/>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Agent Type'
+										>
+											<option value='-'>Agent Type</option>
+											<option value='Agent'>Link me to Agent</option>
+											<option value='Wephco'>Use Wephco</option>
+										</select>
+										<button className='btn btn-success text-white rounded-full'>
+											Submit Enquiry
+										</button>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
 				</div>
-
-				<div className='flex flex-row justify-between items-center w-full'>
-					<h1 className='flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-black ss:leading-[100px] leading-[75px]'>
-						Tech <br className='sm:block hidden' />{' '}
-						<span className='text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-black'>
-							Meets
-						</span>{' '}
-					</h1>
-				</div>
-
-				<h1 className='font-poppins font-semibold ss:text-[68px] text-[52px] text-black ss:leading-[100px] leading-[75px] w-full'>
-					Real Estate.
-				</h1>
-
-				<p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-					Get all your real estate needs through technology. We have taken the stress in real estate
-					away from you, the customer.
-				</p>
 			</div>
-
-			<div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
-				<img src={property} alt='Property' className='w-[100%] h-[100%] relative z-[5]' />
-
-				<div className='absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient' />
-				<div className='absolute z-[1] w-[80%] h-[80%] rounded-full bottom-40 black__gradient' />
-				<div className='absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient' />
-			</div>
-
-			<div className={`ss:hidden ${styles.flexCenter}`}>
-				<GetStarted />
-			</div>
-		</section>
+		</div>
 	);
 };
 
-export default Hero;
+export { Hero };
