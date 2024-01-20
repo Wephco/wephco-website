@@ -289,3 +289,22 @@ export const services = [
 		value: 'Report an Issue',
 	},
 ];
+
+export const property_types = [
+	{
+		label: 'Commercial',
+		value: 'Commercial'
+	},
+	{
+		label: 'Residential',
+		value: 'Residential'
+	},
+	{
+		label: 'Shortlet/Apartment',
+		value: 'Shortlet/Apartment'
+	},
+	{
+		label: 'Land',
+		value: 'Land'
+	}
+]

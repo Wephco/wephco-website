@@ -1,9 +1,9 @@
-import styles from "../../style";
-import Clients from "./Clients";
-import Feedback from "./Feedback";
-import Hero from "./Hero";
-import Stats from "./Stats";
-import Steps from "./Steps";
+import styles from '../../style';
+import Clients from './Clients';
+import Feedback from './Feedback';
+import { Hero } from './Hero';
+import Stats from './Stats';
+import Steps from './Steps';
 
 const Home = () => {
 	return (
@@ -14,8 +14,8 @@ const Home = () => {
 				</div>
 			</div>
 			{/* Rest of Landing Page */}
-			<div className={`${styles.paddingX} ${styles.flexStart}`}>
-        		<div className={`${styles.boxWidth}`}>
+			<div className={`${styles.paddingX} ${styles.flexStart} ${styles.paddingY}`}>
+				<div className={`${styles.boxWidth}`}>
 					<Stats />
 					<Steps />
 					<Clients />

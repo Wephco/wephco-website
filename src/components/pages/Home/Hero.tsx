@@ -1,174 +1,128 @@
-// Import necessary dependencies and styles
-import { useSpring, animated } from 'react-spring';
-import styles from '../../style';
-import property from '../../../assets/property.png';
-import { property_locations } from '../../../utils/constants';
+import { useState } from 'react';
+import property from '../../../assets/property2.jpg';
+import { property_locations, property_types } from '../../../utils/constants';
+// import styles from '../../style';
 
-// Define the Hero component
 const Hero = () => {
-	// Define animation properties
-	const fadeIn = useSpring({
-		opacity: 1,
-		from: { opacity: 0 },
-		config: { duration: 2000 },
-	});
+	const [buttonNumber, setButtonNumber] = useState(1);
 
-	const slideInFromLeft = useSpring({
-		marginLeft: 0,
-		from: { marginLeft: -100 },
-		config: { duration: 1500 },
-	});
+	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
 
-	// Render the component
 	return (
 		<div>
-			{/* Hero Section */}
-			<section
-				id='home'
-				className={`relative h-screen ${styles.flexCenter} ${styles.paddingY} md:paddingY-24 lg:paddingY-32`}
-				style={{ margin: '0' }} // Default margin for small screens
+			<div
+				className='hero min-h-screen'
+				style={{
+					backgroundImage: `url(${property})`,
+				}}
 			>
-				{/* Background Image with Overlay */}
-				<div className='absolute inset-0'>
-					<animated.img
-						src={property}
-						alt='Property'
-						className='w-full h-full object-cover rounded-b-2xl'
-						style={{
-							borderTopLeftRadius: '20px',
-							borderTopRightRadius: '20px',
-							borderBottomLeftRadius: '20px',
-							borderBottomRightRadius: '20px',
-							margin: '0', // Default margin for small screens
-						}}
-					/>
-					<div
-						className='absolute inset-0 bg-black opacity-50 rounded-b-2xl'
-						style={{
-							borderTopLeftRadius: '20px',
-							borderTopRightRadius: '20px',
-							borderBottomLeftRadius: '20px',
-							borderBottomRightRadius: '20px',
-							margin: '0', // Default margin for small screens
-						}}
-					></div>
-				</div>
-
-				{/* Content Container */}
-				<div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white'>
-					{/* Left Content */}
-					<animated.div style={fadeIn} className='mb-8'>
-						<div className='mb-4'>
-							<animated.h1
-								style={{ ...fadeIn, margin: '-2rem 0 0 0' }}
-								className='sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-25 font-sans mb-2'
-							>
-								Unlocking your dream home, <span className='text-white'>together.</span>
-							</animated.h1>
-						</div>
-						<p
-							className={`${styles.paragraph} sm:text-base md:text-lg lg:text-xl mb-2`}
-							style={{ letterSpacing: '2px', marginTop: '-1rem' }}
-						>
-							UNITED ARAB EMIRATES | NIGERIA
+				<div className='hero-overlay bg-opacity-50'></div>
+				<div className='hero-content text-center text-neutral-content font-poppins'>
+					<div className='max-w-4xl'>
+						<h1 className='mb-5 text-4xl font-bold'>Unlocking your dream home, together</h1>
+						<p className={`font-poppins font-semibold text-white text-[18px] leading-[30.8px]`}>
+							UAE | NIGERIA
 						</p>
-					</animated.div>
-
-					{/* Buttons */}
-					<div className='flex flex-wrap gap-2 mb-4'>
-						<button className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg opacity-50 rounded-full bg-black text-white border-none font-normal'>
-							All
-						</button>
-						<button className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full bg-red-400 text-white border-none font-normal'>
-							For Rent
-						</button>
-						<button className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full bg-red-400 text-white border-none font-normal'>
-							For Sale
-						</button>
-					</div>
-
-					{/* Form Section with Submit Button */}
-					<div className='center-form'>
-						<animated.form
-							style={{
-								...fadeIn,
-								...slideInFromLeft,
-								backgroundColor: 'rgba(0, 0, 0, 0.5)',
-								borderRadius: '10px',
-								padding: '20px',
-								display: 'flex',
-								flexDirection: 'column',
-								alignItems: 'center',
-								margin: '2rem 0', // Apply margin for desktop and tablet screens
-							}}
-							className={`${styles.paragraph} max-w-[470px] mt-4 mx-auto md:mx-0 lg:mx-0`}
-						>
-							{/* Name and Email Fields on the same line */}
-							<div className='mb-4 flex flex-col gap-4 w-full md:flex-row md:items-center'>
-								<div className='flex flex-wrap gap-4 w-full md:flex-grow'>
-									<input
-										type='text'
-										id='name'
-										name='name'
-										placeholder='Name'
-										className='w-full px-3 py-2 border rounded-full text-black bg-white mb-2'
-									/>
-								</div>
-								<div className='flex flex-wrap gap-4 w-full md:flex-grow'>
-									<input
-										type='email'
-										id='email'
-										name='email'
-										placeholder='Email'
-										className='w-full px-3 py-2 border rounded-full text-black bg-white mb-2'
-									/>
-								</div>
-							</div>
-
-							{/* Location and Property Type Fields on the same line */}
-							<div className='mb-4 flex flex-col gap-4 w-full md:flex-row md:items-center'>
-								<div className='flex flex-wrap gap-4 w-full md:flex-grow'>
-									<select
-										id='location'
-										name='location'
-										placeholder='Location'
-										className='w-full px-3 py-2 border rounded-full text-black bg-white mb-2'
-									>
-										<option value=''>Location</option>
-										{property_locations.map((location) => (
-											<option key={location.value} value={location.value}>
-												{location.label}
-											</option>
-										))}
-									</select>
-								</div>
-								<div className='flex flex-wrap gap-4 w-full md:flex-grow'>
-									<select
-										id='propertyType'
-										name='propertyType'
-										placeholder='Property Type'
-										className='w-full px-3 py-2 border rounded-full text-black bg-white mb-2'
-									>
-										<option value=''>Property Type</option>
-										<option value='residential'>Residential</option>
-										<option value='commercial'>Commercial</option>
-									</select>
-								</div>
-							</div>
-
-							{/* Submit Button */}
+						{/* Buttons */}
+						<div className='flex justify-center flex-wrap gap-4 my-4'>
 							<button
-								type='submit'
-								className='bg-red-700 text-white px-4 py-2 rounded-full hover:bg-red-800 transition duration-300'
+								onClick={() => setButtonNumber(1)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 1
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
 							>
-								Submit
+								All
 							</button>
-						</animated.form>
+							<button
+								onClick={() => setButtonNumber(2)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 2
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
+							>
+								For Rent
+							</button>
+							<button
+								onClick={() => setButtonNumber(3)}
+								className={`btn rounded-full text-white uppercase ${
+									buttonNumber === 3
+										? activeButton
+										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
+								}`}
+							>
+								For Sale
+							</button>
+						</div>
+						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
+							<form>
+								<fieldset>
+									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Name'
+										/>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Email'
+											type='email'
+										/>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Location'
+										>
+											<option value='-'>Location</option>
+											{property_locations.map((location) => (
+												<option className='text-black' key={location.value} value={location.value}>
+													{location.label}
+												</option>
+											))}
+										</select>
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Budget'
+											type='number'
+										/>
+									</div>
+									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Property Type'
+										>
+											<option value='-'>Property Type</option>
+											{property_types.map((property) => (
+												<option className='text-black' key={property.value} value={property.value}>
+													{property.label}
+												</option>
+											))}
+										</select>
+										<input
+											type='number'
+											className='input input-bordered rounded-full text-black'
+											placeholder='Beds'
+										/>
+										<select
+											className='select select-bordered rounded-full text-black'
+											placeholder='Agent Type'
+										>
+											<option value='-'>Agent Type</option>
+											<option value='Agent'>Link me to Agent</option>
+											<option value='Wephco'>Use Wephco</option>
+										</select>
+										<button className='btn btn-success text-white rounded-full'>
+											Submit Enquiry
+										</button>
+									</div>
+								</fieldset>
+							</form>
+						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 		</div>
 	);
 };
 
-export default Hero;
+export { Hero };
