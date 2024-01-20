@@ -80,11 +80,11 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										<input
+										{/* <input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Budget'
 											type='number'
-										/>
+										/> */}
 									</div>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
 										<select
@@ -98,10 +98,15 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										<input
+										{/* <input
 											type='number'
 											className='input input-bordered rounded-full text-black'
 											placeholder='Beds'
+										/> */}
+										<input
+											className='input input-bordered rounded-full text-black'
+											placeholder='Budget'
+											type='number'
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
