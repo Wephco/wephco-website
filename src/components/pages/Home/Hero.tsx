@@ -110,11 +110,12 @@ const Hero = () => {
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
-											placeholder='Agent Type'
+											placeholder='Service Type'
 										>
-											<option value='-'>Agent Type</option>
+											<option value='-'>Service Type</option>
 											<option value='Agent'>Link me to Agent</option>
-											<option value='Wephco'>Use Wephco</option>
+											<option value='Wephco'>Wephco Insured</option>
+											<option value="Consultation">Consultation</option>
 										</select>
 										<button className='btn btn-success text-white rounded-full'>
 											Submit Enquiry
