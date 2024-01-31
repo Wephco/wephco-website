@@ -1,3 +1,4 @@
+import { useAddProperty } from '../../../hooks/useAddProperty';
 import { useState } from 'react';
 import property from '../../../assets/property2.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
@@ -7,6 +8,26 @@ const Hero = () => {
 	const [buttonNumber, setButtonNumber] = useState(1);
 
 	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
+
+	const { addProperty } = useAddProperty();
+
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		addProperty({
+			name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement)?.value || '',
+			email: (e.currentTarget.elements.namedItem('email') as HTMLInputElement)?.value || '',
+			location: (e.currentTarget.elements.namedItem('location') as HTMLInputElement)?.value || '',
+			propertyType:
+				(e.currentTarget.elements.namedItem('propertyType') as HTMLInputElement)?.value || '',
+			budget: parseInt(
+				(e.currentTarget.elements.namedItem('budget') as HTMLInputElement)?.value || '0',
+				10,
+			),
+			serviceType:
+				(e.currentTarget.elements.namedItem('serviceType') as HTMLInputElement)?.value || '',
+		});
+	};
 
 	return (
 		<div>
@@ -57,21 +78,28 @@ const Hero = () => {
 							</button>
 						</div>
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
-							<form>
+							<form onSubmit={onSubmit}>
 								<fieldset>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Name'
+											type='text'
+											name='name'
+											required
 										/>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Email'
 											type='email'
+											name='email'
+											required
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Location'
+											name='location'
+											required
 										>
 											<option value='-'>Location</option>
 											{property_locations.map((location) => (
@@ -90,6 +118,8 @@ const Hero = () => {
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Property Type'
+											required
+											name='propertyType'
 										>
 											<option value='-'>Property Type</option>
 											{property_types.map((property) => (
@@ -107,6 +137,7 @@ const Hero = () => {
 											className='input input-bordered rounded-full text-black'
 											placeholder='Budget'
 											type='number'
+											name='budget'
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
@@ -115,7 +146,7 @@ const Hero = () => {
 											<option value='-'>Service Type</option>
 											<option value='Agent'>Link me to Agent</option>
 											<option value='Wephco'>Wephco Insured</option>
-											<option value="Consultation">Consultation</option>
+											<option value='Consultation'>Consultation</option>
 										</select>
 										<button className='btn btn-success text-white rounded-full'>
 											Submit Enquiry
