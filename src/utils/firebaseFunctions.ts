@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-const firebaseConfig = {
+const firebaseDevConfig = {
 	apiKey: 'AIzaSyAL9Rd6gcCl4X3YFZFFLXdEC0LwDFQVRPc',
 	authDomain: 'wephco-756ab.firebaseapp.com',
 	projectId: 'wephco-756ab',
@@ -21,6 +21,20 @@ const firebaseConfig = {
 	appId: '1:821089090231:web:007d708a1fc069aebdeb32',
 	measurementId: 'G-Z2DWB44KPZ',
 };
+
+
+
+const firebaseProdConfig = {
+  apiKey: 'AIzaSyAL9Rd6gcCl4X3YFZFFLXdEC0LwDFQVRPc',
+  authDomain: 'wephco-756ab.firebaseapp.com',
+  projectId: 'wephco-756ab',
+  storageBucket: 'wephco-756ab.appspot.com',
+  messagingSenderId: '821089090231',
+  appId: '1:821089090231:web:007d708a1fc069aebdeb32',
+  measurementId: 'G-Z2DWB44KPZ',
+};
+
+const firebaseConfig = import.meta.env.DEV ? firebaseDevConfig : firebaseProdConfig
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
