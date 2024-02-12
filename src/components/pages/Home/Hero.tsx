@@ -1,32 +1,53 @@
+// Hero.tsx
+import React, { useState } from 'react';
 import { useAddProperty } from '../../../hooks/useAddProperty';
-import { useState } from 'react';
 import property from '../../../assets/property2.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
-// import styles from '../../style';
+import FormLoaderNotification from './FormLoaderNotification'; // Import the new component
 
 const Hero = () => {
 	const [buttonNumber, setButtonNumber] = useState(1);
+	const [isLoading, setIsLoading] = useState(false); // Track loading state
+	const [showNotification, setShowNotification] = useState(false); // Track notification state
 
 	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
-
 	const { addProperty } = useAddProperty();
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsLoading(true); // Show loader
 
-		addProperty({
-			name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement)?.value || '',
-			email: (e.currentTarget.elements.namedItem('email') as HTMLInputElement)?.value || '',
-			location: (e.currentTarget.elements.namedItem('location') as HTMLInputElement)?.value || '',
-			propertyType:
-				(e.currentTarget.elements.namedItem('propertyType') as HTMLInputElement)?.value || '',
-			budget: parseInt(
-				(e.currentTarget.elements.namedItem('budget') as HTMLInputElement)?.value || '0',
-				10,
-			),
-			serviceType:
-				(e.currentTarget.elements.namedItem('serviceType') as HTMLInputElement)?.value || '',
-		});
+		try {
+			await addProperty({
+				name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement)?.value || '',
+				email: (e.currentTarget.elements.namedItem('email') as HTMLInputElement)?.value || '',
+				location: (e.currentTarget.elements.namedItem('location') as HTMLInputElement)?.value || '',
+				propertyType:
+					(e.currentTarget.elements.namedItem('propertyType') as HTMLInputElement)?.value || '',
+				budget: parseInt(
+					(e.currentTarget.elements.namedItem('budget') as HTMLInputElement)?.value || '0',
+					10,
+				),
+				serviceType:
+					(e.currentTarget.elements.namedItem('serviceType') as HTMLInputElement)?.value || '',
+			});
+
+			// Clear the form and set it back to its initial state
+			e.currentTarget.reset();
+
+			// Show notification
+			setShowNotification(true);
+
+			// Auto-close notification after 30 seconds
+			setTimeout(() => {
+				setShowNotification(false);
+			}, 30000);
+		} catch (error) {
+			console.error('Firebase operation failed:', error);
+			// Handle error, show error notification, etc.
+		} finally {
+			setIsLoading(false); // Hide loader regardless of success or failure
+		}
 	};
 
 	return (
@@ -155,6 +176,8 @@ const Hero = () => {
 								</fieldset>
 							</form>
 						</div>
+						{/* Include the FormLoaderNotification component */}
+						<FormLoaderNotification isLoading={isLoading} showNotification={showNotification} />
 					</div>
 				</div>
 			</div>
