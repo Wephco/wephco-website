@@ -9,9 +9,13 @@ const Hero = () => {
 	const [buttonNumber, setButtonNumber] = useState(1);
 	const [isLoading, setIsLoading] = useState(false); // Track loading state
 	const [showNotification, setShowNotification] = useState(false); // Track notification state
+	const [notificationMessage, setNotificationMessage] = useState('');
+	const [notificationVariant, setNotificationVariant] = useState('');
 
 	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
 	const { addProperty } = useAddProperty();
+
+	const options = { maximumFractionDigits: 2 };
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -37,21 +41,33 @@ const Hero = () => {
 
 			// Show notification
 			setShowNotification(true);
-
-			// Auto-close notification after 30 seconds
-			setTimeout(() => {
-				setShowNotification(false);
-			}, 30000);
+			setNotificationVariant('success');
+			setNotificationMessage(
+				'Your request has been submitted. A representative will contact you. Thank You!',
+			);
 		} catch (error) {
-			console.error('Firebase operation failed:', error);
+			// console.error('Firebase operation failed:', error);
 			// Handle error, show error notification, etc.
+			setShowNotification(true);
+			setNotificationVariant('error');
+			setNotificationMessage('There was a problem submitting your request. Please try again later');
 		} finally {
 			setIsLoading(false); // Hide loader regardless of success or failure
 		}
 	};
 
+	let notification = (
+		<FormLoaderNotification
+			notification={notificationMessage}
+			showNotification={showNotification}
+			variant={notificationVariant}
+			close={() => setShowNotification(false)}
+		/>
+	);
+
 	return (
 		<div>
+			{notification}
 			<div
 				className='hero min-h-screen'
 				style={{
@@ -100,7 +116,7 @@ const Hero = () => {
 						</div>
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
 							<form onSubmit={onSubmit}>
-								<fieldset>
+								<fieldset disabled={isLoading}>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
 										<input
 											className='input input-bordered rounded-full text-black'
@@ -149,16 +165,12 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										{/* <input
-											type='number'
-											className='input input-bordered rounded-full text-black'
-											placeholder='Beds'
-										/> */}
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Budget'
 											type='number'
 											name='budget'
+											// onChange={}
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
@@ -177,7 +189,7 @@ const Hero = () => {
 							</form>
 						</div>
 						{/* Include the FormLoaderNotification component */}
-						<FormLoaderNotification isLoading={isLoading} showNotification={showNotification} />
+						{/* <FormLoaderNotification isLoading={isLoading} showNotification={showNotification} /> */}
 					</div>
 				</div>
 			</div>
