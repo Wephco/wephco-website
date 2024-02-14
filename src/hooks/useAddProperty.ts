@@ -17,7 +17,7 @@ export const useAddProperty = () => {
 		email: string;
 		location: string;
 		propertyType: string;
-		budget: number;
+		budget: string;
 		serviceType: string;
 	}) => {
 		await addDoc(adminCollectionRef, {

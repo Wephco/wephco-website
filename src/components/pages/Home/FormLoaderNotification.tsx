@@ -27,7 +27,7 @@ const FormLoaderNotification: React.FC<FormLoaderNotificationProps> = ({
 	return (
 		<div className='toast toast-top toast-end cursor-pointer z-50' onClick={close}>
 			<div className={`alert alert-${variant}`}>
-				<span>{notification}</span>
+				<span className='text-white'>{notification}</span>
 			</div>
 		</div>
 	);

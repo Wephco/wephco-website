@@ -5,8 +5,18 @@ import property from '../../../assets/property2.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
 import FormLoaderNotification from './FormLoaderNotification'; // Import the new component
 
+const initialState = {
+	name: '',
+	email: '',
+	location: '',
+	propertyType: '',
+	budget: '',
+	serviceType: '',
+};
+
 const Hero = () => {
 	const [buttonNumber, setButtonNumber] = useState(1);
+	const [localState, setLocalState] = useState(initialState);
 	const [isLoading, setIsLoading] = useState(false); // Track loading state
 	const [showNotification, setShowNotification] = useState(false); // Track notification state
 	const [notificationMessage, setNotificationMessage] = useState('');
@@ -15,29 +25,25 @@ const Hero = () => {
 	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
 	const { addProperty } = useAddProperty();
 
-	const options = { maximumFractionDigits: 2 };
+	const handleChange = (input: string) => (e: any) => {
+		if (input === 'budget') {
+			const number = e.target.value.replace(/,/g, '');
+			const formattedNumber = Number(number).toLocaleString();
+			setLocalState({ ...localState, [input]: formattedNumber });
+		} else {
+			setLocalState({ ...localState, [input]: e.target.value });
+		}
+	};
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsLoading(true); // Show loader
 
 		try {
-			await addProperty({
-				name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement)?.value || '',
-				email: (e.currentTarget.elements.namedItem('email') as HTMLInputElement)?.value || '',
-				location: (e.currentTarget.elements.namedItem('location') as HTMLInputElement)?.value || '',
-				propertyType:
-					(e.currentTarget.elements.namedItem('propertyType') as HTMLInputElement)?.value || '',
-				budget: parseInt(
-					(e.currentTarget.elements.namedItem('budget') as HTMLInputElement)?.value || '0',
-					10,
-				),
-				serviceType:
-					(e.currentTarget.elements.namedItem('serviceType') as HTMLInputElement)?.value || '',
-			});
+			await addProperty(localState);
 
 			// Clear the form and set it back to its initial state
-			e.currentTarget.reset();
+			setLocalState(initialState);
 
 			// Show notification
 			setShowNotification(true);
@@ -114,6 +120,11 @@ const Hero = () => {
 								For Sale
 							</button>
 						</div>
+						{isLoading ? (
+							<span className='loading loading-infinity loading-lg text-white'></span>
+						) : (
+							<div></div>
+						)}
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
 							<form onSubmit={onSubmit}>
 								<fieldset disabled={isLoading}>
@@ -122,20 +133,23 @@ const Hero = () => {
 											className='input input-bordered rounded-full text-black'
 											placeholder='Name'
 											type='text'
-											name='name'
+											value={localState.name}
+											onChange={handleChange('name')}
 											required
 										/>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Email'
 											type='email'
-											name='email'
+											value={localState.email}
+											onChange={handleChange('email')}
 											required
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Location'
-											name='location'
+											value={localState.location}
+											onChange={handleChange('location')}
 											required
 										>
 											<option value='-'>Location</option>
@@ -145,18 +159,14 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										{/* <input
-											className='input input-bordered rounded-full text-black'
-											placeholder='Budget'
-											type='number'
-										/> */}
 									</div>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Property Type'
 											required
-											name='propertyType'
+											value={localState.propertyType}
+											onChange={handleChange('propertyType')}
 										>
 											<option value='-'>Property Type</option>
 											{property_types.map((property) => (
@@ -168,13 +178,15 @@ const Hero = () => {
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Budget'
-											type='number'
-											name='budget'
-											// onChange={}
+											type='text'
+											value={localState.budget}
+											onChange={handleChange('budget')}
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Service Type'
+											value={localState.serviceType}
+											onChange={handleChange('serviceType')}
 										>
 											<option value='-'>Service Type</option>
 											<option value='Agent'>Link me to Agent</option>
@@ -188,8 +200,6 @@ const Hero = () => {
 								</fieldset>
 							</form>
 						</div>
-						{/* Include the FormLoaderNotification component */}
-						{/* <FormLoaderNotification isLoading={isLoading} showNotification={showNotification} /> */}
 					</div>
 				</div>
 			</div>
