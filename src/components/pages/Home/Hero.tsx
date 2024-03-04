@@ -1,15 +1,79 @@
-import { useState } from 'react';
+// Hero.tsx
+import React, { useState } from 'react';
+import { useAddProperty } from '../../../hooks/useAddProperty';
 import property from '../../../assets/property2.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
-// import styles from '../../style';
+import FormLoaderNotification from './FormLoaderNotification'; // Import the new component
+
+const initialState = {
+	name: '',
+	email: '',
+	location: '',
+	propertyType: '',
+	budget: '',
+	serviceType: '',
+};
 
 const Hero = () => {
 	const [buttonNumber, setButtonNumber] = useState(1);
+	const [localState, setLocalState] = useState(initialState);
+	const [isLoading, setIsLoading] = useState(false); // Track loading state
+	const [showNotification, setShowNotification] = useState(false); // Track notification state
+	const [notificationMessage, setNotificationMessage] = useState('');
+	const [notificationVariant, setNotificationVariant] = useState('');
 
 	const activeButton = 'opacity-50 bg-black border-none text-neutral-content hover:bg-black';
+	const { addProperty } = useAddProperty();
+
+	const handleChange = (input: string) => (e: any) => {
+		if (input === 'budget') {
+			const number = e.target.value.replace(/,/g, '');
+			const formattedNumber = Number(number).toLocaleString();
+			setLocalState({ ...localState, [input]: formattedNumber });
+		} else {
+			setLocalState({ ...localState, [input]: e.target.value });
+		}
+	};
+
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setIsLoading(true); // Show loader
+
+		try {
+			await addProperty(localState);
+
+			// Clear the form and set it back to its initial state
+			setLocalState(initialState);
+
+			// Show notification
+			setShowNotification(true);
+			setNotificationVariant('success');
+			setNotificationMessage(
+				'Your request has been submitted. A representative will contact you. Thank You!',
+			);
+		} catch (error) {
+			// console.error('Firebase operation failed:', error);
+			// Handle error, show error notification, etc.
+			setShowNotification(true);
+			setNotificationVariant('error');
+			setNotificationMessage('There was a problem submitting your request. Please try again later');
+		} finally {
+			setIsLoading(false); // Hide loader regardless of success or failure
+		}
+	};
+
+	let notification = (
+		<FormLoaderNotification
+			notification={notificationMessage}
+			showNotification={showNotification}
+			variant={notificationVariant}
+			close={() => setShowNotification(false)}
+		/>
+	);
 
 	return (
 		<div>
+			{notification}
 			<div
 				className='hero min-h-screen'
 				style={{
@@ -56,22 +120,37 @@ const Hero = () => {
 								For Sale
 							</button>
 						</div>
+						{isLoading ? (
+							<span className='loading loading-infinity loading-lg text-white'></span>
+						) : (
+							<div></div>
+						)}
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
-							<form>
-								<fieldset>
+							<form onSubmit={onSubmit}>
+								<fieldset disabled={isLoading}>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Name'
+											type='text'
+											value={localState.name}
+											onChange={handleChange('name')}
+											required
 										/>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Email'
 											type='email'
+											value={localState.email}
+											onChange={handleChange('email')}
+											required
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Location'
+											value={localState.location}
+											onChange={handleChange('location')}
+											required
 										>
 											<option value='-'>Location</option>
 											{property_locations.map((location) => (
@@ -80,16 +159,14 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										{/* <input
-											className='input input-bordered rounded-full text-black'
-											placeholder='Budget'
-											type='number'
-										/> */}
 									</div>
 									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Property Type'
+											required
+											value={localState.propertyType}
+											onChange={handleChange('propertyType')}
 										>
 											<option value='-'>Property Type</option>
 											{property_types.map((property) => (
@@ -98,24 +175,23 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
-										{/* <input
-											type='number'
-											className='input input-bordered rounded-full text-black'
-											placeholder='Beds'
-										/> */}
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Budget'
-											type='number'
+											type='text'
+											value={localState.budget}
+											onChange={handleChange('budget')}
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Service Type'
+											value={localState.serviceType}
+											onChange={handleChange('serviceType')}
 										>
 											<option value='-'>Service Type</option>
 											<option value='Agent'>Link me to Agent</option>
 											<option value='Wephco'>Wephco Insured</option>
-											<option value="Consultation">Consultation</option>
+											<option value='Consultation'>Consultation</option>
 										</select>
 										<button className='btn btn-success text-white rounded-full'>
 											Submit Enquiry
