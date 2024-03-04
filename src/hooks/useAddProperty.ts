@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../utils/firebaseFunctions';
 
 export const useAddProperty = () => {
-	let adminCollectionRef = collection(db, 'admin');
+	let adminCollectionRef = collection(db, 'property-request');
 
 	const addProperty = async ({
 		name,
