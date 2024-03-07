@@ -2,12 +2,13 @@ import { useState, useEffect, useContext } from 'react';
 // import ApiHelper from '../../../utils/apiHelper';
 import NoData from '../../common/NoData';
 // import { endpoints } from '../../../utils/URL';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaCheck } from 'react-icons/fa';
+import { ImCross } from 'react-icons/im';
 // import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 // import { useNavigate } from 'react-router-dom';
 import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
-import { db, deleteDocument } from '../../../utils/firebaseFunctions';
+import { db, deleteDocument, updateDocument } from '../../../utils/firebaseFunctions';
 import { query, collection, onSnapshot } from 'firebase/firestore';
 // import { ModalPrompt } from '../../common/ModalPrompt';
 // import { Modal, Button } from 'react-daisyui';
@@ -26,12 +27,6 @@ const PropertyRequests = () => {
 	const [requests, setRequests] = useState<IPropertyRequest[]>([]);
 	// const [loading, setLoading] = useState(false);
 	// const [code, setCode] = useState('');
-
-	// const ref = useRef<HTMLDialogElement>(null);
-
-	// const handleShow = useCallback(() => {
-	// 	ref.current?.showModal();
-	// }, [ref]);
 
 	// const editRequest = (id: string) => {}
 
@@ -57,6 +52,33 @@ const PropertyRequests = () => {
 	// 	}
 	// }
 
+	const checkRequest = (property: IPropertyRequest) => {
+		const answer = prompt('Mark property as attended to? (YES/NO)') as string;
+		if (answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'y') {
+			checkProperty(property);
+		} else {
+			setToastContent('Update Operation Cancelled');
+			setToastVariant('info');
+			setToastOpen(true);
+			return;
+		}
+	};
+
+	const checkProperty = async (property: IPropertyRequest) => {
+		property.attendedTo = true;
+
+		try {
+			await updateDocument('property-request', property, property.id);
+			setToastContent('Property updated successfully');
+			setToastVariant('success');
+			setToastOpen(true);
+		} catch (error) {
+			setToastContent('Error updating property');
+			setToastVariant('error');
+			setToastOpen(true);
+		}
+	};
+
 	const deleteRequest = (id: string) => {
 		deleteProperty(id);
 	};
@@ -64,9 +86,9 @@ const PropertyRequests = () => {
 	const deleteProperty = async (id: string) => {
 		const code = prompt('Please Enter Authorization Code') as string;
 
-		if (code.toLowerCase().trim() === 'weph20233' || code.toLowerCase().trim() === 'neto') {
+		if (code.trim().toLowerCase() === 'weph20233' || code.trim().toLowerCase() === 'neto') {
 			try {
-				await deleteDocument('propertyRequests', id);
+				await deleteDocument('property-request', id);
 				setToastContent('Property Request deleted successfully');
 				setToastVariant('success');
 				setToastOpen(true);
@@ -99,7 +121,7 @@ const PropertyRequests = () => {
 	// }, []);
 
 	useEffect(() => {
-		const q = query(collection(db, 'propertyRequests'));
+		const q = query(collection(db, 'property-request'));
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
 			const propertyRequests: React.SetStateAction<any[]> = [];
 			querySnapshot.forEach((doc) => {
@@ -117,13 +139,11 @@ const PropertyRequests = () => {
 				<th>Actions</th>
 				<th>Name</th>
 				<th>Email</th>
-				<th>Phone Number</th>
-				<th>Request Type</th>
-				<th>Property Type</th>
 				<th>Location</th>
-				<th>Prefered Service</th>
+				<th>Property Type</th>
 				<th>Budget</th>
-				<th>Notes</th>
+				<th>Service Type</th>
+				<th>Request Attended To</th>
 			</tr>
 		</thead>
 	);
@@ -132,11 +152,14 @@ const PropertyRequests = () => {
 		<tbody>
 			{requests.map((request) => (
 				<tr key={request.id}>
-					<td className='flex flex-wrap cursor-pointer'>
-						{/* <div className='tooltip tooltip-right' data-tip='Edit Property'>
-							<FaEdit className='text-yellow-500 mr-2 cursor-pointer' />
-						</div> */}
-						<div className='tooltip tooltip-right' data-tip='Delete Property'>
+					<td className='flex gap-4 flex-wrap cursor-pointer'>
+						<div className='tooltip tooltip-right' data-tip='Mark as attended to'>
+							<FaCheck
+								className='text-green-500 cursor-pointer'
+								onClick={() => checkRequest(request)}
+							/>
+						</div>
+						<div className='tooltip tooltip-right' data-tip='Delete Request'>
 							<FaTrash
 								className='text-red-500 cursor-pointer'
 								onClick={() => deleteRequest(request.id)}
@@ -145,33 +168,15 @@ const PropertyRequests = () => {
 					</td>
 					<td>{request.name}</td>
 					<td>{request.email}</td>
-					<td>{request.phoneNumber}</td>
-					<td>{request.requestType}</td>
-					<td>{request.propertyType}</td>
 					<td>{request.location}</td>
-					<td>{request.preferedService}</td>
+					<td>{request.propertyType}</td>
 					<td>{request.budget}</td>
-					<td>{request.additionalNotes}</td>
+					<td>{request.serviceType}</td>
+					<td>{request.attendedTo ? <FaCheck /> : <ImCross />}</td>
 				</tr>
 			))}
 		</tbody>
 	);
-
-	// let promptModal = (
-	// 	<Dialog>
-	// 		<Button size='sm' color='ghost' shape='circle' className='absolute right-2 top-2'>
-	// 			X
-	// 		</Button>
-	// 		<Modal.Header className='mt-10'>{promptHeader}</Modal.Header>
-	// 		<Modal.Body>{promptContent}</Modal.Body>
-	// 		<Modal.Actions className='flex justify-between'>
-	// 			<Button className='btn-error'>NO</Button>
-	// 			<Button className='btn-success' onClick={() => deleteProperty(docId)}>
-	// 				YES
-	// 			</Button>
-	// 		</Modal.Actions>
-	// 	</Dialog>
-	// );
 
 	return (
 		<section>
@@ -193,7 +198,7 @@ const PropertyRequests = () => {
 					</div>
 				)} */}
 
-				{requests?.length === 0 && (
+				{requests.length === 0 && (
 					<div className='flex justify-center items-center'>
 						<NoData content='No Properties listed' />
 					</div>

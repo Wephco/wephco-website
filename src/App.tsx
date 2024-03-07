@@ -13,18 +13,18 @@ import CreateUser from './components/pages/Users/CreateUser';
 import { AppProvider } from './context/AppContext';
 
 import Dashboard from './components/common/Dashboard';
-import AlertModal from './components/common/AlertModal';
+// import AlertModal from './components/common/AlertModal';
 import PropertyRequests from './components/pages/PropertyRequests/PropertyRequests';
 import { ConsultationTable } from './components/pages/Consultations/ConsultationTable';
 
-let notifications = <AlertModal />;
+// let notifications = <AlertModal />;
 
 function App() {
 	return (
 		<>
 			<AppProvider>
 				<BrowserRouter>
-					{notifications}
+					{/* {notifications} */}
 					<Routes>
 						<Route path='/' element={<Login />} />
 						<Route path='/home' element={<Dashboard component={Home} />} />

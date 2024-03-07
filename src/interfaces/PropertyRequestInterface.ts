@@ -1,13 +1,10 @@
 export interface IPropertyRequest{
-    id: string
-    title: string
-    name: string
-    email: string
-    phoneNumber: string
-    requestType: string
-    propertyType: string
-	location: string
-	preferedService: string
-    budget: string
-	additionalNotes: string
+    id: string;
+    name: string;
+    email: string;
+	location: string;
+    propertyType: string;
+    budget: string;
+	serviceType: string;
+    attendedTo: boolean
 }
