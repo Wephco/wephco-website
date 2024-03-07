@@ -4,14 +4,16 @@ import { useAddProperty } from '../../../hooks/useAddProperty';
 import property from '../../../assets/property2.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
 import FormLoaderNotification from './FormLoaderNotification'; // Import the new component
+import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
 
-const initialState = {
+const initialState: IPropertyRequest = {
 	name: '',
 	email: '',
 	location: '',
 	propertyType: '',
 	budget: '',
 	serviceType: '',
+	attendedTo: false
 };
 
 const Hero = () => {

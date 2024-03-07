@@ -1,6 +1,7 @@
 // useAddProperty hook
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../utils/firebaseFunctions';
+import { IPropertyRequest } from '../interfaces/PropertyRequestInterface';
 
 export const useAddProperty = () => {
 	let adminCollectionRef = collection(db, 'property-request');
@@ -12,14 +13,7 @@ export const useAddProperty = () => {
 		propertyType,
 		budget,
 		serviceType,
-	}: {
-		name: string;
-		email: string;
-		location: string;
-		propertyType: string;
-		budget: string;
-		serviceType: string;
-	}) => {
+	}: IPropertyRequest) => {
 		await addDoc(adminCollectionRef, {
 			name,
 			email,
