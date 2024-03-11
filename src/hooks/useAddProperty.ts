@@ -4,7 +4,7 @@ import { db } from '../utils/firebaseFunctions';
 import { IPropertyRequest } from '../interfaces/PropertyRequestInterface';
 
 export const useAddProperty = () => {
-	let adminCollectionRef = collection(db, 'property-request');
+	let adminCollectionRef = collection(db, 'leads');
 
 	const addProperty = async ({
 		name,
