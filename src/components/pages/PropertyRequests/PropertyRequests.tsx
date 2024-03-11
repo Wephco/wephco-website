@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 // import ApiHelper from '../../../utils/apiHelper';
-import NoData from '../../common/NoData';
+// import NoData from '../../common/NoData';
 // import { endpoints } from '../../../utils/URL';
 import { FaTrash, FaCheck } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
@@ -68,7 +68,7 @@ const PropertyRequests = () => {
 		property.attendedTo = true;
 
 		try {
-			await updateDocument('property-request', property, property.id);
+			await updateDocument('leads', property, property.id);
 			setToastContent('Property updated successfully');
 			setToastVariant('success');
 			setToastOpen(true);
@@ -121,11 +121,11 @@ const PropertyRequests = () => {
 	// }, []);
 
 	useEffect(() => {
-		const q = query(collection(db, 'property-request'));
+		const q = query(collection(db, 'leads'));
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
 			const propertyRequests: React.SetStateAction<any[]> = [];
 			querySnapshot.forEach((doc) => {
-				propertyRequests.push({ ...doc.data().data, id: doc.id });
+				propertyRequests.push({ ...doc.data(), id: doc.id });
 			});
 			setRequests(propertyRequests);
 		});
@@ -152,7 +152,7 @@ const PropertyRequests = () => {
 		<tbody>
 			{requests.map((request) => (
 				<tr key={request.id}>
-					<td className='flex gap-4 flex-wrap cursor-pointer'>
+					<td className='flex gap-8 flex-wrap cursor-pointer'>
 						<div className='tooltip tooltip-right' data-tip='Mark as attended to'>
 							<FaCheck
 								className='text-green-500 cursor-pointer'
@@ -192,26 +192,12 @@ const PropertyRequests = () => {
 					</div>
 				</div>
 
-				{/* {loading && (
-					<div className='flex justify-center items-center'>
-						<Loader />
-					</div>
-				)} */}
-
-				{requests.length === 0 && (
-					<div className='flex justify-center items-center'>
-						<NoData content='No Properties listed' />
-					</div>
-				)}
-
-				{requests?.length > 0 && (
-					<div className='w-full overflow-x-auto'>
-						<table className='table table-xs'>
-							{tableHead}
-							{tableBody}
-						</table>
-					</div>
-				)}
+				<div className='w-full overflow-x-auto'>
+					<table className='table'>
+						{tableHead}
+						{tableBody}
+					</table>
+				</div>
 			</div>
 		</section>
 	);
