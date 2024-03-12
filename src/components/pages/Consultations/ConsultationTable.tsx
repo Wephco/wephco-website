@@ -1,10 +1,11 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import Loader from '../../common/Loader';
+// import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
 import { IConsultation } from '../../../interfaces/ConsultationInterface';
-import { getAllDocuments, deleteDocument } from '../../../utils/firebaseFunctions';
-import NoData from '../../common/NoData';
+import { deleteDocument, db } from '../../../utils/firebaseFunctions';
+// import NoData from '../../common/NoData';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
 const ConsultationTable = () => {
 	const { setToastContent, setToastOpen, setToastVariant } = useContext(
@@ -12,7 +13,7 @@ const ConsultationTable = () => {
 	) as AppContextType;
 
 	const [requests, setRequests] = useState<IConsultation[]>([]);
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
 
 	const deleteRequest = (id: string) => {
 		deleteConsultation(id);
@@ -40,24 +41,33 @@ const ConsultationTable = () => {
 		}
 	};
 
-	const getRequests = useCallback(async () => {
-		setLoading(true);
+	// const getRequests = useCallback(async () => {
+	// 	setLoading(true);
 
-		try {
-			const response = await getAllDocuments('consultations');
-			setRequests(response);
-		} catch (error) {
-			setToastVariant('error');
-			setToastContent(`${error}`);
-			setToastOpen(true);
-		} finally {
-			setLoading(false);
-		}
-	}, []);
+	// 	try {
+	// 		const response = await getAllDocuments('');
+	// 		setRequests(response);
+	// 	} catch (error) {
+	// 		setToastVariant('error');
+	// 		setToastContent(`${error}`);
+	// 		setToastOpen(true);
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
-		getRequests();
-	}, [getRequests]);
+		const q = query(collection(db, 'consultations'));
+		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			const propertyRequests: React.SetStateAction<any[]> = [];
+			querySnapshot.forEach((doc) => {
+				propertyRequests.push({ ...doc.data(), id: doc.id });
+			});
+			setRequests(propertyRequests);
+		});
+
+		return unsubscribe;
+	}, []);
 
 	let tableHead = (
 		<thead>
@@ -108,26 +118,24 @@ const ConsultationTable = () => {
 				</div>
 			</div>
 
-			{loading && (
+			{/* {loading && (
 				<div className='flex justify-center items-center'>
 					<Loader />
 				</div>
-			)}
+			)} */}
 
-			{!loading && requests?.length === 0 && (
+			{/* {!loading && requests?.length === 0 && (
 				<div className='flex justify-center items-center'>
 					<NoData content='No Users listed' />
 				</div>
-			)}
+			)} */}
 
-			{!loading && requests?.length > 0 && (
-				<div className='w-full overflow-x-auto'>
-					<table className='table table-xs'>
-						{tableHead}
-						{tableBody}
-					</table>
-				</div>
-			)}
+			<div className='w-full overflow-x-auto'>
+				<table className='table table-xs'>
+					{tableHead}
+					{tableBody}
+				</table>
+			</div>
 		</div>
 	);
 };
