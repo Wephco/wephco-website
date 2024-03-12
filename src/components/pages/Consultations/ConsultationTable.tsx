@@ -59,11 +59,11 @@ const ConsultationTable = () => {
 	useEffect(() => {
 		const q = query(collection(db, 'consultations'));
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
-			const propertyRequests: React.SetStateAction<any[]> = [];
+			const consultations: React.SetStateAction<any[]> = [];
 			querySnapshot.forEach((doc) => {
-				propertyRequests.push({ ...doc.data(), id: doc.id });
+				consultations.push({ ...doc.data().data, id: doc.id });
 			});
-			setRequests(propertyRequests);
+			setRequests(consultations);
 		});
 
 		return unsubscribe;
