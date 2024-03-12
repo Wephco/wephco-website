@@ -40,7 +40,7 @@ export const stats = [
 	{
 		id: 'stats-2',
 		title: 'Satisfied Customers',
-		value: '40,000+',
+		value: '15,000+',
 	},
 	{
 		id: 'stats-3',
@@ -102,15 +102,15 @@ export const footerLinks = [
 		links: [
 			{
 				name: 'Nigerian Properties',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 			{
 				name: 'Dispora Properties',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 			{
 				name: 'Hotel Booking',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 		],
 	},
@@ -119,15 +119,15 @@ export const footerLinks = [
 		links: [
 			{
 				name: 'About Us',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 			{
 				name: 'Careers',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 			{
 				name: 'Contact Us',
-				link: 'https://www.wephco.com',
+				link: '/consult-us',
 			},
 		],
 	},
@@ -136,11 +136,11 @@ export const footerLinks = [
 		links: [
 			{
 				name: 'Our Partners',
-				link: 'https://www.wephco.com',
+				link: '/',
 			},
 			{
 				name: 'Become a Partner',
-				link: 'https://www.wephco.com',
+				link: '/consult-us',
 			},
 		],
 	},
@@ -150,22 +150,22 @@ export const socialMedia = [
 	{
 		id: 'social-media-1',
 		icon: instagram,
-		link: 'https://www.instagram.com/',
+		link: 'https://www.instagram.com/wephco',
 	},
 	{
 		id: 'social-media-2',
 		icon: facebook,
-		link: 'https://www.facebook.com/',
+		link: 'https://www.facebook.com/wephco',
 	},
 	{
 		id: 'social-media-3',
 		icon: twitter,
-		link: 'https://www.twitter.com/',
+		link: 'https://www.twitter.com/wephco',
 	},
 	{
 		id: 'social-media-4',
 		icon: linkedin,
-		link: 'https://www.linkedin.com/',
+		link: 'https://www.linkedin.com/wephco',
 	},
 ];
 
@@ -277,8 +277,20 @@ export const services = [
 		value: 'International Investments',
 	},
 	{
-		label: 'Hotel Inquiry',
-		value: 'Hotel Inquiry',
+		label: 'Become a Partner',
+		value: 'Become a Partner',
+	},
+	{
+		label: 'Become an Affiliate',
+		value: 'Become an Affiliate',
+	},
+	{
+		label: 'Membership Subscription',
+		value: 'Membership Subscription',
+	},
+	{
+		label: 'Training/Webinar',
+		value: 'Training/Webinar',
 	},
 	{
 		label: 'Meeting/Office Space',
@@ -300,8 +312,8 @@ export const property_types = [
 		value: 'Residential'
 	},
 	{
-		label: 'Shortlet/Apartment',
-		value: 'Shortlet/Apartment'
+		label: 'Shortlet/Service Apartments',
+		value: 'Shortlet/Service Apartments'
 	},
 	{
 		label: 'Land',

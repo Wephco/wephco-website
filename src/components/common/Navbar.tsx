@@ -3,21 +3,22 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { BiMenu } from 'react-icons/bi';
 import { navLinks } from '../../utils/constants';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo2-bg.png';
 
 const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
 
 	return (
-		<nav className='w-full flex py-6 justify-between items-center navbar'>
-			<img src='/wephcoLogo.ico' alt='Wephco' className='w-16 h-16' />
+		<nav className='w-full flex justify-between items-center navbar'>
+			<img src={logo} alt='Wephco' className='w-32' />
 
 			<ul className='list-none sm:flex hidden justify-center items-center flex-1'>
 				{navLinks.map((nav, index) => (
 					<li
 						key={nav.id}
-						className={`font-poppins font-semibold uppercase cursor-pointer text-[16px] ${
+						className={`font-poppins font-semibold uppercase cursor-pointer text-[16px] border border-solid border-primary px-4 py-2 rounded-full ${
 							index === navLinks.length - 1 ? 'mr-0' : 'mr-10'
-						} text-gray-600 hover:text-red-400`}
+						} text-gray-600 hover:text-white hover:bg-primary`}
 					>
 						<Link to={`/${nav.id}`}>{nav.title}</Link>
 					</li>

@@ -4,8 +4,13 @@ import Feedback from './Feedback';
 import { Hero } from './Hero';
 import Stats from './Stats';
 import Steps from './Steps';
+import { useEffect } from 'react';
 
 const Home = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	});
+
 	return (
 		<div>
 			<div className={styles.flexStart}>

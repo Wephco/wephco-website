@@ -1,7 +1,7 @@
 // Hero.tsx
 import React, { useState } from 'react';
 import { useAddProperty } from '../../../hooks/useAddProperty';
-import property from '../../../assets/property2.jpg';
+import property from '../../../assets/property3.jpg';
 import { property_locations, property_types } from '../../../utils/constants';
 import FormLoaderNotification from './FormLoaderNotification'; // Import the new component
 import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
@@ -119,7 +119,7 @@ const Hero = () => {
 										: 'bg-red-400 border-red-400 hover:bg-red-500 hover:border-red-500'
 								}`}
 							>
-								For Sale
+								Buy
 							</button>
 						</div>
 						{isLoading ? (
@@ -183,12 +183,14 @@ const Hero = () => {
 											type='text'
 											value={localState.budget}
 											onChange={handleChange('budget')}
+											required
 										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Service Type'
 											value={localState.serviceType}
 											onChange={handleChange('serviceType')}
+											required
 										>
 											<option value='-'>Service Type</option>
 											<option value='Agent'>Link me to Agent</option>

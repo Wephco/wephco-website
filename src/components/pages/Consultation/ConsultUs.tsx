@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 // import { endpoints } from '../../../utils/URL';
 import styles from '../../style';
 // import ApiHelper from '../../../utils/apiHelper';
@@ -66,6 +66,10 @@ const ConsultUs = () => {
 			setLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>
