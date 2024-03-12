@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, DocumentData, query } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query } from "firebase/firestore";
 import { getStorage } from 'firebase/storage'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
@@ -40,7 +40,7 @@ const addADocument = async (collectionName: string, data: Object) => {
 };
 
 const getAllDocuments = async (collectionName: string) => {
-	var documents: DocumentData[] = [];
+	var documents: any[] = [];
 	const q = query(collection(db, collectionName));
 	const querySnapshot = await getDocs(q);
 	querySnapshot.forEach((doc) => {
