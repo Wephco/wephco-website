@@ -13,7 +13,8 @@ const initialState: IPropertyRequest = {
 	propertyType: '',
 	budget: '',
 	serviceType: '',
-	attendedTo: false
+	attendedTo: false,
+	dateOfRequest: new Date().toLocaleString(),
 };
 
 const Hero = () => {
