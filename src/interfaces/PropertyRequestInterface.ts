@@ -6,5 +6,6 @@ export interface IPropertyRequest{
     propertyType: string;
     budget: string;
 	serviceType: string;
-    attendedTo: boolean
+    attendedTo: boolean,
+    dateOfRequest: string
 }

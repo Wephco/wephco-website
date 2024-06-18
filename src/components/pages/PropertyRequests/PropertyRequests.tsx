@@ -144,6 +144,7 @@ const PropertyRequests = () => {
 				<th>Budget</th>
 				<th>Service Type</th>
 				<th>Request Attended To</th>
+				<th>Date Requested</th>
 			</tr>
 		</thead>
 	);
@@ -173,6 +174,7 @@ const PropertyRequests = () => {
 					<td>{request.budget}</td>
 					<td>{request.serviceType}</td>
 					<td>{request.attendedTo ? <FaCheck /> : <ImCross />}</td>
+					<td>{request.dateOfRequest}</td>
 				</tr>
 			))}
 		</tbody>
