@@ -9,6 +9,7 @@ import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
 const initialState: IPropertyRequest = {
 	name: '',
 	email: '',
+	phone: '',
 	location: '',
 	propertyType: '',
 	budget: '',
@@ -131,7 +132,7 @@ const Hero = () => {
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
 							<form onSubmit={onSubmit}>
 								<fieldset disabled={isLoading}>
-									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mb-3'>
+									<div className='flex flex-col lg:flex-row gap-2 mb-3'>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Name'
@@ -148,6 +149,15 @@ const Hero = () => {
 											onChange={handleChange('email')}
 											required
 										/>
+										<input 
+											className='input input-bordered rounded-full text-black'
+											placeholder='Phone Number'
+											type='tel'
+											value={localState.phone}
+											onChange={handleChange('phone')}
+											required
+											pattern='[0-9]11'
+										/>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Location'
@@ -163,7 +173,7 @@ const Hero = () => {
 											))}
 										</select>
 									</div>
-									<div className='flex flex-col lg:flex-row gap-2 flex-wrap mt-3'>
+									<div className='flex flex-col lg:flex-row gap-2 mt-3'>
 										<select
 											className='select select-bordered rounded-full text-black'
 											placeholder='Property Type'
