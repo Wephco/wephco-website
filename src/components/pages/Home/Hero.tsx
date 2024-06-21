@@ -151,7 +151,7 @@ const Hero = () => {
 										/>
 										<input 
 											className='input input-bordered rounded-full text-black'
-											placeholder='Phone Number'
+											placeholder='09012345678'
 											type='tel'
 											value={localState.phone}
 											onChange={handleChange('phone')}
