@@ -139,6 +139,7 @@ const PropertyRequests = () => {
 				<th>Actions</th>
 				<th>Name</th>
 				<th>Email</th>
+				<th>Phone</th>
 				<th>Location</th>
 				<th>Property Type</th>
 				<th>Budget</th>
@@ -169,6 +170,7 @@ const PropertyRequests = () => {
 					</td>
 					<td>{request.name}</td>
 					<td>{request.email}</td>
+					<td>{request.phone}</td>
 					<td>{request.location}</td>
 					<td>{request.propertyType}</td>
 					<td>{request.budget}</td>
