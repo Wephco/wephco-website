@@ -34,7 +34,22 @@ const Hero = () => {
 			const number = e.target.value.replace(/,/g, '');
 			const formattedNumber = Number(number).toLocaleString();
 			setLocalState({ ...localState, [input]: formattedNumber });
-		} else {
+		} else if(input === 'location') {
+			if(localState.location === ''){
+				setLocalState({ ...localState, [input]: e.target.value });
+			} else {
+				const newLocation = e.target.value;
+				if(localState.location.includes(newLocation)){
+					setShowNotification(true);
+					setNotificationVariant('warning');
+					setNotificationMessage('Location already selected');
+					return;
+				}
+				const locations = localState.location + ', ' + newLocation;
+				setLocalState({ ...localState, [input]: locations });
+			}
+		} 
+		else {
 			setLocalState({ ...localState, [input]: e.target.value });
 		}
 	};
@@ -132,7 +147,7 @@ const Hero = () => {
 						<div className='flex justify-center bg-black bg-opacity-50 rounded-3xl p-4'>
 							<form onSubmit={onSubmit}>
 								<fieldset disabled={isLoading}>
-									<div className='flex flex-col lg:flex-row gap-2 mb-3'>
+									<div className='flex flex-col lg:flex-row justify-center gap-2 mb-3'>
 										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='Name'
@@ -149,21 +164,24 @@ const Hero = () => {
 											onChange={handleChange('email')}
 											required
 										/>
-										<input 
+										<input
 											className='input input-bordered rounded-full text-black'
 											placeholder='09012345678'
-											type='tel'
+											type='text'
 											value={localState.phone}
 											onChange={handleChange('phone')}
 											required
-											pattern='[0-9]11'
+											maxLength={11}
 										/>
-										<select
-											className='select select-bordered rounded-full text-black'
+									</div>
+									<div className='flex flex-col justify-center items-center gap-2'>
+									<select
+											className='select select-bordered w-full text-black'
 											placeholder='Location'
 											value={localState.location}
 											onChange={handleChange('location')}
 											required
+											multiple
 										>
 											<option value='-'>Location</option>
 											{property_locations.map((location) => (
@@ -172,6 +190,7 @@ const Hero = () => {
 												</option>
 											))}
 										</select>
+										<span>{localState.location}</span>
 									</div>
 									<div className='flex flex-col lg:flex-row gap-2 mt-3'>
 										<select
