@@ -57,6 +57,14 @@ const Hero = () => {
 		e.preventDefault();
 		setIsLoading(true); // Show loader
 
+		if(localState.location === ''){
+			setShowNotification(true);
+			setNotificationVariant('warning');
+			setNotificationMessage('Location not selected');
+			return;
+		}
+
+
 		try {
 			await addProperty(localState);
 
@@ -179,7 +187,6 @@ const Hero = () => {
 											placeholder='Location'
 											value={localState.location}
 											onChange={handleChange('location')}
-											required
 											multiple
 										>
 											{property_locations.map((location) => (

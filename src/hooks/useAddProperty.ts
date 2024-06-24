@@ -9,18 +9,22 @@ export const useAddProperty = () => {
 	const addProperty = async ({
 		name,
 		email,
+		phone,
 		location,
 		propertyType,
 		budget,
 		serviceType,
+		dateOfRequest,
 	}: IPropertyRequest) => {
 		await addDoc(adminCollectionRef, {
 			name,
 			email,
+			phone,
 			location,
 			propertyType,
 			budget,
 			serviceType,
+			dateOfRequest,
 			createdAt: serverTimestamp(),
 		});
 	};
