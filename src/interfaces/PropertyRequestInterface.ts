@@ -8,5 +8,6 @@ export interface IPropertyRequest{
     budget: string;
 	serviceType: string;
     attendedTo: boolean,
-    dateOfRequest: string
+    dateOfRequest: string,
+    createdAt: string;
 }
