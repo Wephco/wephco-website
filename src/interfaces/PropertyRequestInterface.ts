@@ -9,5 +9,4 @@ export interface IPropertyRequest{
 	serviceType: string;
     attendedTo: boolean,
     dateOfRequest: string,
-    createdAt: string;
 }
