@@ -34,12 +34,12 @@ const Hero = () => {
 			const number = e.target.value.replace(/,/g, '');
 			const formattedNumber = Number(number).toLocaleString();
 			setLocalState({ ...localState, [input]: formattedNumber });
-		} else if(input === 'location') {
-			if(localState.location === ''){
+		} else if (input === 'location') {
+			if (localState.location === '') {
 				setLocalState({ ...localState, [input]: e.target.value });
 			} else {
 				const newLocation = e.target.value;
-				if(localState.location.includes(newLocation)){
+				if (localState.location.includes(newLocation)) {
 					setShowNotification(true);
 					setNotificationVariant('warning');
 					setNotificationMessage('Location already selected');
@@ -48,8 +48,7 @@ const Hero = () => {
 				const locations = localState.location + ', ' + newLocation;
 				setLocalState({ ...localState, [input]: locations });
 			}
-		} 
-		else {
+		} else {
 			setLocalState({ ...localState, [input]: e.target.value });
 		}
 	};
@@ -175,7 +174,7 @@ const Hero = () => {
 										/>
 									</div>
 									<div className='flex flex-col justify-center items-center gap-2'>
-									<select
+										<select
 											className='select select-bordered w-full text-black'
 											placeholder='Location'
 											value={localState.location}
@@ -183,7 +182,6 @@ const Hero = () => {
 											required
 											multiple
 										>
-											<option value='-'>Location</option>
 											{property_locations.map((location) => (
 												<option className='text-black' key={location.value} value={location.value}>
 													{location.label}
