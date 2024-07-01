@@ -1,13 +1,13 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import d1 from '../../../assets/d1.jpg';
 import d2 from '../../../assets/d2.jpg';
 import d3 from '../../../assets/d3.jpg';
 import DiasporaForm from './DiasporaForm';
 
 const DiasporaPropertyListing = () => {
-	
+	const [openModal, setOpenModal] = useState(false)
 
-	let diasporaForm = <DiasporaForm />
+	let diasporaForm = <DiasporaForm open={openModal} close={() => setOpenModal(false)} />
 
 	return (
 		<div className='mb-8'>
@@ -36,7 +36,7 @@ const DiasporaPropertyListing = () => {
 							and sports courts-everything they need to enjoy life to the fullest. 4 to 6-bedrooms
 							villas in Al Shamkha from AED 3.47M | 10% down payment
 						</p>
-						<button onClick={() => document.getElementById('diaspora-form')?.showModal()} className='mt-3 btn bg-primary text-white hover:bg-white hover:text-primary'>Enquire</button>
+						<button onClick={() => setOpenModal(true)} className='mt-3 btn bg-primary text-white hover:bg-white hover:text-primary'>Enquire</button>
 					</div>
 				</div>
 			</div>

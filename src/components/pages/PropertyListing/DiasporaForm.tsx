@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { addDocument } from '../../../utils/firebaseFunctions';
 import Loader from '../../common/Loader';
+import Modal from '../../common/Modal';
 
-const DiasporaForm = () => {
+const DiasporaForm = ({open, close}: {open:boolean, close: any}) => {
 	const [loading, setLoading] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const DiasporaForm = () => {
 			setShowNotification(true);
 			return;
 		}
-        
+
 		setLoading(true);
 
 		const payload = {
@@ -35,6 +36,7 @@ const DiasporaForm = () => {
 			await addDocument('diaspora-property-enquiry', payload);
 			alert('Request sent successfully');
 			clearForm();
+            close()
 		} catch (error) {
 			setShowNotification(true);
 			setNotificationMessage('There was a problem submitting your request. Please try again later');
@@ -62,9 +64,8 @@ const DiasporaForm = () => {
 				<div></div>
 			)}
 			{/* <h1 className='text-2xl font-bold mb-4'>Diaspora</h1> */}
-			<dialog id='diaspora-form' className='modal'>
-				<div className='modal-box'>
-					<form>
+            <Modal open={open} onClose={close}>
+            <form>
 						<fieldset disabled={loading}>
 							<div className='mb-4'>
 								<label htmlFor='name' className='block mb-2'>
@@ -108,18 +109,12 @@ const DiasporaForm = () => {
 									required
 								/>
 							</div>
-						</fieldset>
-					</form>
-					<div className='modal-action'>
-						<button onClick={submitForm} className='btn btn-success'>
+                            <button onClick={submitForm} className='btn btn-success'>
 							{loading ? <Loader /> : 'Send'}
 						</button>
-						<form method='dialog'>
-							<button className='btn btn-error'>Close</button>
-						</form>
-					</div>
-				</div>
-			</dialog>
+						</fieldset>
+					</form>
+            </Modal>
 		</div>
 	);
 };
