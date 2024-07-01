@@ -23,7 +23,7 @@ const Footer = () => {
 							<ul className='list-none mt-4'>
 								{footerLink.links.map((link, index) => (
 									<li
-										key={link.name}
+										key={index}
 										className={`font-poppins font-normal text-[16px] leading-[24px] text-gray-500 hover:text-secondary cursor-pointer ${
 											index !== footerLink.links.length - 1 ? 'mb-4' : 'mb-0'
 										}`}
@@ -43,7 +43,7 @@ const Footer = () => {
 				</p>
 				<div className='flex flex-row md:mt-0 mt-6'>
 					{socialMedia.map((social, index) => (
-						<a href={social.link}>
+						<a href={social.link} key={index}>
 							<img
 								key={social.id}
 								src={social.icon}

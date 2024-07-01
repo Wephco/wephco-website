@@ -1,117 +1,45 @@
-// import { useState, useCallback, useEffect, useContext } from 'react';
-// import ApiHelper from '../../../utils/apiHelper';
-// import NoData from '../../common/NoData';
-// import { endpoints } from '../../../utils/URL';
-// import { Properties } from '../../../interfaces/PropertyListingInterface';
-// import Loader from '../../common/Loader';
-// import { AppContext, AppContextType } from '../../../context/AppContext';
-// import { FaMapMarkerAlt, FaToilet } from 'react-icons/fa';
-// import { MdMeetingRoom, MdBathroom, MdSoupKitchen } from 'react-icons/md';
-// import { SiGoogleclassroom } from 'react-icons/si';
+// import { useState } from 'react';
+import d1 from '../../../assets/d1.jpg';
+import d2 from '../../../assets/d2.jpg';
+import d3 from '../../../assets/d3.jpg';
+import DiasporaForm from './DiasporaForm';
 
 const DiasporaPropertyListing = () => {
-	// const { token, setToastContent, setToastVariant, setToastOpen } = useContext(
-	// 	AppContext,
-	// ) as AppContextType;
+	
 
-	// const api = new ApiHelper();
-
-	// const [properties, setProperties] = useState<Properties[]>([]);
-	// const [loading, setLoading] = useState(false);
-
-	// const getProperties = useCallback(async () => {
-	// 	setLoading(true);
-
-	// 	try {
-	// 		const response = await api.getData(`${endpoints.DiasporaPropertyListings.mainUrl}`, token);
-	// 		setProperties(response);
-	// 	} catch (error) {
-	// 		setToastContent('Error getting property listings. Try again later');
-	// 		setToastVariant('error');
-	// 		setToastOpen(true);
-	// 	} finally {
-	// 		setLoading(false);
-	// 	}
-	// }, []);
-
-	// useEffect(() => {
-	// 	getProperties();
-	// }, [getProperties]);
+	let diasporaForm = <DiasporaForm />
 
 	return (
-		<div className=''>
+		<div className='mb-8'>
+			{diasporaForm}
 			<div className='text-center'>
-				<h1 className='text-2xl font-semibold my-8'>Diaspora Property Listings</h1>
+				<h1 className='text-3xl font-bold my-8'>Diaspora Properties</h1>
 			</div>
 
-			<div className='flex justify-center items-center py-52'>
-				<h1 className='font-bold text-4xl'>Coming Soon</h1>
-			</div>
-
-			{/* {loading && (
-				<div className='flex justify-center items-center'>
-					<Loader />
+			<div className='grid lg:grid-cols-2 gap-4'>
+				<div>
+					<img src={d1} className='rounded-xl h-[650px]' />
 				</div>
-			)} */}
-
-			{/* {!loading && properties?.length === 0 && (
-				<div className='flex justify-center items-center'>
-					<NoData content='No Properties listed' />
-				</div>
-			)} */}
-
-			{/* property mapping */}
-			{/* <div className='flex-1 flex flex-row flex-wrap justify-center p-8 lg:p-3'>
-				{properties?.map((property) => (
-					<div className='card lg:card-side sm:card-compact bg-base-100 shadow-xl m-5 lg:m-3'>
-						<figure>
-							<img
-								src={property.propertyImages[0]}
-								alt='Property Main Image'
-								className='w-80 h-80 lg:w-72 lg:h-72'
-							/>
-						</figure>
-						<div className='card-body p-8'>
-							<h2 className='card-title uppercase font-bold'>{property.propertyType}</h2>
-							<div className='flex justify-evenly'>
-								<FaMapMarkerAlt className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>Location: {property.location}</p>
-							</div>
-							<div className='flex justify-around'>
-								<MdMeetingRoom className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>Rooms: {property.numberOfrooms}</p>
-							</div>
-							<div className='flex justify-around'>
-								<FaToilet className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>
-									Toilets: {property.numberOfToilets}
-								</p>
-							</div>
-							<div className='flex justify-around'>
-								<MdBathroom className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>
-									Bathrooms: {property.numberOfBathrooms}
-								</p>
-							</div>
-							<div className='flex justify-around'>
-								<SiGoogleclassroom className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>
-									LivingRooms: {property.numberOfLivingRooms}
-								</p>
-							</div>
-							<div className='flex justify-around'>
-								<MdSoupKitchen className='text-2xl mr-2' />
-								<p className='text-xl uppercase font-semibold'>
-									Kitchens: {property.numberOfKitchens}
-								</p>
-							</div>
-							<div className='card-actions justify-end'>
-								<button className='btn btn-primary'>View Property</button>
-							</div>
-						</div>
+				<div className='grid lg:grid-cols-2 gap-4'>
+					<img src={d2} className='h-64 rounded-xl' />
+					<img src={d3} className='h-64 rounded-xl' />
+					<div className='col-span-2'>
+						<h2 className='text-black text-2xl uppercase font-bold'>Fay
+						Alreeman II, Al Shamkha, Abu Dhabi</h2>
+						<h2 className='text-xl uppercase font-bold text-gray-500'>
+							$1,500,000
+						</h2>
+						<p className='text-lg text-black mt-3'>
+							We are excited to inform you and your clients of our exclusive Ramadan offer at Fay
+							Alreeman II community in Al Shamkha. Introduce your clients to a selection of premium
+							villas that open up to expansive green spaces, exhilarating adventure parks, tracks
+							and sports courts-everything they need to enjoy life to the fullest. 4 to 6-bedrooms
+							villas in Al Shamkha from AED 3.47M | 10% down payment
+						</p>
+						<button onClick={() => document.getElementById('diaspora-form')?.showModal()} className='mt-3 btn bg-primary text-white hover:bg-white hover:text-primary'>Enquire</button>
 					</div>
-				))}
-			</div> */}
+				</div>
+			</div>
 		</div>
 	);
 };
