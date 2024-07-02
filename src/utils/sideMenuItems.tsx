@@ -2,7 +2,7 @@ import {
 	BsHouseExclamation,
 	BsBuildingCheck,
 	BsPersonAdd,
-	// BsBuildingAdd,
+	BsBuildingAdd,
 	BsPeopleFill,
 	BsChatFill,
 } from 'react-icons/bs';
@@ -24,11 +24,11 @@ export const sideMenuItems: SideMenuItem[] = [
 	// 	path: '/property-listings',
 	// 	icon: <BsBuildingAdd />,
 	// },
-	// {
-	// 	title: 'Diaspora Property Listings',
-	// 	path: '/property-listings/diaspora',
-	// 	icon: <BsBuildingAdd />,
-	// },
+	{
+		title: 'Diaspora Property Enquiries',
+		path: '/property-listings/diaspora',
+		icon: <BsBuildingAdd />,
+	},
 	{
 		title: 'Agents',
 		path: '/agents',

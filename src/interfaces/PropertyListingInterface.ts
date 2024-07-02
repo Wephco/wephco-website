@@ -1,3 +1,10 @@
+export interface IDisaporaPropertyEnquiry {
+	name: string;
+	email: string;
+	phone: string;
+	createdAt: string;
+}
+
 export interface IProperties {
     location: string
     propertyType: string

@@ -5,8 +5,8 @@ import NoData from '../../common/NoData';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Loader from '../../common/Loader';
 import { AppContext, AppContextType } from '../../../context/AppContext';
-import { useNavigate } from 'react-router-dom';
-import { IProperties } from '../../../interfaces/PropertyListingInterface';
+// import { useNavigate } from 'react-router-dom';
+import { IDisaporaPropertyEnquiry } from '../../../interfaces/PropertyListingInterface';
 import { getAllDocuments } from '../../../utils/firebaseFunctions';
 
 const DiasporaPropertyListing = () => {
@@ -14,23 +14,23 @@ const DiasporaPropertyListing = () => {
 
 	// const api = new ApiHelper();
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
-	const [properties, setProperties] = useState<IProperties[]>([]);
+	const [properties, setProperties] = useState<IDisaporaPropertyEnquiry[]>([]);
 	const [loading, setLoading] = useState(false);
 
-	const addProperty = () => {
-		navigate('/diaspora/property-listings/add');
-	};
+	// const addProperty = () => {
+	// 	navigate('/diaspora/property-listings/add');
+	// };
 
 	const getProperties = useCallback(async () => {
 		setLoading(true);
 
 		try {
-			const response = await getAllDocuments('diasporaProperties');
+			const response = await getAllDocuments('diaspora-property-enquiry');
 			setProperties(response);
 		} catch (error) {
-			setToastContent('Error getting property listings. Try again later');
+			setToastContent('Error getting data. Try again later');
 			setToastOpen(true);
 		} finally {
 			setLoading(false);
@@ -41,18 +41,15 @@ const DiasporaPropertyListing = () => {
 		getProperties();
 	}, [getProperties]);
 
+
 	let tableHead = (
 		<thead>
 			<tr>
 				<th>Actions</th>
-				<th>Agent ID</th>
-				<th>Location</th>
-				<th>Property Type</th>
-				<th>Number of Rooms</th>
-				<th>Number of Toilets</th>
-				<th>Number of Bathrooms</th>
-				<th>Number of Living Rooms</th>
-				<th>Number of Kitchens</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone Number</th>
+				<th>Date of Request</th>
 			</tr>
 		</thead>
 	);
@@ -69,14 +66,10 @@ const DiasporaPropertyListing = () => {
 							<FaTrash className='text-red-500 cursor-pointer' />
 						</div>
 					</td>
-					<td>{property.agentId}</td>
-					<td>{property.location}</td>
-					<td>{property.propertyType}</td>
-					<td>{property.numberOfrooms}</td>
-					<td>{property.numberOfToilets}</td>
-					<td>{property.numberOfBathrooms}</td>
-					<td>{property.numberOfLivingRooms}</td>
-					<td>{property.numberOfKitchens}</td>
+					<td>{property.name}</td>
+					<td>{property.email}</td>
+					<td>{property.phone}</td>
+					<td>{property.createdAt}</td>
 				</tr>
 			))}
 		</tbody>
@@ -89,12 +82,12 @@ const DiasporaPropertyListing = () => {
 					<h1 className='text-3xl font-semibold'>Diaspora Property Listings</h1>
 				</div>
 				<div>
-					<button
+					{/* <button
 						className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow'
 						onClick={addProperty}
 					>
 						Add Property
-					</button>
+					</button> */}
 				</div>
 			</div>
 
@@ -106,7 +99,7 @@ const DiasporaPropertyListing = () => {
 
 			{!loading && properties?.length === 0 && (
 				<div className='flex justify-center items-center'>
-					<NoData content='No Properties listed' />
+					<NoData content='No Enquiries yet' />
 				</div>
 			)}
 
