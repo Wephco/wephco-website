@@ -16,13 +16,13 @@ const DiasporaPropertyListing = () => {
 				<h1 className='text-3xl font-bold my-8'>Diaspora Properties</h1>
 			</div>
 
-			<div className='grid lg:grid-cols-2 gap-4'>
+			<div className='grid lg:grid-cols-2 gap-4 p-4 lg:px-4 lg:py-0'>
 				<div>
 					<img src={d1} className='rounded-xl h-[650px]' />
 				</div>
 				<div className='grid lg:grid-cols-2 gap-4'>
-					<img src={d2} className='h-64 rounded-xl' />
-					<img src={d3} className='h-64 rounded-xl' />
+					<img src={d2} className='h-40 lg:h-64 rounded-xl' />
+					<img src={d3} className='h-40 lg:h-64 rounded-xl' />
 					<div className='col-span-2'>
 						<h2 className='text-black text-2xl uppercase font-bold'>
 							Fay Alreeman II, Al Shamkha, Abu Dhabi
