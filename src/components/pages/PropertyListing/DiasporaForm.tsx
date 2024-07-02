@@ -3,7 +3,7 @@ import { addDocument } from '../../../utils/firebaseFunctions';
 import Loader from '../../common/Loader';
 import Modal from '../../common/Modal';
 
-const DiasporaForm = ({open, close}: {open:boolean, close: any}) => {
+const DiasporaForm = ({ open, close }: { open: boolean; close: any }) => {
 	const [loading, setLoading] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -36,7 +36,7 @@ const DiasporaForm = ({open, close}: {open:boolean, close: any}) => {
 			await addDocument('diaspora-property-enquiry', payload);
 			alert('Request sent successfully');
 			clearForm();
-            close()
+			close();
 		} catch (error) {
 			setShowNotification(true);
 			setNotificationMessage('There was a problem submitting your request. Please try again later');
@@ -64,57 +64,57 @@ const DiasporaForm = ({open, close}: {open:boolean, close: any}) => {
 				<div></div>
 			)}
 			{/* <h1 className='text-2xl font-bold mb-4'>Diaspora</h1> */}
-            <Modal open={open} onClose={close}>
-            <form>
-						<fieldset disabled={loading}>
-							<div className='mb-4'>
-								<label htmlFor='name' className='block mb-2'>
-									Name
-								</label>
-								<input
-									type='text'
-									value={name}
-									onChange={(e) => setName(e.target.value)}
-									id='name'
-									className='w-full rounded border border-gray-300 p-2'
-									placeholder='Enter your name'
-									required
-								/>
-							</div>
-							<div className='mb-4'>
-								<label htmlFor='email' className='block mb-2'>
-									Email
-								</label>
-								<input
-									type='email'
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									id='email'
-									className='w-full rounded border border-gray-300 p-2'
-									placeholder='Enter your email'
-									required
-								/>
-							</div>
-							<div className='mb-4'>
-								<label htmlFor='phone' className='block mb-2'>
-									Phone
-								</label>
-								<input
-									type='text'
-									value={phone}
-									onChange={(e) => setPhone(e.target.value)}
-									id='phone'
-									className='w-full rounded border border-gray-300 p-2'
-									placeholder='Enter your phone number'
-									required
-								/>
-							</div>
-                            <button onClick={submitForm} className='btn btn-success'>
+			<Modal open={open} onClose={close}>
+				<form>
+					<fieldset disabled={loading}>
+						<div className='mb-4'>
+							<label htmlFor='name' className='block mb-2'>
+								Name
+							</label>
+							<input
+								type='text'
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+								id='name'
+								className='w-full rounded border border-gray-300 p-2'
+								placeholder='Enter your name'
+								required
+							/>
+						</div>
+						<div className='mb-4'>
+							<label htmlFor='email' className='block mb-2'>
+								Email
+							</label>
+							<input
+								type='email'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								id='email'
+								className='w-full rounded border border-gray-300 p-2'
+								placeholder='Enter your email'
+								required
+							/>
+						</div>
+						<div className='mb-4'>
+							<label htmlFor='phone' className='block mb-2'>
+								Phone
+							</label>
+							<input
+								type='text'
+								value={phone}
+								onChange={(e) => setPhone(e.target.value)}
+								id='phone'
+								className='w-full rounded border border-gray-300 p-2'
+								placeholder='Enter your phone number'
+								required
+							/>
+						</div>
+						<button onClick={submitForm} className='btn btn-success'>
 							{loading ? <Loader /> : 'Send'}
 						</button>
-						</fieldset>
-					</form>
-            </Modal>
+					</fieldset>
+				</form>
+			</Modal>
 		</div>
 	);
 };

@@ -1,12 +1,12 @@
-export interface IPropertyRequest{
-    id?: string;
-    name: string;
-    email: string;
-    phone: string;
+export interface IPropertyRequest {
+	id?: string;
+	name: string;
+	email: string;
+	phone: string;
 	location: string;
-    propertyType: string;
-    budget: string;
+	propertyType: string;
+	budget: string;
 	serviceType: string;
-    attendedTo: boolean,
-    dateOfRequest: string
+	attendedTo: boolean;
+	dateOfRequest: string;
 }

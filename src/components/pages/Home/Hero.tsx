@@ -57,13 +57,12 @@ const Hero = () => {
 		e.preventDefault();
 		setIsLoading(true); // Show loader
 
-		if(localState.location === ''){
+		if (localState.location === '') {
 			setShowNotification(true);
 			setNotificationVariant('warning');
 			setNotificationMessage('Location not selected');
 			return;
 		}
-
 
 		try {
 			await addProperty(localState);

@@ -305,18 +305,18 @@ export const services = [
 export const property_types = [
 	{
 		label: 'Commercial',
-		value: 'Commercial'
+		value: 'Commercial',
 	},
 	{
 		label: 'Residential',
-		value: 'Residential'
+		value: 'Residential',
 	},
 	{
 		label: 'Shortlet/Service Apartments',
-		value: 'Shortlet/Service Apartments'
+		value: 'Shortlet/Service Apartments',
 	},
 	{
 		label: 'Land',
-		value: 'Land'
-	}
-]
+		value: 'Land',
+	},
+];

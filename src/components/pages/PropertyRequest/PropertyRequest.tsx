@@ -23,7 +23,7 @@ const PropertyRequest = () => {
 	const [loading, setLoading] = useState(false);
 	const [preferredService, setPreferredService] = useState('');
 	const [additionalNotes, setAdditionalNotes] = useState('');
-	const [id, setId] = useState('')
+	const [id, setId] = useState('');
 
 	// const api = new ApiHelper();
 
@@ -59,8 +59,8 @@ const PropertyRequest = () => {
 		};
 
 		try {
-			const response = await addDocument('propertyRequests', payload)
-			setId(response)
+			const response = await addDocument('propertyRequests', payload);
+			setId(response);
 			setToastContent(`Request sent successfully.`);
 			setToastOpen(true);
 			clearForm();
