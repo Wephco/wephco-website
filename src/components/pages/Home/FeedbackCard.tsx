@@ -10,7 +10,7 @@ const FeedbackCard = ({
 	title: string;
 }) => {
 	return (
-		<div className='flex justify-between flex-col px-10 py-10 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feedback-card hover:shadow-2xl duration-200 hover:scale-105'>
+		<div className='flex justify-between flex-col px-10 py-10 rounded-[20px] max-w-[370px] md:mr-10 sm:mr-5 mr-0 my-5 feedback-card shadow-2xl duration-200 hover:scale-110'>
 			<img src={quotes} alt='double-quotes' className='w-[42px] h-[27px] object-contain' />
 			<p className='font-poppins font-normal text-[18px] leading-[32px] text-black my-10'>
 				{content}

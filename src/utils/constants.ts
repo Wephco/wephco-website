@@ -90,7 +90,7 @@ export const feedbacks = [
 	{
 		id: 'feedback-3',
 		content:
-			'The best part about working with Wephco was that they were always more focused on answering our questions, giving us good advice, and finding homes that met our needs than they were on closing a deal. We would recommend them to anyone.',
+			'They were always more focused on our needs than closing the deal and getting their money. They made sure we were satisfied.',
 		name: 'Engr. Stanley Eze',
 		title: 'Satisfied Customer',
 	},

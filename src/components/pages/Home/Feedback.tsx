@@ -18,10 +18,14 @@ const Feedback = () => {
 				</div>
 			</div>
 
-			<div className='flex flex-wrap sm:justify-start justify-center w-full feedback-container relative z-[1]'>
+			<div className='grid grid-cols-1 md:grid-cols-3'>
+				
 				{feedbacks.map((feedback) => (
-					<FeedbackCard key={feedback.id} {...feedback} />
+					<div className='col-span-1' key={feedback.id}>
+						<FeedbackCard {...feedback} />
+					</div>
 				))}
+				
 			</div>
 		</section>
 	);
