@@ -16,7 +16,7 @@ const DiasporaPropertyListing = () => {
 				<h1 className='text-3xl font-bold my-8'>Diaspora Properties</h1>
 			</div>
 
-			<div className='grid lg:grid-cols-2 gap-4 p-4 lg:px-4 lg:py-0'>
+			<div className='grid lg:grid-cols-2 gap-4 p-4 lg:px-4 lg:py-0 place-items-center lg:place-items-start'>
 				<div>
 					<img src={d1} className='rounded-xl h-[650px]' />
 				</div>
@@ -39,7 +39,7 @@ const DiasporaPropertyListing = () => {
 							onClick={() => setOpenModal(true)}
 							className='mt-3 btn bg-primary text-white hover:bg-white hover:text-primary'
 						>
-							Enquire
+							Get In Touch
 						</button>
 					</div>
 				</div>
