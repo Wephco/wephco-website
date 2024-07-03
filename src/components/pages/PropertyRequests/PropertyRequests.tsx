@@ -10,6 +10,7 @@ import { AppContext, AppContextType } from '../../../context/AppContext';
 import { IPropertyRequest } from '../../../interfaces/PropertyRequestInterface';
 import { db, deleteDocument, updateDocument } from '../../../utils/firebaseFunctions';
 import { query, collection, onSnapshot } from 'firebase/firestore';
+import Loader from '../../common/Loader';
 // import { ModalPrompt } from '../../common/ModalPrompt';
 // import { Modal, Button } from 'react-daisyui';
 
@@ -19,12 +20,24 @@ const PropertyRequests = () => {
 	) as AppContextType;
 
 	const [requests, setRequests] = useState<IPropertyRequest[]>([]);
+	const [loading, setLoading] = useState(false);
 
-	const sortRequests = () => {
-		const sortedRequests = requests.sort(
-			(a, b) => new Date(b.dateOfRequest).getTime() - new Date(a.dateOfRequest).getTime(),
-		);
-		setRequests(sortedRequests);
+	const sortRequests = (requests: any[]) => {
+		setLoading(true);
+
+		try {
+			const sortedRequests = requests.sort(
+				(a, b) => new Date(b.dateOfRequest).getTime() - new Date(a.dateOfRequest).getTime(),
+			);
+			setRequests(sortedRequests);
+		} catch (error) {
+			setToastContent('Error getting requests');
+			setToastVariant('error');
+			setToastOpen(true);
+			return;
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const checkRequest = (property: IPropertyRequest) => {
@@ -87,8 +100,8 @@ const PropertyRequests = () => {
 			querySnapshot.forEach((doc) => {
 				propertyRequests.push({ ...doc.data(), id: doc.id });
 			});
-			setRequests(propertyRequests);
-			sortRequests();
+			// setRequests(propertyRequests);
+			sortRequests(propertyRequests);
 		});
 
 		return unsubscribe;
@@ -145,6 +158,8 @@ const PropertyRequests = () => {
 
 	return (
 		<section>
+			{loading && <Loader />}
+
 			<div className='bg-white'>
 				<div className='flex justify-between m-5'>
 					<div>
