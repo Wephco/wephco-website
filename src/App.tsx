@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
 
 // Component imports
 import Home from './components/pages/Home/Home';
@@ -40,6 +41,11 @@ function App() {
 					<Footer />
 				</BrowserRouter>
 			</AppProvider>
+			<div className='fixed bottom-4 right-4'>
+				<a href='https://wa.link/3y95d8' target='_blank'>
+					<FaWhatsapp className='text-6xl text-green-700' />
+				</a>
+			</div>
 		</div>
 	);
 }

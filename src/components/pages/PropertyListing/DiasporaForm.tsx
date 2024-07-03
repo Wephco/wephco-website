@@ -30,7 +30,7 @@ const DiasporaForm = ({ open, close }: { open: boolean; close: any }) => {
 			name,
 			email,
 			phone,
-			createdAt: new Date().toLocaleString()
+			createdAt: new Date().toLocaleString(),
 		};
 
 		try {

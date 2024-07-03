@@ -19,13 +19,11 @@ const Feedback = () => {
 			</div>
 
 			<div className='grid grid-cols-1 md:grid-cols-3'>
-				
 				{feedbacks.map((feedback) => (
 					<div className='col-span-1' key={feedback.id}>
 						<FeedbackCard {...feedback} />
 					</div>
 				))}
-				
 			</div>
 		</section>
 	);
