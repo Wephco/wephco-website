@@ -79,7 +79,7 @@ const DiasporaPropertyListing = () => {
 		<div className='bg-white'>
 			<div className='flex justify-between m-5'>
 				<div>
-					<h1 className='text-3xl font-semibold'>Diaspora Property Listings</h1>
+					<h1 className='text-3xl font-semibold'>Diaspora Property Enquiries</h1>
 				</div>
 				<div>
 					{/* <button

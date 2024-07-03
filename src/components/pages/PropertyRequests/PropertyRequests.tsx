@@ -18,39 +18,12 @@ const PropertyRequests = () => {
 		AppContext,
 	) as AppContextType;
 
-	// const api = new ApiHelper();
-
-	// const navigate = useNavigate();
-
-	// const { Dialog, handleShow } = Modal.useDialog();
-
 	const [requests, setRequests] = useState<IPropertyRequest[]>([]);
-	// const [loading, setLoading] = useState(false);
-	// const [code, setCode] = useState('');
 
-	// const editRequest = (id: string) => {}
-
-	// const updatePropertyRequest = async (id: string, property: IPropertyRequest) => {
-	// 	const code = prompt('Please Enter Authorization Code') as string;
-
-	// 	if (code.toLowerCase().trim() === 'weph20233' || code.toLowerCase().trim() === 'neto') {
-	// 		try {
-	// 			await updateDocument('propertyRequests', property, id)
-	// 			setToastContent('Property Request updated successfully');
-	// 			setToastVariant('success');
-	// 			setToastOpen(true);
-	// 		} catch (error) {
-	// 			setToastContent('Error updating property');
-	// 			setToastVariant('error');
-	// 			setToastOpen(true);
-	// 		}
-	// 	} else {
-	// 		setToastContent('Invalid Authorization Code');
-	// 		setToastVariant('error');
-	// 		setToastOpen(true);
-	// 		return;
-	// 	}
-	// }
+	const sortRequests = () => {
+		const sortedRequests = requests.sort((a, b) => new Date(b.dateOfRequest).getTime() - new Date(a.dateOfRequest).getTime());
+		setRequests(sortedRequests)
+	};
 
 	const checkRequest = (property: IPropertyRequest) => {
 		const answer = prompt('Mark property as attended to? (YES/NO)') as string;
@@ -105,20 +78,6 @@ const PropertyRequests = () => {
 		}
 	};
 
-	// const getRequests = useCallback(async () => {
-	// 	setLoading(true);
-
-	// 	try {
-	// 		const response = await getAllDocuments('propertyRequests');
-	// 		setRequests(response);
-	// 	} catch (error) {
-	// 		setToastContent('Error getting property listings. Try again later');
-	// 		setToastVariant('error');
-	// 		setToastOpen(true);
-	// 	} finally {
-	// 		setLoading(false);
-	// 	}
-	// }, []);
 
 	useEffect(() => {
 		const q = query(collection(db, 'leads'));
@@ -128,6 +87,7 @@ const PropertyRequests = () => {
 				propertyRequests.push({ ...doc.data(), id: doc.id });
 			});
 			setRequests(propertyRequests);
+			sortRequests()
 		});
 
 		return unsubscribe;

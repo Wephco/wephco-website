@@ -44,7 +44,12 @@ const getAllDocuments = async (collectionName: string) => {
 	const q = query(collection(db, collectionName));
 	const querySnapshot = await getDocs(q);
 	querySnapshot.forEach((doc) => {
+    if(collectionName === 'diaspora-property-enquiry'){
+      documents.push(doc.data().data);
+    }
+    else{
 		documents.push(doc.data());
+    }
 	});
 	return documents;
 };
