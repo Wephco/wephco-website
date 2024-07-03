@@ -15,7 +15,7 @@ const Home = () => {
 		try {
 			const response = await api.getData(endpoints.Agents.mainUrl, token);
 			setAgentList(response);
-			sessionStorage.setItem('agentList', JSON.stringify(response))
+			sessionStorage.setItem('agentList', JSON.stringify(response));
 		} catch (error) {
 			setToastVariant('error');
 			setToastContent(`Error getting agent list - ${error}`);

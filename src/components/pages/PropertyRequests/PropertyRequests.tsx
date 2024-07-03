@@ -21,8 +21,10 @@ const PropertyRequests = () => {
 	const [requests, setRequests] = useState<IPropertyRequest[]>([]);
 
 	const sortRequests = () => {
-		const sortedRequests = requests.sort((a, b) => new Date(b.dateOfRequest).getTime() - new Date(a.dateOfRequest).getTime());
-		setRequests(sortedRequests)
+		const sortedRequests = requests.sort(
+			(a, b) => new Date(b.dateOfRequest).getTime() - new Date(a.dateOfRequest).getTime(),
+		);
+		setRequests(sortedRequests);
 	};
 
 	const checkRequest = (property: IPropertyRequest) => {
@@ -78,7 +80,6 @@ const PropertyRequests = () => {
 		}
 	};
 
-
 	useEffect(() => {
 		const q = query(collection(db, 'leads'));
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -87,7 +88,7 @@ const PropertyRequests = () => {
 				propertyRequests.push({ ...doc.data(), id: doc.id });
 			});
 			setRequests(propertyRequests);
-			sortRequests()
+			sortRequests();
 		});
 
 		return unsubscribe;

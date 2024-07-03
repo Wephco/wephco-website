@@ -41,7 +41,6 @@ const DiasporaPropertyListing = () => {
 		getProperties();
 	}, [getProperties]);
 
-
 	let tableHead = (
 		<thead>
 			<tr>

@@ -6,18 +6,17 @@ export interface IDisaporaPropertyEnquiry {
 }
 
 export interface IProperties {
-    location: string
-    propertyType: string
-    propertyImages: Array<string>
-    numberOfrooms: number
-    numberOfToilets: number
-    numberOfBathrooms: number
-    numberOfLivingRooms: number
-    numberOfKitchens: number
-    agentId: number
-    createdAt: string
+	location: string;
+	propertyType: string;
+	propertyImages: Array<string>;
+	numberOfrooms: number;
+	numberOfToilets: number;
+	numberOfBathrooms: number;
+	numberOfLivingRooms: number;
+	numberOfKitchens: number;
+	agentId: number;
+	createdAt: string;
 }
-
 
 export interface ICreateProperty {
 	location: string;
@@ -33,7 +32,7 @@ export interface ICreateProperty {
 }
 
 export const newProperty: ICreateProperty = {
-    location: '',
+	location: '',
 	propertyType: '',
 	propertyImages: [],
 	numberOfrooms: 0,
@@ -42,6 +41,5 @@ export const newProperty: ICreateProperty = {
 	numberOfLivingRooms: 0,
 	numberOfKitchens: 0,
 	agentId: 0,
-	agentName: ''
-}
-
+	agentName: '',
+};

@@ -49,7 +49,6 @@ const Dashboard = ({ component: Component }: PrivateRouteProps) => {
 					</li>
 				</ul>
 				<br />
-				
 			</div>
 		</div>
 		// <div className='container grid grid-cols-3 h-screen'>

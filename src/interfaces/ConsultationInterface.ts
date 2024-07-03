@@ -1,6 +1,6 @@
 export interface IConsultation {
-    id: string;
-    name: string;
+	id: string;
+	name: string;
 	phoneNumber: string;
 	email: string;
 	message: string;
