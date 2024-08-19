@@ -25,15 +25,25 @@ const DiasporaPropertyListing = () => {
 					<img src={d3} className='h-40 lg:h-64 rounded-xl' />
 					<div className='col-span-2'>
 						<h2 className='text-black text-2xl uppercase font-bold'>
-							Fay Alreeman II, Al Shamkha, Abu Dhabi
+							Gardenia Bay WATERFRONT APARTMENTS
 						</h2>
-						<h2 className='text-xl uppercase font-bold text-gray-500'>$1,500,000</h2>
+						<h2 className='text-xl uppercase font-bold text-gray-500'>Starting FROM AED $250k</h2>
+						<h2 className='text-xl uppercase font-bold text-gray-500'>
+							4-BED TOWNHOUSES FROM $1.5M
+						</h2>
+						<h2 className='text-black text-2xl uppercase font-bold'>PAYMENT PLAN:</h2>
+						<h2 className='text-xl uppercase font-bold text-gray-500'>
+							APARTMENTS: 5% DOWN PAYMENT | 40/60 PAYMENT PLAN
+						</h2>
+						<h2 className='text-xl uppercase font-bold text-gray-500'>
+							TOWNHOUSES: 10% DOWN PAYMENT | 50/50 PAYMENT PLAN
+						</h2>
 						<p className='text-lg text-black mt-3'>
-							We are excited to inform you and your clients of our exclusive Ramadan offer at Fay
-							Alreeman II community in Al Shamkha. Introduce your clients to a selection of premium
-							villas that open up to expansive green spaces, exhilarating adventure parks, tracks
-							and sports courts-everything they need to enjoy life to the fullest. 4 to 6-bedrooms
-							villas in Al Shamkha from AED 3.47M | 10% down payment
+							We are thrilled to introduce you and your clients to a new level of waterfront resort
+							living at Gardenia Bay in Abu Dhabi. This exceptional development offers a blend of
+							elegance and excitement, where every detail is crafted to surprise. An urban beach and
+							pool. Vibrant spaces to work, play and train. A buzzing community hub and house
+							cinema. This is resort living with flair.
 						</p>
 						<button
 							onClick={() => setOpenModal(true)}
